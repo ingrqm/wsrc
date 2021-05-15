@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "baseUrl": "src/",
+    "paths": {
+      "@component/*": [
+        "common/component/*"
+      ],
+      "@section/*": [
+        "common/section/*"
+      ],
+      "@page/*": [
+        "module/*"
+      ]
+    }
+  }
+}

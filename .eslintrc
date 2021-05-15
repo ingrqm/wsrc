@@ -1,0 +1,107 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "latest"
+    }
+  },
+  "env": {
+    "browser": true,
+    "jest": true,
+    "node": true,
+    "es6": true
+  },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "import"
+  ],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "index",
+          "parent",
+          "sibling"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "next**",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "react**",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "{prop-types}",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "{base/**,util/**,storage/**/*}",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "{url}",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@component/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@section/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@page/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "asset/**",
+            "group": "sibling",
+            "position": "after"
+          },
+          {
+            "pattern": "./**/*.module.scss",
+            "group": "sibling",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "builtin"
+        ]
+      }
+    ],
+    "react/react-in-jsx-scope": "off"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ]
+}
