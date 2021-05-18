@@ -57,6 +57,11 @@
             "position": "before"
           },
           {
+            "pattern": "@material-ui/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
             "pattern": "{base/**,util/**,storage/**/*}",
             "group": "external",
             "position": "before"
@@ -67,17 +72,17 @@
             "position": "after"
           },
           {
-            "pattern": "@component/**",
+            "pattern": "@components/**",
             "group": "external",
             "position": "after"
           },
           {
-            "pattern": "@section/**",
+            "pattern": "@sections/**",
             "group": "external",
             "position": "after"
           },
           {
-            "pattern": "@page/**",
+            "pattern": "@pages/**",
             "group": "external",
             "position": "after"
           },

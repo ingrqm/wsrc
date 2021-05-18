@@ -3,14 +3,17 @@
     "target": "es5",
     "baseUrl": "src/",
     "paths": {
-      "@component/*": [
-        "common/component/*"
+      "@components": [
+        "common/components"
       ],
-      "@section/*": [
-        "common/section/*"
+      "@components/*": [
+        "common/components/*"
       ],
-      "@page/*": [
-        "module/*"
+      "@sections/*": [
+        "common/sections/*"
+      ],
+      "@pages/*": [
+        "modules/*"
       ]
     }
   }
