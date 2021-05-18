@@ -1,4 +1,4 @@
 export const LOCALE = {
-    POLISH: 'pl',
-    ENGLISH: 'en',
+  POLISH: 'pl',
+  ENGLISH: 'en',
 };

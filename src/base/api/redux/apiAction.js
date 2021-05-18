@@ -14,14 +14,14 @@ import { REQUEST } from 'base/redux/consts';
  */
 
 export const apiAction = (api, type, endpoint, options = {}) => {
-    return {
-        api,
-        type: type + REQUEST,
-        endpoint,
-        method: options.method || 'GET',
-        payload: options.payload,
-        afterSagaSuccess: options.afterSagaSuccess,
-        extendResponse: options.extendResponse,
-        clearOnRequest: options.clearOnRequest,
-    };
+  return {
+    api,
+    type: type + REQUEST,
+    endpoint,
+    method: options.method || 'GET',
+    payload: options.payload,
+    afterSagaSuccess: options.afterSagaSuccess,
+    extendResponse: options.extendResponse,
+    clearOnRequest: options.clearOnRequest,
+  };
 };

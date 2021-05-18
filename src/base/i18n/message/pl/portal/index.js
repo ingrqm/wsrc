@@ -5,7 +5,7 @@ import pages from './pages';
 import sections from './sections';
 
 export default {
-    ...jsonToPair(api),
-    ...jsonToPair(pages),
-    ...jsonToPair(sections),
+  ...jsonToPair(api),
+  ...jsonToPair(pages),
+  ...jsonToPair(sections),
 };

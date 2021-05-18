@@ -1,7 +1,7 @@
 export default {
-    page: {
-        home: {
-            title: 'tytuł',
-        },
+  page: {
+    home: {
+      title: 'tytuł',
     },
+  },
 };

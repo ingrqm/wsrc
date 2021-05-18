@@ -1,2 +1,1 @@
-import Landing from '@page/portal/Landing';
-export default Landing;
+export { default } from '@pages/portal/Landing';

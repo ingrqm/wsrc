@@ -9,9 +9,9 @@ import Route from 'route-parser';
  */
 
 export const resolveUrl = (pattern, params, query) => {
-    const route = new Route(pattern);
-    const url = route.reverse(params);
-    return query ? `${url}?${qs.stringify(query)}` : url;
+  const route = new Route(pattern);
+  const url = route.reverse(params);
+  return query ? `${url}?${qs.stringify(query)}` : url;
 };
 
 /**
@@ -21,25 +21,25 @@ export const resolveUrl = (pattern, params, query) => {
  */
 
 export const matchUrl = (pattern, path) => {
-    const route = new Route(pattern);
-    return route.match(path);
+  const route = new Route(pattern);
+  return route.match(path);
 };
 
 export const matchParamsUrl = (url) => {
-    return qs.parse(getUrlParams(url));
+  return qs.parse(getUrlParams(url));
 };
 
 export const getUrlString = (url) => {
-    return splitUrl(url, '?')[0];
+  return splitUrl(url, '?')[0];
 };
 
 export const getUrlParams = (url) => {
-    return splitUrl(url, '?')[1];
+  return splitUrl(url, '?')[1];
 };
 
 export const splitUrl = (url, pattern) => {
-    return url.includes(pattern) ? url.split(pattern) : url;
+  return url.includes(pattern) ? url.split(pattern) : url;
 };
 
 export const extendQueryString = (url, actualQuery, extendedQuery = {}) =>
-    url + qs.stringify({ ...actualQuery, ...extendedQuery }, { addQueryPrefix: true, skipNulls: true });
+  url + qs.stringify({ ...actualQuery, ...extendedQuery }, { addQueryPrefix: true, skipNulls: true });

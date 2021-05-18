@@ -6,10 +6,10 @@ import error from './error';
 import portal from './portal';
 
 export default {
-    [LOCALE.POLISH]: {
-        ...app,
-        ...docs,
-        ...error,
-        ...portal,
-    },
+  [LOCALE.POLISH]: {
+    ...app,
+    ...docs,
+    ...error,
+    ...portal,
+  },
 };

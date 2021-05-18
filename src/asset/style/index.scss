@@ -1,5 +1,4 @@
 @import '_fonts';
-@import '_typography';
 
 *,
 *:before,
@@ -19,7 +18,7 @@
 
 :root,
 body,
-#root {
+#__next {
   height: 100%;
 }
 

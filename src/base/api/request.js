@@ -9,15 +9,15 @@ import axios from 'axios';
  */
 
 export const request = (api, method, url, data) => {
-    let requestConfig = {
-        baseURL: api,
-        method,
-        url,
-        data,
-        headers: {
-            'Cache-Control': 'no-cache',
-        },
-    };
+  let requestConfig = {
+    baseURL: api,
+    method,
+    url,
+    data,
+    headers: {
+      'Cache-Control': 'no-cache',
+    },
+  };
 
-    return axios(requestConfig);
+  return axios(requestConfig);
 };
