@@ -7,7 +7,7 @@ import { func, object } from 'prop-types';
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-import 'asset/style/index.scss';
+import 'asset/style/index.css';
 
 const store = configureStore();
 

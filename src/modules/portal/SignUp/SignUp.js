@@ -51,8 +51,6 @@ const SignUp = () => {
     setPhonePrefix(prefix);
   };
 
-  console.log(languageList);
-
   return (
     <StyledMain bgcolor="dark.main">
       <Container maxWidth="xs">
@@ -118,7 +116,7 @@ const SignUp = () => {
               <Grid item xs={10}>
                 <Box mb={2}>
                   <FormControl fullWidth>
-                    <InputLabel>Nazwa ekipy</InputLabel>
+                    <InputLabel>nazwa ekipy</InputLabel>
                     <Input />
                   </FormControl>
                 </Box>
@@ -147,7 +145,7 @@ const SignUp = () => {
               <Grid item xs={5}>
                 <Box mb={2}>
                   <FormControl fullWidth>
-                    <InputLabel>Imię</InputLabel>
+                    <InputLabel>imię</InputLabel>
                     <Input />
                   </FormControl>
                 </Box>
@@ -155,7 +153,7 @@ const SignUp = () => {
               <Grid item xs={5}>
                 <Box mb={2}>
                   <FormControl fullWidth>
-                    <InputLabel>Nazwisko</InputLabel>
+                    <InputLabel>nazwisko</InputLabel>
                     <Input
                       endAdornment={
                         <InputAdornment>
@@ -181,7 +179,7 @@ const SignUp = () => {
               <Grid item xs={7}>
                 <Box mb={1}>
                   <FormControl fullWidth mt={0}>
-                    <InputLabel>Numer telefonu</InputLabel>
+                    <InputLabel>numer telefonu</InputLabel>
                     <Input
                       startAdornment={
                         <InputAdornment>
@@ -202,7 +200,7 @@ const SignUp = () => {
               <Grid item xs={10}>
                 <Box mb={2}>
                   <FormControl fullWidth>
-                    <InputLabel>Adres e-mail</InputLabel>
+                    <InputLabel>adres e-mail</InputLabel>
                     <Input
                       endAdornment={
                         <InputAdornment>
@@ -218,7 +216,23 @@ const SignUp = () => {
               <Grid item xs={10}>
                 <Box mb={2}>
                   <FormControl fullWidth>
-                    <InputLabel>Hasło</InputLabel>
+                    <InputLabel>powtórz adres e-mail</InputLabel>
+                    <Input
+                      endAdornment={
+                        <InputAdornment>
+                          <Mail />
+                        </InputAdornment>
+                      }
+                    />
+                  </FormControl>
+                </Box>
+              </Grid>
+            </Grid>
+            <Grid justify="center" container>
+              <Grid item xs={10}>
+                <Box mb={2}>
+                  <FormControl fullWidth>
+                    <InputLabel>hasło</InputLabel>
                     <Input
                       type="password"
                       endAdornment={
@@ -235,7 +249,7 @@ const SignUp = () => {
               <Grid item xs={10}>
                 <Box mb={0}>
                   <FormControl fullWidth>
-                    <InputLabel>Powtórz hasło</InputLabel>
+                    <InputLabel>powtórz hasło</InputLabel>
                     <Input
                       type="password"
                       endAdornment={
@@ -251,7 +265,7 @@ const SignUp = () => {
             <Grid justify="center" container>
               <Grid item xs={10}>
                 <Box mt={1} mb={0} justify="start">
-                  <FormControlLabel control={<Checkbox color="primary" />} label="Zaakceptuj regulamin" />
+                  <FormControlLabel control={<Checkbox color="primary" />} label="zaakceptuj regulamin" />
                 </Box>
               </Grid>
             </Grid>

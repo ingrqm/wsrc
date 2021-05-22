@@ -1,10 +1,8 @@
-@import '_fonts';
-
 *,
 *:before,
 *:after {
   box-sizing: border-box;
-  font-family: font-family('default'), sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 *:active,
@@ -23,7 +21,7 @@ body,
 }
 
 body {
-  font-family: font-family('default'), sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
 }
 
