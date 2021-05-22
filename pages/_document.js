@@ -10,7 +10,6 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-          <link rel="stylesheet" type="text/css" href="/nprogress.css" />
         </Head>
         <body>
           <Main />

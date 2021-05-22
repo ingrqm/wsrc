@@ -9,6 +9,9 @@
       "@components/*": [
         "common/components/*"
       ],
+      "@forms/*": [
+        "common/forms/*"
+      ],
       "@sections/*": [
         "common/sections/*"
       ],

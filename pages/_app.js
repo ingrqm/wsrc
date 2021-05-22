@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 
 import { I18nProvider } from 'base/i18n';
@@ -10,6 +11,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import 'asset/style/index.css';
 
 const store = configureStore();
+const queryClient = new QueryClient();
 
 const theme = createMuiTheme({
   palette: {
@@ -23,11 +25,13 @@ const theme = createMuiTheme({
 const App = ({ Component, pageProps }) => {
   return (
     <Provider store={store}>
-      <I18nProvider>
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </I18nProvider>
+      <QueryClientProvider client={queryClient}>
+        <I18nProvider>
+          <ThemeProvider theme={theme}>
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </I18nProvider>
+      </QueryClientProvider>
     </Provider>
   );
 };
