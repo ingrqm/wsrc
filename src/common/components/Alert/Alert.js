@@ -20,7 +20,7 @@ Alert.propTypes = {
   open: bool.isRequired,
   onClose: func.isRequired,
   message: string,
-  type: oneOf(['success', 'error ', 'warning', 'info']).isRequired,
+  type: oneOf(['success', 'error', 'warning', 'info']).isRequired,
 };
 
 export default Alert;

@@ -1,5 +1,8 @@
 {
   "i18n-ally.localesPaths": [
     "src/base/i18n"
+  ],
+  "cSpell.words": [
+    "notistack"
   ]
 }

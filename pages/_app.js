@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 
 import { I18nProvider } from 'base/i18n';
+import SnackbarProvider from 'base/providers/SnackbarProvider';
 import configureStore from 'base/redux/configureStore';
 
 import { func, object } from 'prop-types';
@@ -28,7 +29,9 @@ const App = ({ Component, pageProps }) => {
       <QueryClientProvider client={queryClient}>
         <I18nProvider>
           <ThemeProvider theme={theme}>
-            <Component {...pageProps} />
+            <SnackbarProvider>
+              <Component {...pageProps} />
+            </SnackbarProvider>
           </ThemeProvider>
         </I18nProvider>
       </QueryClientProvider>

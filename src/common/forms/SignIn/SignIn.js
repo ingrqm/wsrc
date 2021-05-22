@@ -57,7 +57,7 @@ const SignInForm = () => {
       <form onSubmit={formik.handleSubmit} autoComplete="off">
         <CardContent>
           <Grid justify="center" container>
-            <Grid item xs={true}>
+            <Grid item xs={12}>
               <Box my={2}>
                 <Typography align="center">{translate('form.signIn.title')}</Typography>
               </Box>

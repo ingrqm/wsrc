@@ -1,20 +1,39 @@
 export default {
   form: {
+    passRecovery: {
+      title: 'odzyskiwanie hasła',
+      input: {
+        email: {
+          label: 'adres e-mail',
+          validation: {
+            email: 'niepoprawny adres e-mail',
+            required: 'adres e-mail jest wymagany',
+          },
+        },
+      },
+      button: {
+        label: 'przypomnij hasło',
+      },
+      messages: {
+        failed: 'nie ma użytkownika o podanym adresie e-mail',
+        success: 'wysłano na adres e-mail link do zmiany hasła',
+      },
+    },
     signIn: {
       title: 'logowanie',
       input: {
         email: {
-          label: 'Adres e-mail',
+          label: 'adres e-mail',
           validation: {
-            email: 'Niepoprawny adres e-mail',
-            required: 'Adres e-mail jest wymagany',
+            email: 'niepoprawny adres e-mail',
+            required: 'adres e-mail jest wymagany',
           },
         },
         password: {
-          label: 'Hasło',
+          label: 'hasło',
           validation: {
-            min: 'Hasło musi mieć conajmniej 5 znaków',
-            required: 'Hasło jest wymagane',
+            min: 'hasło musi mieć conajmniej 5 znaków',
+            required: 'hasło jest wymagane',
           },
         },
       },

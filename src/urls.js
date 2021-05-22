@@ -8,3 +8,5 @@ export const appUrls = {
     dashboard: '/app/',
   },
 };
+
+export const apiUrls = {};

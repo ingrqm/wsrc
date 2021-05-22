@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useMutation } from 'react-query';
 
-import { Alert, FormHelperText } from '@components';
+import { translate } from 'base/i18n';
+
+import { FormHelperText } from '@components';
+import axios from 'axios';
 import { useFormik } from 'formik';
+import { useRouter } from 'next/router';
+import { useSnackbar } from 'notistack';
+import { appUrls } from 'urls';
 import * as yup from 'yup';
 
 import {
@@ -24,11 +31,37 @@ const input = {
 };
 
 const validationSchema = yup.object({
-  [input.email]: yup.string().email('Enter a valid email').required('Email is required'),
+  [input.email]: yup
+    .string()
+    .email(translate('form.passRecovery.input.email.validation.email'))
+    .required(translate('form.passRecovery.input.email.validation.required')),
 });
 
+const recoveryPassword = async (values) => {
+  const request = await axios.post(`https://jsonplaceholder.typicode.com/posts`, { ...values });
+
+  if (request) {
+    return request.data;
+  } else {
+    return request;
+  }
+};
+
 const PassRecoveryForm = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const { isLoading, mutate } = useMutation(recoveryPassword, {
+    onError: () => {
+      enqueueSnackbar(translate('form.passRecovery.messages.failed'), { variant: 'error' });
+    },
+    onSuccess: () => {
+      enqueueSnackbar(translate('form.passRecovery.messages.success'), { variant: 'success' });
+      setTimeout(() => {
+        router.push(appUrls.portal.signIn);
+      }, 1000);
+    },
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -36,8 +69,7 @@ const PassRecoveryForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // alert(JSON.stringify(values, null, 2));
-      setIsOpen(true);
+      mutate(values);
     },
   });
 
@@ -46,19 +78,22 @@ const PassRecoveryForm = () => {
       <form onSubmit={formik.handleSubmit} autoComplete="off">
         <CardContent>
           <Grid justify="center" container>
-            <Grid item xs={true}>
+            <Grid item xs={12}>
               <Box my={2}>
-                <Typography align="center">odzyskiwanie hasła</Typography>
+                <Typography align="center">{translate('form.passRecovery.title')}</Typography>
               </Box>
             </Grid>
             <Grid item xs={10}>
               <FormControl fullWidth>
-                <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>Adres e-mail</InputLabel>
+                <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>
+                  {translate('form.passRecovery.input.email.label')}
+                </InputLabel>
                 <Input
                   name={input.email}
                   value={formik.values.email}
                   error={formik.touched.email && Boolean(formik.errors.email)}
                   onChange={formik.handleChange}
+                  disabled={isLoading}
                   endAdornment={
                     <InputAdornment>
                       <Mail />
@@ -75,14 +110,13 @@ const PassRecoveryForm = () => {
         <CardActions>
           <Grid justify="center" container>
             <Box mb={2}>
-              <Button type="submit" variant="contained" color="primary">
-                przypomnij hasło
+              <Button type="submit" variant="contained" color="primary" disabled={isLoading}>
+                {translate('form.passRecovery.button.label')}
               </Button>
             </Box>
           </Grid>
         </CardActions>
       </form>
-      <Alert open={isOpen} onClose={setIsOpen} type="success" message="This is a success message!" />
     </Card>
   );
 };
