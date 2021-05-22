@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { translate } from 'base/i18n';
 
-import { Alert, FormHelperText } from '@components';
+import { FormHelperText } from '@components';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
@@ -38,8 +38,6 @@ const validationSchema = yup.object({
 });
 
 const SignInForm = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   const formik = useFormik({
     initialValues: {
       [input.email]: '',
@@ -119,7 +117,6 @@ const SignInForm = () => {
           </Grid>
         </CardActions>
       </form>
-      <Alert open={isOpen} onClose={setIsOpen} type="error" message="This is a success message!" />
     </Card>
   );
 };

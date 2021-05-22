@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { Alert } from '@components';
+import Link from 'next/link';
 import { appUrls } from 'urls';
 
 import {
@@ -15,7 +16,7 @@ import {
   InputAdornment,
   Input,
   Typography,
-  Link,
+  Link as StyledLink,
   Box,
   TextField,
   FormControlLabel,
@@ -283,8 +284,10 @@ const SignUp = () => {
         <Grid alignItems="center" justify="space-between" container>
           <Grid item>
             <Box mt={2} color="dark.contrastText">
-              <Link href={appUrls.portal.signIn} color="inherit" variant="body2">
-                Masz już swoje konto?
+              <Link href={appUrls.portal.signIn}>
+                <StyledLink color="inherit" variant="body2">
+                  Masz już swoje konto?
+                </StyledLink>
               </Link>
             </Box>
           </Grid>

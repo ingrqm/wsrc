@@ -1,9 +1,10 @@
 import React from 'react';
 
 import SignInForm from '@forms/SignIn';
+import Link from 'next/link';
 import { appUrls } from 'urls';
 
-import { Container, Grid, Link, Box } from '@material-ui/core';
+import { Container, Grid, Link as StyledLink, Box } from '@material-ui/core';
 
 import { StyledMain } from './SignIn.styled';
 
@@ -14,15 +15,19 @@ const SignIn = () => (
       <Grid alignItems="center" justify="space-between" container>
         <Grid item>
           <Box mt={2} color="dark.contrastText">
-            <Link href={appUrls.portal.passRecovery} color="inherit" variant="body2">
-              Zapomniałeś hasła?
+            <Link href={appUrls.portal.passRecovery}>
+              <StyledLink color="inherit" variant="body2">
+                Zapomniałeś hasła?
+              </StyledLink>
             </Link>
           </Box>
         </Grid>
         <Grid item>
           <Box mt={2} color="dark.contrastText">
-            <Link href={appUrls.portal.signUp} color="inherit" variant="body2">
-              Nie masz konta?
+            <Link href={appUrls.portal.signUp}>
+              <StyledLink color="inherit" variant="body2">
+                Nie masz konta?
+              </StyledLink>
             </Link>
           </Box>
         </Grid>
