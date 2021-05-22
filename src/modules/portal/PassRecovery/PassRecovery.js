@@ -1,12 +1,12 @@
-import Link from 'next/link';
-
 import React from 'react';
 
 import PassRecoveryForm from '@forms/PassRecovery';
 
-import { Container, Grid, Link as StyledLink, Box } from '@material-ui/core';
+import { Container, Grid, Box } from '@material-ui/core';
 
 import { appUrls } from 'urls';
+
+import { Link } from '@components';
 
 import { StyledMain } from './PassRecovery.styled';
 
@@ -17,11 +17,7 @@ const PassRecovery = () => (
       <Grid alignItems="center" justify="space-between" container>
         <Grid item>
           <Box color="dark.contrastText" mt={2}>
-            <Link href={appUrls.portal.signIn}>
-              <StyledLink color="inherit" variant="body2">
-                Pamiętasz hasło?
-              </StyledLink>
-            </Link>
+            <Link href={appUrls.portal.signIn}>Pamiętasz hasło?</Link>
           </Box>
         </Grid>
       </Grid>

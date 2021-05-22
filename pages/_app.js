@@ -31,7 +31,7 @@ const App = ({ Component, pageProps }) => {
         <I18nProvider>
           <ThemeProvider theme={theme}>
             <SnackbarProvider>
-              <NextNprogress color="#29D" height={3} startPosition={0.3} stopDelayMs={200} />
+              <NextNprogress color="#303f9f" height={3} startPosition={0} stopDelayMs={200} />
               <Component {...pageProps} />
             </SnackbarProvider>
           </ThemeProvider>

@@ -84,12 +84,16 @@ const validationSchema = yup.object({
   [input.password]: yup
     .string()
     .min(5, translate('form.signUp.input.password.validation.min'))
-    .matches(regex.special, translate('form.signUp.input.password.validation.specialCharacter'))
+    .matches(regex.special, {
+      message: translate('form.signUp.input.password.validation.specialCharacter'),
+    })
     .required(translate('form.signUp.input.password.validation.required')),
   [input.replyPassword]: yup
     .string()
     .min(5, translate('form.signUp.input.replyPassword.validation.min'))
-    .matches(regex.special, translate('form.signUp.input.password.validation.specialCharacter'))
+    .matches(regex.special, {
+      message: translate('form.signUp.input.password.validation.specialCharacter'),
+    })
     .required(translate('form.signUp.input.replyPassword.validation.required'))
     .oneOf([yup.ref('password'), null], translate('form.signUp.input.replyPassword.validation.match')),
   [input.statute]: yup.bool().oneOf([true], translate('form.signUp.input.statute.validation.required')),
@@ -177,8 +181,6 @@ const SignUpForm = () => {
   const handleAgeChange = (_, age) => {
     formik.setFieldValue(input.age, age || '');
   };
-
-  console.log(formik.values);
 
   return (
     <Card>

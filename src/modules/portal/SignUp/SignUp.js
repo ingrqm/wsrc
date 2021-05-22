@@ -1,10 +1,10 @@
-import Link from 'next/link';
-
 import React from 'react';
 
-import { Container, Grid, Link as StyledLink, Box } from '@material-ui/core';
+import { Container, Grid, Box } from '@material-ui/core';
 
 import { appUrls } from 'urls';
+
+import { Link } from '@components';
 
 import { SignUp as SignUpForm } from '@forms';
 
@@ -17,11 +17,7 @@ const SignUp = () => (
       <Grid alignItems="center" justify="space-between" container>
         <Grid item>
           <Box color="dark.contrastText" mt={2}>
-            <Link href={appUrls.portal.signIn}>
-              <StyledLink color="inherit" variant="body2">
-                Masz już swoje konto?
-              </StyledLink>
-            </Link>
+            <Link href={appUrls.portal.signIn}>Masz już swoje konto?</Link>
           </Box>
         </Grid>
       </Grid>

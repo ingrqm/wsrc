@@ -1,8 +1,13 @@
+import { useRouter } from 'next/router';
+
 import React from 'react';
+import { useMutation } from 'react-query';
 
 import { translate } from 'base/i18n';
 
+import axios from 'axios';
 import { useFormik } from 'formik';
+import { useSnackbar } from 'notistack';
 import * as yup from 'yup';
 
 import {
@@ -20,6 +25,8 @@ import {
 } from '@material-ui/core';
 
 import { Mail, LockOpen } from '@material-ui/icons';
+
+import { appUrls } from 'urls';
 
 import { FormHelperText } from '@components';
 
@@ -40,11 +47,38 @@ const validationSchema = yup.object({
   [input.password]: yup
     .string()
     .min(5, translate('form.signIn.input.password.validation.min'))
-    .matches(regex.special, translate('form.signIn.input.password.validation.specialCharacter'))
+    .matches(regex.special, {
+      message: translate('form.signUp.input.password.validation.specialCharacter'),
+    })
     .required(translate('form.signIn.input.password.validation.required')),
 });
 
+const signIn = async (values) => {
+  const request = await axios.post(`https://jsonplaceholder.typicode.com/posts`, { ...values });
+
+  if (request) {
+    return request.data;
+  } else {
+    return request;
+  }
+};
+
 const SignInForm = () => {
+  const router = useRouter();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const { isLoading, mutate } = useMutation(signIn, {
+    onError: () => {
+      enqueueSnackbar(translate('form.passRecovery.messages.failed'), { variant: 'error' });
+    },
+    onSuccess: () => {
+      enqueueSnackbar(translate('form.passRecovery.messages.success'), { variant: 'success' });
+      setTimeout(() => {
+        router.push(appUrls.app.dashboard);
+      }, 1000);
+    },
+  });
+
   const formik = useFormik({
     initialValues: {
       [input.email]: '',
@@ -52,8 +86,7 @@ const SignInForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // alert(JSON.stringify(values, null, 2));
-      setIsOpen(true);
+      mutate(values);
     },
   });
 
@@ -73,6 +106,7 @@ const SignInForm = () => {
                   {translate('form.signIn.input.email.label')}
                 </InputLabel>
                 <Input
+                  disabled={isLoading}
                   endAdornment={
                     <InputAdornment>
                       <Mail />
@@ -96,6 +130,7 @@ const SignInForm = () => {
                   {translate('form.signIn.input.password.label')}
                 </InputLabel>
                 <Input
+                  disabled={isLoading}
                   endAdornment={
                     <InputAdornment>
                       <LockOpen />
