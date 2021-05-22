@@ -3,7 +3,7 @@ import { CopyBlock, dracula } from 'react-code-blocks';
 import PropTypes from 'prop-types';
 
 const CodeBlock = ({ code, language, showLineNumbers }) => {
-  return <CopyBlock text={code} language={language} showLineNumbers={showLineNumbers} theme={dracula} codeBlock />;
+  return <CopyBlock language={language} showLineNumbers={showLineNumbers} text={code} theme={dracula} codeBlock />;
 };
 
 CodeBlock.propTypes = {

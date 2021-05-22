@@ -1,6 +1,6 @@
-import React from 'react';
-
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+
+import React from 'react';
 
 import { ServerStyleSheets } from '@material-ui/styles';
 
@@ -9,7 +9,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         </Head>
         <body>
           <Main />

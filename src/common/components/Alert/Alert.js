@@ -1,16 +1,16 @@
+import MuiAlert from '@material-ui/lab/Alert';
 import { string, bool, func, oneOf } from 'prop-types';
 
 import { Snackbar } from '@material-ui/core';
-import MuiAlert from '@material-ui/lab/Alert';
 
 const Alert = ({ open, onClose, message, type }) => (
   <Snackbar
     anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-    open={open}
-    onClose={onClose}
     autoHideDuration={6000}
+    onClose={onClose}
+    open={open}
   >
-    <MuiAlert onClose={onClose} elevation={6} variant="filled" severity={type}>
+    <MuiAlert elevation={6} onClose={onClose} severity={type} variant="filled">
       {message}
     </MuiAlert>
   </Snackbar>

@@ -11,10 +11,10 @@ const Provider = ({ children }) => {
 
   return (
     <IntlProvider
-      locale={language}
       key={language}
-      textComponent={Fragment}
+      locale={language}
       messages={messages[language] || messages[LOCALE.ENGLISH]}
+      textComponent={Fragment}
     >
       {children}
     </IntlProvider>

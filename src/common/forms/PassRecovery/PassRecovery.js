@@ -1,14 +1,13 @@
+import { useRouter } from 'next/router';
+
 import React from 'react';
 import { useMutation } from 'react-query';
 
 import { translate } from 'base/i18n';
 
-import { FormHelperText } from '@components';
 import axios from 'axios';
 import { useFormik } from 'formik';
-import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
-import { appUrls } from 'urls';
 import * as yup from 'yup';
 
 import {
@@ -24,7 +23,12 @@ import {
   Typography,
   Box,
 } from '@material-ui/core';
+
 import { Mail } from '@material-ui/icons';
+
+import { appUrls } from 'urls';
+
+import { FormHelperText } from '@components';
 
 const input = {
   email: 'email',
@@ -75,30 +79,30 @@ const PassRecoveryForm = () => {
 
   return (
     <Card>
-      <form onSubmit={formik.handleSubmit} autoComplete="off">
+      <form autoComplete="off" onSubmit={formik.handleSubmit}>
         <CardContent>
           <Grid justify="center" container>
-            <Grid item xs={12}>
+            <Grid xs={12} item>
               <Box my={2}>
                 <Typography align="center">{translate('form.passRecovery.title')}</Typography>
               </Box>
             </Grid>
-            <Grid item xs={10}>
+            <Grid xs={10} item>
               <FormControl fullWidth>
                 <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>
                   {translate('form.passRecovery.input.email.label')}
                 </InputLabel>
                 <Input
-                  name={input.email}
-                  value={formik.values.email}
-                  error={formik.touched.email && Boolean(formik.errors.email)}
-                  onChange={formik.handleChange}
                   disabled={isLoading}
                   endAdornment={
                     <InputAdornment>
                       <Mail />
                     </InputAdornment>
                   }
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  name={input.email}
+                  onChange={formik.handleChange}
+                  value={formik.values.email}
                 />
                 <FormHelperText error={formik.touched.email && Boolean(formik.errors.email)}>
                   {formik.touched.email && formik.errors.email}
@@ -110,7 +114,7 @@ const PassRecoveryForm = () => {
         <CardActions>
           <Grid justify="center" container>
             <Box mb={2}>
-              <Button type="submit" variant="contained" color="primary" disabled={isLoading}>
+              <Button color="primary" disabled={isLoading} type="submit" variant="contained">
                 {translate('form.passRecovery.button.label')}
               </Button>
             </Box>

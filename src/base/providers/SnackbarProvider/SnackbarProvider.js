@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 
+import Fade from '@material-ui/core/Fade';
 import { SnackbarProvider } from 'notistack';
 import { node } from 'prop-types';
 
-import Fade from '@material-ui/core/Fade';
 import { ReportProblemOutlined, ErrorOutline, DoneAll, Close } from '@material-ui/icons';
 
 import { StyledIconWrapper, StyledIconButton } from './SnackbarProvider.styled';
@@ -17,7 +17,12 @@ const Provider = ({ children }) => {
 
   return (
     <SnackbarProvider
-      ref={notistackRef}
+      TransitionComponent={Fade}
+      action={(key) => (
+        <StyledIconButton color="default" onClick={onClickDismiss(key)}>
+          <Close />
+        </StyledIconButton>
+      )}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
@@ -45,12 +50,7 @@ const Provider = ({ children }) => {
         ),
       }}
       maxSnack={6}
-      TransitionComponent={Fade}
-      action={(key) => (
-        <StyledIconButton color="default" onClick={onClickDismiss(key)}>
-          <Close />
-        </StyledIconButton>
-      )}
+      ref={notistackRef}
     >
       {children}
     </SnackbarProvider>

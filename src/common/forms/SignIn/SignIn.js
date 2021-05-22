@@ -2,7 +2,6 @@ import React from 'react';
 
 import { translate } from 'base/i18n';
 
-import { FormHelperText } from '@components';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
@@ -19,7 +18,10 @@ import {
   Typography,
   Box,
 } from '@material-ui/core';
+
 import { Mail, LockOpen } from '@material-ui/icons';
+
+import { FormHelperText } from '@components';
 
 const input = {
   email: 'email',
@@ -49,32 +51,32 @@ const SignInForm = () => {
       setIsOpen(true);
     },
   });
-  6;
+
   return (
     <Card>
-      <form onSubmit={formik.handleSubmit} autoComplete="off">
+      <form autoComplete="off" onSubmit={formik.handleSubmit}>
         <CardContent>
           <Grid justify="center" container>
-            <Grid item xs={12}>
+            <Grid xs={12} item>
               <Box my={2}>
                 <Typography align="center">{translate('form.signIn.title')}</Typography>
               </Box>
             </Grid>
-            <Grid item xs={10}>
+            <Grid xs={10} item>
               <FormControl fullWidth>
                 <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>
                   {translate('form.signIn.input.email.label')}
                 </InputLabel>
                 <Input
-                  name={input.email}
-                  value={formik.values.email}
-                  error={formik.touched.email && Boolean(formik.errors.email)}
-                  onChange={formik.handleChange}
                   endAdornment={
                     <InputAdornment>
                       <Mail />
                     </InputAdornment>
                   }
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  name={input.email}
+                  onChange={formik.handleChange}
+                  value={formik.values.email}
                 />
                 <FormHelperText error={formik.touched.email && Boolean(formik.errors.email)}>
                   {formik.touched.email && formik.errors.email}
@@ -83,22 +85,22 @@ const SignInForm = () => {
             </Grid>
           </Grid>
           <Grid justify="center" container>
-            <Grid item xs={10}>
+            <Grid xs={10} item>
               <FormControl fullWidth>
                 <InputLabel error={formik.touched.password && Boolean(formik.errors.password)}>
                   {translate('form.signIn.input.password.label')}
                 </InputLabel>
                 <Input
-                  name={input.password}
-                  type="password"
-                  value={formik.values.password}
-                  error={formik.touched.password && Boolean(formik.errors.password)}
-                  onChange={formik.handleChange}
                   endAdornment={
                     <InputAdornment>
                       <LockOpen />
                     </InputAdornment>
                   }
+                  error={formik.touched.password && Boolean(formik.errors.password)}
+                  name={input.password}
+                  onChange={formik.handleChange}
+                  type="password"
+                  value={formik.values.password}
                 />
                 <FormHelperText error={formik.touched.password && Boolean(formik.errors.password)}>
                   {formik.touched.password && formik.errors.password}
@@ -110,7 +112,7 @@ const SignInForm = () => {
         <CardActions>
           <Grid justify="center" container>
             <Box mb={2}>
-              <Button type="submit" variant="contained" color="primary">
+              <Button color="primary" type="submit" variant="contained">
                 {translate('form.signIn.button.label')}
               </Button>
             </Box>

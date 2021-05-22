@@ -1,3 +1,5 @@
+import NextNprogress from 'nextjs-progressbar';
+
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 
@@ -5,9 +7,8 @@ import { I18nProvider } from 'base/i18n';
 import SnackbarProvider from 'base/providers/SnackbarProvider';
 import configureStore from 'base/redux/configureStore';
 
-import { func, object } from 'prop-types';
-
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { func, object } from 'prop-types';
 
 import 'asset/style/index.css';
 
@@ -30,6 +31,7 @@ const App = ({ Component, pageProps }) => {
         <I18nProvider>
           <ThemeProvider theme={theme}>
             <SnackbarProvider>
+              <NextNprogress color="#29D" height={3} startPosition={0.3} stopDelayMs={200} />
               <Component {...pageProps} />
             </SnackbarProvider>
           </ThemeProvider>

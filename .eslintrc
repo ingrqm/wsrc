@@ -24,6 +24,12 @@
     "import"
   ],
   "rules": {
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "shorthandLast": true
+      }
+    ],
     "import/order": [
       "error",
       {
@@ -42,12 +48,12 @@
         ],
         "pathGroups": [
           {
-            "pattern": "next**",
+            "pattern": "{react,react**,react/**}",
             "group": "builtin",
             "position": "before"
           },
           {
-            "pattern": "react**",
+            "pattern": "{next,next**,next/**}",
             "group": "builtin",
             "position": "before"
           },
@@ -57,42 +63,57 @@
             "position": "before"
           },
           {
-            "pattern": "@material-ui/**",
+            "pattern": "{@material-ui/core,@material-ui/core**}",
             "group": "external",
             "position": "after"
           },
           {
-            "pattern": "{base/**,util/**,storage/**/*}",
+            "pattern": "{@material-ui/lab,@material-ui/lab**}",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "{@material-ui/icons,@material-ui/icons**}",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "{base/**,utils/**,storages/**/*}",
             "group": "external",
             "position": "before"
           },
           {
-            "pattern": "{url}",
+            "pattern": "urls",
             "group": "external",
             "position": "after"
           },
           {
-            "pattern": "@components/**",
+            "pattern": "@components**",
             "group": "external",
             "position": "after"
           },
           {
-            "pattern": "@sections/**",
+            "pattern": "@sections**",
             "group": "external",
             "position": "after"
           },
           {
-            "pattern": "@pages/**",
+            "pattern": "@forms**",
             "group": "external",
             "position": "after"
           },
           {
-            "pattern": "asset/**",
+            "pattern": "@pages**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "asset**",
             "group": "sibling",
             "position": "after"
           },
           {
-            "pattern": "./**/*.module.scss",
+            "pattern": "**.styled",
             "group": "sibling",
             "position": "after"
           }

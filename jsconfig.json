@@ -9,11 +9,20 @@
       "@components/*": [
         "common/components/*"
       ],
+      "@forms": [
+        "common/forms"
+      ],
       "@forms/*": [
         "common/forms/*"
       ],
+      "@sections": [
+        "common/sections"
+      ],
       "@sections/*": [
         "common/sections/*"
+      ],
+      "@pages": [
+        "modules"
       ],
       "@pages/*": [
         "modules/*"
