@@ -38,6 +38,10 @@ import { FormHelperText } from '@components';
 import { ageList, continentList, countryList, regionList, languageList } from './SignUp.data';
 import { StyledFlag, StyledPrefix } from './SignUp.styled';
 
+const regex = {
+  special: /^(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{0,}$/,
+};
+
 const input = {
   continent: 'continent',
   country: 'country',
@@ -55,19 +59,40 @@ const input = {
 };
 
 const validationSchema = yup.object({
-  [input.continent]: yup.string().required('required'),
-  [input.country]: yup.string().required('required'),
-  [input.region]: yup.string().required('required'),
-  [input.crew]: yup.string().required('required'),
-  [input.language]: yup.string().required('required'),
-  [input.name]: yup.string().required('required'),
-  [input.surname]: yup.string().required('required'),
-  [input.age]: yup.string().required('required'),
-  [input.phone]: yup.string().required('required'),
-  [input.email]: yup.string().required('required'),
-  [input.password]: yup.string().required('required'),
-  [input.replyPassword]: yup.string().required('required'),
-  [input.statute]: yup.bool().oneOf([true], 'The terms and conditions must be accepted.'),
+  [input.continent]: yup.string().required(translate('form.signUp.input.continent.validation.required')),
+  [input.country]: yup.string().required(translate('form.signUp.input.country.validation.required')),
+  [input.region]: yup.string().required(translate('form.signUp.input.region.validation.required')),
+  [input.crew]: yup
+    .string()
+    .min(2, translate('form.signUp.input.crew.validation.required'))
+    .required(translate('form.signUp.input.crew.validation.required')),
+  [input.language]: yup.string().required(translate('form.signUp.input.language.validation.required')),
+  [input.name]: yup
+    .string()
+    .min(2, translate('form.signUp.input.name.validation.required'))
+    .required(translate('form.signUp.input.name.validation.required')),
+  [input.surname]: yup
+    .string()
+    .min(2, translate('form.signUp.input.surname.validation.min'))
+    .required(translate('form.signUp.input.surname.validation.required')),
+  [input.age]: yup.string().required(translate('form.signUp.input.age.validation.required')),
+  [input.phone]: yup.string().required(translate('form.signUp.input.phone.validation.required')),
+  [input.email]: yup
+    .string()
+    .email(translate('form.signUp.input.email.validation.email'))
+    .required(translate('form.signUp.input.email.validation.required')),
+  [input.password]: yup
+    .string()
+    .min(5, translate('form.signUp.input.password.validation.min'))
+    .matches(regex.special, translate('form.signUp.input.password.validation.specialCharacter'))
+    .required(translate('form.signUp.input.password.validation.required')),
+  [input.replyPassword]: yup
+    .string()
+    .min(5, translate('form.signUp.input.replyPassword.validation.min'))
+    .matches(regex.special, translate('form.signUp.input.password.validation.specialCharacter'))
+    .required(translate('form.signUp.input.replyPassword.validation.required'))
+    .oneOf([yup.ref('password'), null], translate('form.signUp.input.replyPassword.validation.match')),
+  [input.statute]: yup.bool().oneOf([true], translate('form.signUp.input.statute.validation.required')),
 });
 
 const recoveryPassword = async (values) => {
@@ -89,10 +114,10 @@ const SignUpForm = () => {
 
   const { isLoading, mutate } = useMutation(recoveryPassword, {
     onError: () => {
-      enqueueSnackbar(translate('form.passRecovery.messages.failed'), { variant: 'error' });
+      enqueueSnackbar(translate('form.signUp.messages.failed'), { variant: 'error' });
     },
     onSuccess: () => {
-      enqueueSnackbar(translate('form.passRecovery.messages.success'), { variant: 'success' });
+      enqueueSnackbar(translate('form.signUp.messages.success'), { variant: 'success' });
       setTimeout(() => {
         router.push(appUrls.portal.signIn);
       }, 1000);
@@ -124,7 +149,7 @@ const SignUpForm = () => {
   const handleChangeContinent = (_, continent) => {
     const list = continent ? countryList[continent] : [];
 
-    formik.setValues({ [input.continent]: continent || '' });
+    formik.setFieldValue(input.continent, continent || '');
 
     setCountries(list);
     setRegions([]);
@@ -135,18 +160,22 @@ const SignUpForm = () => {
     const list = country && regionList[country.code] ? regionList[country.code] : [];
     const prefix = country ? country.phone : '';
 
-    formik.setValues({ [input.country]: country || '' });
+    formik.setFieldValue(input.country, country ? country.name : '');
 
     setRegions(list);
     setPhonePrefix(prefix);
   };
 
   const handleRegionChange = (_, region) => {
-    formik.setValues({ [input.region]: region || '' });
+    formik.setFieldValue(input.region, region || '');
+  };
+
+  const handleLanguageChange = (_, language) => {
+    formik.setFieldValue(input.language, language ? language.name : '');
   };
 
   const handleAgeChange = (_, age) => {
-    formik.setValues({ [input.age]: age || '' });
+    formik.setFieldValue(input.age, age || '');
   };
 
   console.log(formik.values);
@@ -158,7 +187,7 @@ const SignUpForm = () => {
           <Grid justify="center" container>
             <Grid xs={12} item>
               <Box my={2}>
-                <Typography align="center">rejestracja</Typography>
+                <Typography align="center">{translate('form.signUp.title')}</Typography>
               </Box>
             </Grid>
           </Grid>
@@ -167,13 +196,14 @@ const SignUpForm = () => {
               <Box mt={-2}>
                 <FormControl fullWidth>
                   <Autocomplete
+                    disabled={isLoading}
                     onChange={handleChangeContinent}
                     options={continentList}
                     renderInput={(params) => (
                       <TextField
                         disabled={isLoading}
                         error={formik.touched.continent && Boolean(formik.errors.continent)}
-                        label="kontynent"
+                        label={translate('form.signUp.input.continent.label')}
                         margin="normal"
                         {...params}
                       />
@@ -192,6 +222,7 @@ const SignUpForm = () => {
                 <Box mt={-2}>
                   <FormControl fullWidth>
                     <Autocomplete
+                      disabled={isLoading}
                       getOptionLabel={(option) => option.native}
                       onChange={handleChangeCountry}
                       options={countries}
@@ -199,7 +230,7 @@ const SignUpForm = () => {
                         <TextField
                           disabled={isLoading}
                           error={formik.touched.country && Boolean(formik.errors.country)}
-                          label="kraj"
+                          label={translate('form.signUp.input.country.label')}
                           margin="normal"
                           {...params}
                         />
@@ -225,13 +256,14 @@ const SignUpForm = () => {
                 <Box mt={-2}>
                   <FormControl fullWidth>
                     <Autocomplete
+                      disabled={isLoading}
                       onChange={handleRegionChange}
                       options={regions}
                       renderInput={(params) => (
                         <TextField
                           disabled={isLoading}
                           error={formik.touched.region && Boolean(formik.errors.region)}
-                          label="region"
+                          label={translate('form.signUp.input.region.label')}
                           margin="normal"
                           {...params}
                         />
@@ -248,7 +280,9 @@ const SignUpForm = () => {
           <Grid justify="center" container>
             <Grid xs={10} item>
               <FormControl fullWidth>
-                <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>nazwa ekipy</InputLabel>
+                <InputLabel error={formik.touched.crew && Boolean(formik.errors.crew)}>
+                  {translate('form.signUp.input.crew.label')}
+                </InputLabel>
                 <Input
                   disabled={isLoading}
                   error={formik.touched.crew && Boolean(formik.errors.crew)}
@@ -267,14 +301,15 @@ const SignUpForm = () => {
               <Box mt={-2}>
                 <FormControl fullWidth>
                   <Autocomplete
+                    disabled={isLoading}
                     getOptionLabel={(option) => option.name}
-                    onChange={handleAgeChange}
+                    onChange={handleLanguageChange}
                     options={languageList}
                     renderInput={(params) => (
                       <TextField
                         disabled={isLoading}
                         error={formik.touched.language && Boolean(formik.errors.language)}
-                        label="język zawodów"
+                        label={translate('form.signUp.input.language.label')}
                         margin="normal"
                         {...params}
                       />
@@ -294,11 +329,18 @@ const SignUpForm = () => {
             </Grid>
           </Grid>
           <Grid justify="center" container>
-            <Grid xs={5} item>
+            <Grid xs={10} item>
               <FormControl fullWidth>
-                <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>imię</InputLabel>
+                <InputLabel error={formik.touched.name && Boolean(formik.errors.name)}>
+                  {translate('form.signUp.input.name.label')}
+                </InputLabel>
                 <Input
                   disabled={isLoading}
+                  endAdornment={
+                    <InputAdornment>
+                      <Face />
+                    </InputAdornment>
+                  }
                   error={formik.touched.name && Boolean(formik.errors.name)}
                   name={input.name}
                   onChange={formik.handleChange}
@@ -309,9 +351,11 @@ const SignUpForm = () => {
                 </FormHelperText>
               </FormControl>
             </Grid>
-            <Grid xs={5} item>
+            <Grid xs={10} item>
               <FormControl fullWidth>
-                <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>nazwisko</InputLabel>
+                <InputLabel error={formik.touched.surname && Boolean(formik.errors.surname)}>
+                  {translate('form.signUp.input.surname.label')}
+                </InputLabel>
                 <Input
                   disabled={isLoading}
                   endAdornment={
@@ -331,24 +375,22 @@ const SignUpForm = () => {
             </Grid>
           </Grid>
           <Grid justify="center" container>
-            <Grid xs={3} item>
+            <Grid xs={10} item>
               <Box mt={-2}>
                 <FormControl fullWidth>
                   <Autocomplete
                     disabled={isLoading}
-                    error={formik.touched.age && Boolean(formik.errors.age)}
-                    name={input.age}
-                    onChange={formik.handleChange}
+                    onChange={handleAgeChange}
                     options={ageList}
                     renderInput={(params) => (
                       <TextField
+                        disabled={isLoading}
                         error={formik.touched.age && Boolean(formik.errors.age)}
-                        label="wiek"
+                        label={translate('form.signUp.input.age.label')}
                         margin="normal"
                         {...params}
                       />
                     )}
-                    value={formik.values.age}
                   />
                   <FormHelperText error={formik.touched.age && Boolean(formik.errors.age)}>
                     {formik.touched.age && formik.errors.age}
@@ -356,9 +398,11 @@ const SignUpForm = () => {
                 </FormControl>
               </Box>
             </Grid>
-            <Grid xs={7} item>
+            <Grid xs={10} item>
               <FormControl mt={0} fullWidth>
-                <InputLabel error={formik.touched.phone && Boolean(formik.errors.phone)}>numer telefonu</InputLabel>
+                <InputLabel error={formik.touched.phone && Boolean(formik.errors.phone)}>
+                  {translate('form.signUp.input.phone.label')}
+                </InputLabel>
                 <Input
                   disabled={isLoading}
                   endAdornment={
@@ -385,7 +429,9 @@ const SignUpForm = () => {
           <Grid justify="center" container>
             <Grid xs={10} item>
               <FormControl fullWidth>
-                <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>adres e-mail</InputLabel>
+                <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>
+                  {translate('form.signUp.input.email.label')}
+                </InputLabel>
                 <Input
                   disabled={isLoading}
                   endAdornment={
@@ -407,7 +453,9 @@ const SignUpForm = () => {
           <Grid justify="center" container>
             <Grid xs={10} item>
               <FormControl fullWidth>
-                <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>hasło</InputLabel>
+                <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>
+                  {translate('form.signUp.input.password.label')}
+                </InputLabel>
                 <Input
                   disabled={isLoading}
                   endAdornment={
@@ -430,7 +478,9 @@ const SignUpForm = () => {
           <Grid justify="center" container>
             <Grid xs={10} item>
               <FormControl fullWidth>
-                <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>powtórz hasło</InputLabel>
+                <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>
+                  {translate('form.signUp.input.replyPassword.label')}
+                </InputLabel>
                 <Input
                   disabled={isLoading}
                   endAdornment={
@@ -456,14 +506,15 @@ const SignUpForm = () => {
                 control={<Checkbox color="primary" />}
                 disabled={isLoading}
                 error={formik.touched.statute && Boolean(formik.errors.statute)}
-                label="zaakceptuj regulamin"
+                label={translate('form.signUp.input.statute.label')}
                 name={input.statute}
                 onChange={formik.handleChange}
-                value={formik.values.statute}
               />
-              <FormHelperText error={formik.touched.statute && Boolean(formik.errors.statute)}>
-                {formik.touched.statute && formik.errors.statute}
-              </FormHelperText>
+              <Box mt={-1.5}>
+                <FormHelperText error={formik.touched.statute && Boolean(formik.errors.statute)}>
+                  {formik.touched.statute && formik.errors.statute}
+                </FormHelperText>
+              </Box>
             </Grid>
           </Grid>
         </CardContent>
@@ -471,7 +522,7 @@ const SignUpForm = () => {
           <Grid justify="center" container>
             <Box mb={2}>
               <Button color="primary" type="submit" variant="contained">
-                zarejestruj się
+                {translate('form.signUp.button.label')}
               </Button>
             </Box>
           </Grid>

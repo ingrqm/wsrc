@@ -28,6 +28,10 @@ const input = {
   password: 'password',
 };
 
+const regex = {
+  special: /^(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{0,}$/,
+};
+
 const validationSchema = yup.object({
   [input.email]: yup
     .string()
@@ -36,6 +40,7 @@ const validationSchema = yup.object({
   [input.password]: yup
     .string()
     .min(5, translate('form.signIn.input.password.validation.min'))
+    .matches(regex.special, translate('form.signIn.input.password.validation.specialCharacter'))
     .required(translate('form.signIn.input.password.validation.required')),
 });
 
