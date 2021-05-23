@@ -9,4 +9,10 @@ export const appUrls = {
   },
 };
 
-export const apiUrls = {};
+export const apiUrls = {
+  portal: {
+    signUp: '/user',
+    signIn: '/sign-in',
+    recoveryPassword: '/recovery-password',
+  },
+};

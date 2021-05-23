@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useMutation } from 'react-query';
 
+import { request } from 'base/api';
 import { translate } from 'base/i18n';
 
-import axios from 'axios';
 import { useFormik } from 'formik';
 import { useSnackbar } from 'notistack';
 import * as yup from 'yup';
@@ -26,7 +26,7 @@ import {
 
 import { Mail, LockOpen } from '@material-ui/icons';
 
-import { appUrls } from 'urls';
+import { appUrls, apiUrls } from 'urls';
 
 import { FormHelperText } from '@components';
 
@@ -54,13 +54,7 @@ const validationSchema = yup.object({
 });
 
 const signIn = async (values) => {
-  const request = await axios.post(`https://jsonplaceholder.typicode.com/posts`, { ...values });
-
-  if (request) {
-    return request.data;
-  } else {
-    return request;
-  }
+  return request(process.env.NEXT_PUBLIC_API_URL, 'POST', apiUrls.portal.signIn, values);
 };
 
 const SignInForm = () => {
