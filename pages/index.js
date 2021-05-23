@@ -1,1 +1,1 @@
-export { default } from '@pages/portal/Landing';
+export { default } from '@pages/portal/SignIn';
