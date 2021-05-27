@@ -9,6 +9,12 @@
       "@components/*": [
         "common/components/*"
       ],
+      "@layouts": [
+        "base/layouts"
+      ],
+      "@layouts/*": [
+        "base/layouts/*"
+      ],
       "@forms": [
         "common/forms"
       ],

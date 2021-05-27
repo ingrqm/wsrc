@@ -15,7 +15,7 @@ const Link = ({ href, children, align }) => (
 Link.propTypes = {
   href: string.isRequired,
   children: node.isRequired,
-  align: oneOf(['start', 'center', 'end']),
+  align: oneOf(['left', 'center', 'right', 'justify']),
 };
 
 Link.defaultProps = {

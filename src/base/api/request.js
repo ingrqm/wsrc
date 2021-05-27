@@ -1,20 +1,14 @@
 import axios from 'axios';
 
-/**
- * Creates an API request.
- * @param {string} api - BaseUrl of request.
- * @param {string} method - The type of the HTTP request method.
- * @param {string} url - The endpoint URL.
- * @param {Object} data - The payload data.
- */
-
 export const request = (api, method, url, data) => {
-  let requestConfig = {
+  const requestConfig = {
     baseURL: api,
     method,
     url,
     data,
-    headers: {},
+    headers: {
+      'Content-Type': 'application/json',
+    },
   };
 
   return axios(requestConfig);

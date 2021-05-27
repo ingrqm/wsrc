@@ -88,12 +88,12 @@
             "position": "after"
           },
           {
-            "pattern": "@components**",
+            "pattern": "@pages**",
             "group": "external",
             "position": "after"
           },
           {
-            "pattern": "@sections**",
+            "pattern": "@layouts**",
             "group": "external",
             "position": "after"
           },
@@ -103,7 +103,12 @@
             "position": "after"
           },
           {
-            "pattern": "@pages**",
+            "pattern": "@sections**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@components**",
             "group": "external",
             "position": "after"
           },

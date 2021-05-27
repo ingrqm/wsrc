@@ -47,7 +47,7 @@ const getLanguageList = () => {
     {
       flag: 'CN',
       code: 'ZH',
-      name: 'chiński',
+      name: '欽斯基',
     },
     {
       flag: 'PL',
@@ -57,47 +57,47 @@ const getLanguageList = () => {
     {
       flag: 'DE',
       code: 'DE',
-      name: 'niemiecki',
+      name: 'Deutsche',
     },
     {
       flag: 'GB',
       code: 'EN',
-      name: 'angielski',
+      name: 'English',
     },
     {
       flag: 'FR',
       code: 'FR',
-      name: 'francuski',
+      name: 'français',
     },
     {
       flag: 'IT',
       code: 'IT',
-      name: 'włoski',
+      name: 'italiano',
     },
     {
       flag: 'PT',
       code: 'PT',
-      name: 'portugalski',
+      name: 'português',
     },
     {
       flag: 'ES',
       code: 'ES',
-      name: 'hiszpański',
+      name: 'Español',
     },
     {
       flag: 'JP',
       code: 'JA',
-      name: 'japoński',
+      name: '日本語',
     },
     {
       flag: 'AR',
       code: 'AR',
-      name: 'arabski',
+      name: 'عربى',
     },
     {
       flag: 'RU',
       code: 'RU',
-      name: 'rosyjski',
+      name: 'русский',
     },
   ];
 

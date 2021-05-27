@@ -18,8 +18,8 @@ const queryClient = new QueryClient();
 const theme = createMuiTheme({
   palette: {
     dark: {
-      main: '#0d1117',
-      contrastText: '#c9d1d9',
+      main: '#01001e',
+      contrastText: '#adb7c2',
     },
   },
 });
@@ -31,7 +31,7 @@ const App = ({ Component, pageProps }) => {
         <I18nProvider>
           <ThemeProvider theme={theme}>
             <SnackbarProvider>
-              <NextNprogress color="#303f9f" height={3} startPosition={0} stopDelayMs={200} />
+              <NextNprogress color="#4dbdbe" height={3} startPosition={0} stopDelayMs={200} />
               <Component {...pageProps} />
             </SnackbarProvider>
           </ThemeProvider>

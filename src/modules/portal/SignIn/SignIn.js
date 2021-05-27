@@ -2,38 +2,36 @@ import React from 'react';
 
 import { translate } from 'base/i18n';
 
-import { Container, Grid, Box } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 
 import { appUrls } from 'urls';
 
-import { Link } from '@components';
+import { Portal } from '@layouts';
 
 import { SignIn as SignInForm } from '@forms';
 
-import { StyledMain } from './SignIn.styled';
+import { Link } from '@components';
 
 const SignIn = () => (
-  <StyledMain bgcolor="dark.main">
-    <Container maxWidth="xs">
-      <SignInForm />
-      <Grid justify="space-between" container>
-        <Grid xs={6} item>
-          <Box color="dark.contrastText" mt={2}>
-            <Link align="start" href={appUrls.portal.passRecovery}>
-              {translate('page.signIn.actions.passRecovery')}
-            </Link>
-          </Box>
-        </Grid>
-        <Grid xs={6} item>
-          <Box color="dark.contrastText" mt={2}>
-            <Link align="end" href={appUrls.portal.signUp}>
-              {translate('page.signIn.actions.signUp')}
-            </Link>
-          </Box>
-        </Grid>
+  <Portal>
+    <SignInForm />
+    <Grid justify="space-between" container>
+      <Grid xs={6} item>
+        <Box color="dark.contrastText" mt={2}>
+          <Link align="left" href={appUrls.portal.passRecovery}>
+            {translate('page.signIn.actions.passRecovery')}
+          </Link>
+        </Box>
       </Grid>
-    </Container>
-  </StyledMain>
+      <Grid xs={6} item>
+        <Box color="dark.contrastText" mt={2}>
+          <Link align="right" href={appUrls.portal.signUp}>
+            {translate('page.signIn.actions.signUp')}
+          </Link>
+        </Box>
+      </Grid>
+    </Grid>
+  </Portal>
 );
 
 export default SignIn;

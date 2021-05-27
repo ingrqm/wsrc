@@ -69,10 +69,6 @@ export default {
         },
         crew: {
           label: 'crew name',
-          validation: {
-            required: 'crew name is required',
-            min: 'crew name must contain at least 2 chars',
-          },
         },
         language: {
           label: 'language',

@@ -2,31 +2,29 @@ import React from 'react';
 
 import { translate } from 'base/i18n';
 
-import { Container, Grid, Box } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 
 import { appUrls } from 'urls';
 
-import { Link } from '@components';
+import { Portal } from '@layouts';
 
 import { SignUp as SignUpForm } from '@forms';
 
-import { StyledMain } from './SignUp.styled';
+import { Link } from '@components';
 
 const SignUp = () => (
-  <StyledMain bgcolor="dark.main">
-    <Container maxWidth="xs">
-      <SignUpForm />
-      <Grid justify="space-between" container>
-        <Grid item>
-          <Box color="dark.contrastText" mt={2}>
-            <Link align="start" href={appUrls.portal.signIn}>
-              {translate('page.signUp.actions.signIn')}
-            </Link>
-          </Box>
-        </Grid>
+  <Portal>
+    <SignUpForm />
+    <Grid justify="space-between" container>
+      <Grid item>
+        <Box color="dark.contrastText" mt={2}>
+          <Link align="left" href={appUrls.portal.signIn}>
+            {translate('page.signUp.actions.signIn')}
+          </Link>
+        </Box>
       </Grid>
-    </Container>
-  </StyledMain>
+    </Grid>
+  </Portal>
 );
 
 export default SignUp;

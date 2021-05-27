@@ -62,10 +62,7 @@ const validationSchema = yup.object({
   [input.continent]: yup.string().required(translate('form.signUp.input.continent.validation.required')),
   [input.country]: yup.string().required(translate('form.signUp.input.country.validation.required')),
   [input.region]: yup.string().required(translate('form.signUp.input.region.validation.required')),
-  [input.crew]: yup
-    .string()
-    .min(2, translate('form.signUp.input.crew.validation.required'))
-    .required(translate('form.signUp.input.crew.validation.required')),
+  [input.crew]: yup.string(),
   [input.language]: yup.string().required(translate('form.signUp.input.language.validation.required')),
   [input.name]: yup
     .string()
@@ -140,7 +137,21 @@ const SignUpForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      mutate(values);
+      const payload = {
+        [input.continent]: values[input.continent],
+        [input.country]: values[input.country],
+        [input.region]: values[input.region],
+        [input.crew]: values[input.crew],
+        [input.language]: values[input.language],
+        [input.name]: values[input.name],
+        [input.surname]: values[input.surname],
+        [input.age]: values[input.age],
+        [input.phone]: `+${phonePrefix} ${values[input.phone]}`,
+        [input.email]: values[input.email],
+        [input.password]: values[input.password],
+      };
+
+      mutate(payload);
     },
   });
 
@@ -169,7 +180,7 @@ const SignUpForm = () => {
   };
 
   const handleLanguageChange = (_, language) => {
-    formik.setFieldValue(input.language, language ? language.name : '');
+    formik.setFieldValue(input.language, language ? language.code : '');
   };
 
   const handleAgeChange = (_, age) => {
