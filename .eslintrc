@@ -113,7 +113,7 @@
             "position": "after"
           },
           {
-            "pattern": "asset**",
+            "pattern": "{assets,assets**,assets/images/**}",
             "group": "sibling",
             "position": "after"
           },

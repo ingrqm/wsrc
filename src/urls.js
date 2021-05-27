@@ -9,6 +9,10 @@ export const appUrls = {
   },
 };
 
+export const outerUrls = {
+  IMaxart: 'https://imaxart.com',
+};
+
 export const apiUrls = {
   portal: {
     signUp: '/user',

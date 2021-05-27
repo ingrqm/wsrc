@@ -9,8 +9,7 @@ import configureStore from 'base/redux/configureStore';
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { func, object } from 'prop-types';
-
-import 'asset/style/index.css';
+import { createGlobalStyle } from 'styled-components';
 
 const store = configureStore();
 const queryClient = new QueryClient();
@@ -24,6 +23,39 @@ const theme = createMuiTheme({
   },
 });
 
+const GlobalStyle = createGlobalStyle`
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  *:active,
+  *:focus {
+    outline: 0;
+  }
+
+  :root {
+    font-size: 16px;
+  }
+
+  :root,
+  body,
+  #__next {
+    min-height: calc(100vh + 1px);
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+`;
+
 const App = ({ Component, pageProps }) => {
   return (
     <Provider store={store}>
@@ -31,6 +63,7 @@ const App = ({ Component, pageProps }) => {
         <I18nProvider>
           <ThemeProvider theme={theme}>
             <SnackbarProvider>
+              <GlobalStyle />
               <NextNprogress color="#4dbdbe" height={3} startPosition={0} stopDelayMs={200} />
               <Component {...pageProps} />
             </SnackbarProvider>
