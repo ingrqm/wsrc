@@ -4,10 +4,10 @@ export default {
       title: 'recovery password',
       input: {
         email: {
-          label: 'e-mail adress',
+          label: 'e-mail address',
           validation: {
-            email: 'incorrect e-mail adress',
-            required: 'e-mail adress is required',
+            email: 'incorrect e-mail address',
+            required: 'e-mail address is required',
           },
         },
       },
@@ -23,10 +23,10 @@ export default {
       title: 'sign in',
       input: {
         email: {
-          label: 'e-mail adress',
+          label: 'e-mail address',
           validation: {
-            email: 'incorrect e-mail adress',
-            required: 'e-mail adress is required',
+            email: 'incorrect e-mail address',
+            required: 'e-mail address is required',
           },
         },
         password: {
@@ -68,10 +68,10 @@ export default {
           },
         },
         crew: {
-          label: 'nazwa ekipy',
+          label: 'crew name',
           validation: {
-            required: 'nazwa ekipy jest wymagana',
-            min: 'nazwa ekipy musi mieć conajmniej 2 znaki',
+            required: 'crew name is required',
+            min: 'crew name must contain at least 2 chars',
           },
         },
         language: {
@@ -107,10 +107,10 @@ export default {
           },
         },
         email: {
-          label: 'e-mail adress',
+          label: 'e-mail address',
           validation: {
-            email: 'incorrect adres e-mail',
-            required: 'e-mail adress is required',
+            email: 'incorrect address e-mail',
+            required: 'e-mail address is required',
           },
         },
         password: {
@@ -122,12 +122,12 @@ export default {
           },
         },
         replyPassword: {
-          label: 'powtórz hasło',
+          label: 'reply password',
           validation: {
-            min: 'password must contain at least 5 chars',
-            specialCharacter: 'password must contain at least 1 special character',
-            match: 'passwords must match',
-            required: 'password is required',
+            min: 'reply password must contain at least 5 chars',
+            specialCharacter: 'reply password must contain at least 1 special character',
+            match: 'reply passwords must match',
+            required: 'reply password is required',
           },
         },
         statute: {
@@ -141,7 +141,7 @@ export default {
         label: 'sign up',
       },
       messages: {
-        failed: 'error occured',
+        failed: 'error occurred',
         success: 'a link to activate the account was sent to the e-mail address',
       },
     },

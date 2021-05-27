@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { translate } from 'base/i18n';
+
 import { Container, Grid, Box } from '@material-ui/core';
 
 import { appUrls } from 'urls';
@@ -14,10 +16,12 @@ const SignUp = () => (
   <StyledMain bgcolor="dark.main">
     <Container maxWidth="xs">
       <SignUpForm />
-      <Grid alignItems="center" justify="space-between" container>
+      <Grid justify="space-between" container>
         <Grid item>
           <Box color="dark.contrastText" mt={2}>
-            <Link href={appUrls.portal.signIn}>Masz już swoje konto?</Link>
+            <Link align="start" href={appUrls.portal.signIn}>
+              {translate('page.signUp.actions.signIn')}
+            </Link>
           </Box>
         </Grid>
       </Grid>

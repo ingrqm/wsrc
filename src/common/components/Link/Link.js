@@ -1,12 +1,12 @@
 import NextLink from 'next/link';
 
-import { node, string } from 'prop-types';
+import { node, oneOf, string } from 'prop-types';
 
 import { StyledLink } from './Link.styled';
 
-const Link = ({ href, children }) => (
+const Link = ({ href, children, align }) => (
   <NextLink href={href}>
-    <StyledLink color="inherit" component="button" variant="body2">
+    <StyledLink align={align} color="inherit" component="button" variant="body2">
       {children}
     </StyledLink>
   </NextLink>
@@ -15,6 +15,11 @@ const Link = ({ href, children }) => (
 Link.propTypes = {
   href: string.isRequired,
   children: node.isRequired,
+  align: oneOf(['start', 'center', 'end']),
+};
+
+Link.defaultProps = {
+  align: 'center',
 };
 
 export default Link;

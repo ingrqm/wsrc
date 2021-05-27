@@ -14,9 +14,7 @@ export const request = (api, method, url, data) => {
     method,
     url,
     data,
-    headers: {
-      'Cache-Control': 'no-cache',
-    },
+    headers: {},
   };
 
   return axios(requestConfig);

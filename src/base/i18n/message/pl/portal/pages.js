@@ -1,7 +1,1 @@
-export default {
-  page: {
-    home: {
-      title: 'tytuł',
-    },
-  },
-};
+export default {};

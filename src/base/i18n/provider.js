@@ -7,7 +7,8 @@ import { LOCALE } from './locales';
 import messages from './message';
 
 const Provider = ({ children }) => {
-  const language = (typeof window !== 'undefined' && window.navigator.language.split('-')[0]) || LOCALE.ENGLISH;
+  // const language = (typeof window !== 'undefined' && window.navigator.language.split('-')[0]) || LOCALE.ENGLISH;
+  const language = LOCALE.ENGLISH;
 
   return (
     <IntlProvider
