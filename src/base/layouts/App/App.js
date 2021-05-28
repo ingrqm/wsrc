@@ -8,12 +8,12 @@ import { Container, Grid } from '@material-ui/core';
 
 import { outerUrls } from 'urls';
 
-import { StyledMain, StyledHeader, StyledFooter, StyledCopyright } from './Portal.styled';
+import { StyledMain, StyledHeader, StyledFooter, StyledCopyright } from './App.styled';
 
 import LogoImg from 'assets/images/brand.png';
 import IMaxartImg from 'assets/images/footer-brand.png';
 
-const Portal = ({ children }) => (
+const App = ({ children }) => (
   <StyledMain bgcolor="dark.main">
     <StyledHeader>
       <Image alt="brand" height={76} src={LogoImg} width={200} />
@@ -34,8 +34,8 @@ const Portal = ({ children }) => (
   </StyledMain>
 );
 
-Portal.propTypes = {
+App.propTypes = {
   children: node,
 };
 
-export default Portal;
+export default App;
