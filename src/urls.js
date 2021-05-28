@@ -6,6 +6,7 @@ export const appUrls = {
   },
   app: {
     dashboard: '/app/',
+    signOut: '/app/sign-out',
   },
 };
 
