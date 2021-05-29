@@ -1,4 +1,4 @@
-import { jsonToPair } from 'util/jsonToPair';
+import { jsonToPair } from 'utils/jsonToPair';
 
 import api from './api';
 import pages from './pages';

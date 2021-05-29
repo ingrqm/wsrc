@@ -1,1 +1,1 @@
-export { default } from '@pages/portal/PassRecovery';
+export { default } from '@pages/portal/PasswordRecovery';

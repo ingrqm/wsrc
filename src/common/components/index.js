@@ -1,6 +1,6 @@
-import Alert from './Alert';
 import CodeBlock from './CodeBlock';
+import FileInput from './FileInput';
 import FormHelperText from './FormHelperText';
 import Link from './Link';
 
-export { Alert, CodeBlock, Link, FormHelperText };
+export { FileInput, CodeBlock, Link, FormHelperText };

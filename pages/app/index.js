@@ -1,2 +1,1 @@
-import Dashboard from '@pages/app/Dashboard';
-export default Dashboard;
+export { default } from '@pages/app/Dashboard';

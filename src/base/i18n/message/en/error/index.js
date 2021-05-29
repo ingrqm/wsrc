@@ -1,4 +1,4 @@
-import { jsonToPair } from 'util/jsonToPair';
+import { jsonToPair } from 'utils/jsonToPair';
 
 import pages from './pages';
 import sections from './sections';

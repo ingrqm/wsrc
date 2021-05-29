@@ -1,3 +1,5 @@
+import Head from 'next/head';
+
 import React from 'react';
 
 import { translate } from 'base/i18n';
@@ -13,18 +15,23 @@ import { SignUp as SignUpForm } from '@forms';
 import { Link } from '@components';
 
 const SignUp = () => (
-  <Portal>
-    <SignUpForm />
-    <Grid justify="space-between" container>
-      <Grid item>
-        <Box color="dark.contrastText" mt={2}>
-          <Link align="left" href={appUrls.portal.signIn}>
-            {translate('page.signUp.actions.signIn')}
-          </Link>
-        </Box>
+  <>
+    <Head>
+      <title>Sign up</title>
+    </Head>
+    <Portal>
+      <SignUpForm />
+      <Grid justify="space-between" container>
+        <Grid item>
+          <Box color="dark.contrastText" mt={2}>
+            <Link align="left" href={appUrls.portal.signIn}>
+              {translate('page.signUp.actions.signIn')}
+            </Link>
+          </Box>
+        </Grid>
       </Grid>
-    </Grid>
-  </Portal>
+    </Portal>
+  </>
 );
 
 export default SignUp;

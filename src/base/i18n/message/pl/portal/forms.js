@@ -1,6 +1,6 @@
 export default {
   form: {
-    passRecovery: {
+    passwordRecovery: {
       title: 'odzyskiwanie hasła',
       input: {
         email: {

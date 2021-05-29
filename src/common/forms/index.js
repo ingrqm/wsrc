@@ -1,5 +1,7 @@
-import PassRecovery from './PassRecovery';
+import Competition from './Competition';
+import PasswordChange from './PasswordChange';
+import PasswordRecovery from './PasswordRecovery';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 
-export { PassRecovery, SignIn, SignUp };
+export { Competition, PasswordRecovery, PasswordChange, SignIn, SignUp };

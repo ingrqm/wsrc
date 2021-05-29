@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const request = (api, method, url, data) => {
+export const request = async (api, method, url, data) => {
   const requestConfig = {
     baseURL: api,
     method,
@@ -11,5 +11,5 @@ export const request = (api, method, url, data) => {
     },
   };
 
-  return axios(requestConfig);
+  return await axios(requestConfig);
 };

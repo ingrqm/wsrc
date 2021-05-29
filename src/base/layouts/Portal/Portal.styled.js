@@ -8,7 +8,7 @@ const StyledMain = styled(Box)`
   justify-content: space-between;
   align-items: center;
   min-height: calc(100vh + 1px);
-  padding: 4rem;
+  padding: 4rem 0.5rem;
 `;
 
 const StyledHeader = styled(Box)`

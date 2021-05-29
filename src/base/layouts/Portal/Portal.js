@@ -6,8 +6,6 @@ import { node } from 'prop-types';
 
 import { Container, Grid } from '@material-ui/core';
 
-import { outerUrls } from 'urls';
-
 import { StyledMain, StyledHeader, StyledFooter, StyledCopyright } from './Portal.styled';
 
 import LogoImg from 'assets/images/brand.png';
@@ -25,9 +23,7 @@ const Portal = ({ children }) => (
           <StyledCopyright>© 2021</StyledCopyright>
         </Grid>
         <Grid item>
-          <a href={outerUrls.IMaxart} rel="noreferrer" target="_blank">
-            <Image alt="IMaxart" height={13} src={IMaxartImg} width={76} />
-          </a>
+          <Image alt="IMaxart" height={13} src={IMaxartImg} width={76} />
         </Grid>
       </Grid>
     </StyledFooter>

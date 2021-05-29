@@ -96,7 +96,7 @@ const validationSchema = yup.object({
   [input.statute]: yup.bool().oneOf([true], translate('form.signUp.input.statute.validation.required')),
 });
 
-const recoveryPassword = async (values) => {
+const passwordRecovery = async (values) => {
   return request(process.env.NEXT_PUBLIC_API_URL, 'POST', apiUrls.portal.signUp, values);
 };
 
@@ -107,7 +107,7 @@ const SignUpForm = () => {
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
-  const { isLoading, mutate } = useMutation(recoveryPassword, {
+  const { isLoading, mutate } = useMutation(passwordRecovery, {
     onError: () => {
       enqueueSnackbar(translate('form.signUp.messages.failed'), { variant: 'error' });
     },
@@ -154,6 +154,17 @@ const SignUpForm = () => {
       mutate(payload);
     },
   });
+
+  const error = (field) => {
+    return formik.touched[field] && Boolean(formik.errors[field]) ? true : undefined;
+  };
+  const isError = (field) => {
+    return formik.touched[field] && Boolean(formik.errors[field]) ? true : false;
+  };
+
+  const errorMessage = (field) => {
+    return formik.touched[field] && formik.errors[field] ? formik.errors[field] : '';
+  };
 
   const handleChangeContinent = (_, continent) => {
     const list = continent ? countryList[continent] : [];
@@ -209,16 +220,14 @@ const SignUpForm = () => {
                     renderInput={(params) => (
                       <TextField
                         disabled={isLoading}
-                        error={formik.touched.continent && Boolean(formik.errors.continent)}
+                        error={isError(input.continent)}
                         label={translate('form.signUp.input.continent.label')}
                         margin="normal"
                         {...params}
                       />
                     )}
                   />
-                  <FormHelperText error={formik.touched.continent && Boolean(formik.errors.continent)}>
-                    {formik.touched.continent && formik.errors.continent}
-                  </FormHelperText>
+                  <FormHelperText error={isError(input.continent)}>{errorMessage(input.continent)}</FormHelperText>
                 </FormControl>
               </Box>
             </Grid>
@@ -236,7 +245,7 @@ const SignUpForm = () => {
                       renderInput={(params) => (
                         <TextField
                           disabled={isLoading}
-                          error={formik.touched.country && Boolean(formik.errors.country)}
+                          error={isError(input.country)}
                           label={translate('form.signUp.input.country.label')}
                           margin="normal"
                           {...params}
@@ -249,9 +258,7 @@ const SignUpForm = () => {
                         </>
                       )}
                     />
-                    <FormHelperText error={formik.touched.country && Boolean(formik.errors.country)}>
-                      {formik.touched.country && formik.errors.country}
-                    </FormHelperText>
+                    <FormHelperText error={isError(input.country)}>{errorMessage(input.country)}</FormHelperText>
                   </FormControl>
                 </Box>
               </Grid>
@@ -269,16 +276,14 @@ const SignUpForm = () => {
                       renderInput={(params) => (
                         <TextField
                           disabled={isLoading}
-                          error={formik.touched.region && Boolean(formik.errors.region)}
+                          error={isError(input.region)}
                           label={translate('form.signUp.input.region.label')}
                           margin="normal"
                           {...params}
                         />
                       )}
                     />
-                    <FormHelperText error={formik.touched.region && Boolean(formik.errors.region)}>
-                      {formik.touched.region && formik.errors.region}
-                    </FormHelperText>
+                    <FormHelperText error={isError(input.region)}>{errorMessage(input.region)}</FormHelperText>
                   </FormControl>
                 </Box>
               </Grid>
@@ -287,19 +292,15 @@ const SignUpForm = () => {
           <Grid justify="center" container>
             <Grid xs={10} item>
               <FormControl fullWidth>
-                <InputLabel error={formik.touched.crew && Boolean(formik.errors.crew)}>
-                  {translate('form.signUp.input.crew.label')}
-                </InputLabel>
+                <InputLabel error={isError(input.crew)}>{translate('form.signUp.input.crew.label')}</InputLabel>
                 <Input
                   disabled={isLoading}
-                  error={formik.touched.crew && Boolean(formik.errors.crew)}
+                  error={isError(input.crew)}
                   name={input.crew}
                   onChange={formik.handleChange}
                   value={formik.values.crew}
                 />
-                <FormHelperText error={formik.touched.crew && Boolean(formik.errors.crew)}>
-                  {formik.touched.crew && formik.errors.crew}
-                </FormHelperText>
+                <FormHelperText error={isError(input.crew)}>{errorMessage(input.crew)}</FormHelperText>
               </FormControl>
             </Grid>
           </Grid>
@@ -315,7 +316,7 @@ const SignUpForm = () => {
                     renderInput={(params) => (
                       <TextField
                         disabled={isLoading}
-                        error={formik.touched.language && Boolean(formik.errors.language)}
+                        error={isError(input.language)}
                         label={translate('form.signUp.input.language.label')}
                         margin="normal"
                         {...params}
@@ -328,9 +329,7 @@ const SignUpForm = () => {
                       </>
                     )}
                   />
-                  <FormHelperText error={formik.touched.language && Boolean(formik.errors.language)}>
-                    {formik.touched.language && formik.errors.language}
-                  </FormHelperText>
+                  <FormHelperText error={isError(input.language)}>{errorMessage(input.language)}</FormHelperText>
                 </FormControl>
               </Box>
             </Grid>
@@ -338,9 +337,7 @@ const SignUpForm = () => {
           <Grid justify="center" container>
             <Grid xs={10} item>
               <FormControl fullWidth>
-                <InputLabel error={formik.touched.name && Boolean(formik.errors.name)}>
-                  {translate('form.signUp.input.name.label')}
-                </InputLabel>
+                <InputLabel error={isError(input.name)}>{translate('form.signUp.input.name.label')}</InputLabel>
                 <Input
                   disabled={isLoading}
                   endAdornment={
@@ -348,21 +345,17 @@ const SignUpForm = () => {
                       <Face />
                     </InputAdornment>
                   }
-                  error={formik.touched.name && Boolean(formik.errors.name)}
+                  error={isError(input.name)}
                   name={input.name}
                   onChange={formik.handleChange}
                   value={formik.values.name}
                 />
-                <FormHelperText error={formik.touched.name && Boolean(formik.errors.name)}>
-                  {formik.touched.name && formik.errors.name}
-                </FormHelperText>
+                <FormHelperText error={isError(input.name)}>{errorMessage(input.name)}</FormHelperText>
               </FormControl>
             </Grid>
             <Grid xs={10} item>
               <FormControl fullWidth>
-                <InputLabel error={formik.touched.surname && Boolean(formik.errors.surname)}>
-                  {translate('form.signUp.input.surname.label')}
-                </InputLabel>
+                <InputLabel error={isError(input.surname)}>{translate('form.signUp.input.surname.label')}</InputLabel>
                 <Input
                   disabled={isLoading}
                   endAdornment={
@@ -370,14 +363,12 @@ const SignUpForm = () => {
                       <Face />
                     </InputAdornment>
                   }
-                  error={formik.touched.surname && Boolean(formik.errors.surname)}
+                  error={isError(input.surname)}
                   name={input.surname}
                   onChange={formik.handleChange}
                   value={formik.values.surname}
                 />
-                <FormHelperText error={formik.touched.surname && Boolean(formik.errors.surname)}>
-                  {formik.touched.surname && formik.errors.surname}
-                </FormHelperText>
+                <FormHelperText error={isError(input.surname)}>{errorMessage(input.surname)}</FormHelperText>
               </FormControl>
             </Grid>
           </Grid>
@@ -392,24 +383,20 @@ const SignUpForm = () => {
                     renderInput={(params) => (
                       <TextField
                         disabled={isLoading}
-                        error={formik.touched.age && Boolean(formik.errors.age)}
+                        error={isError(input.age)}
                         label={translate('form.signUp.input.age.label')}
                         margin="normal"
                         {...params}
                       />
                     )}
                   />
-                  <FormHelperText error={formik.touched.age && Boolean(formik.errors.age)}>
-                    {formik.touched.age && formik.errors.age}
-                  </FormHelperText>
+                  <FormHelperText error={isError(input.age)}>{errorMessage(input.age)}</FormHelperText>
                 </FormControl>
               </Box>
             </Grid>
             <Grid xs={10} item>
               <FormControl mt={0} fullWidth>
-                <InputLabel error={formik.touched.phone && Boolean(formik.errors.phone)}>
-                  {translate('form.signUp.input.phone.label')}
-                </InputLabel>
+                <InputLabel error={isError(input.phone)}>{translate('form.signUp.input.phone.label')}</InputLabel>
                 <Input
                   disabled={isLoading}
                   endAdornment={
@@ -417,7 +404,7 @@ const SignUpForm = () => {
                       <Call />
                     </InputAdornment>
                   }
-                  error={formik.touched.phone && Boolean(formik.errors.phone)}
+                  error={isError(input.phone)}
                   name={input.phone}
                   onChange={formik.handleChange}
                   startAdornment={
@@ -427,18 +414,14 @@ const SignUpForm = () => {
                   }
                   value={formik.values.phone}
                 />
-                <FormHelperText error={formik.touched.phone && Boolean(formik.errors.phone)}>
-                  {formik.touched.phone && formik.errors.phone}
-                </FormHelperText>
+                <FormHelperText error={isError(input.phone)}>{errorMessage(input.phone)}</FormHelperText>
               </FormControl>
             </Grid>
           </Grid>
           <Grid justify="center" container>
             <Grid xs={10} item>
               <FormControl fullWidth>
-                <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>
-                  {translate('form.signUp.input.email.label')}
-                </InputLabel>
+                <InputLabel error={isError(input.email)}>{translate('form.signUp.input.email.label')}</InputLabel>
                 <Input
                   disabled={isLoading}
                   endAdornment={
@@ -446,23 +429,19 @@ const SignUpForm = () => {
                       <Mail />
                     </InputAdornment>
                   }
-                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  error={isError(input.email)}
                   name={input.email}
                   onChange={formik.handleChange}
                   value={formik.values.email}
                 />
-                <FormHelperText error={formik.touched.email && Boolean(formik.errors.email)}>
-                  {formik.touched.email && formik.errors.email}
-                </FormHelperText>
+                <FormHelperText error={isError(input.email)}>{errorMessage(input.email)}</FormHelperText>
               </FormControl>
             </Grid>
           </Grid>
           <Grid justify="center" container>
             <Grid xs={10} item>
               <FormControl fullWidth>
-                <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>
-                  {translate('form.signUp.input.password.label')}
-                </InputLabel>
+                <InputLabel error={isError(input.password)}>{translate('form.signUp.input.password.label')}</InputLabel>
                 <Input
                   disabled={isLoading}
                   endAdornment={
@@ -470,22 +449,20 @@ const SignUpForm = () => {
                       <LockOpen />
                     </InputAdornment>
                   }
-                  error={formik.touched.password && Boolean(formik.errors.password)}
+                  error={isError(input.password)}
                   name={input.password}
                   onChange={formik.handleChange}
                   type="password"
                   value={formik.values.password}
                 />
-                <FormHelperText error={formik.touched.password && Boolean(formik.errors.password)}>
-                  {formik.touched.password && formik.errors.password}
-                </FormHelperText>
+                <FormHelperText error={isError(input.password)}>{errorMessage(input.password)}</FormHelperText>
               </FormControl>
             </Grid>
           </Grid>
           <Grid justify="center" container>
             <Grid xs={10} item>
               <FormControl fullWidth>
-                <InputLabel error={formik.touched.email && Boolean(formik.errors.email)}>
+                <InputLabel error={isError(input.replyPassword)}>
                   {translate('form.signUp.input.replyPassword.label')}
                 </InputLabel>
                 <Input
@@ -495,14 +472,14 @@ const SignUpForm = () => {
                       <LockOpen />
                     </InputAdornment>
                   }
-                  error={formik.touched.replyPassword && Boolean(formik.errors.replyPassword)}
+                  error={isError(input.replyPassword)}
                   name={input.replyPassword}
                   onChange={formik.handleChange}
                   type="password"
                   value={formik.values.replyPassword}
                 />
-                <FormHelperText error={formik.touched.replyPassword && Boolean(formik.errors.replyPassword)}>
-                  {formik.touched.replyPassword && formik.errors.replyPassword}
+                <FormHelperText error={isError(input.replyPassword)}>
+                  {errorMessage(input.replyPassword)}
                 </FormHelperText>
               </FormControl>
             </Grid>
@@ -512,15 +489,13 @@ const SignUpForm = () => {
               <FormControlLabel
                 control={<Checkbox color="primary" />}
                 disabled={isLoading}
-                error={formik.touched.statute && Boolean(formik.errors.statute)}
+                error={error(input.statute)}
                 label={translate('form.signUp.input.statute.label')}
                 name={input.statute}
                 onChange={formik.handleChange}
               />
               <Box mt={-1.5}>
-                <FormHelperText error={formik.touched.statute && Boolean(formik.errors.statute)}>
-                  {formik.touched.statute && formik.errors.statute}
-                </FormHelperText>
+                <FormHelperText error={isError(input.statute)}>{errorMessage(input.statute)}</FormHelperText>
               </Box>
             </Grid>
           </Grid>

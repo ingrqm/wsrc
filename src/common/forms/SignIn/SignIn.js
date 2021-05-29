@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useMutation } from 'react-query';
 
 import { request } from 'base/api';
@@ -54,22 +54,42 @@ const validationSchema = yup.object({
 });
 
 const signIn = async (values) => {
-  return request(process.env.NEXT_PUBLIC_API_URL, 'POST', apiUrls.portal.signIn, values);
+  return await request(process.env.NEXT_PUBLIC_API_URL, 'POST', apiUrls.portal.signIn, values);
+};
+
+const accountActivation = async (values) => {
+  return await request(process.env.NEXT_PUBLIC_API_URL, 'POST', apiUrls.portal.accountActivation, values);
 };
 
 const SignInForm = () => {
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
+  const { key } = router.query;
 
-  const { isLoading, mutate } = useMutation(signIn, {
+  const { isLoading, mutate: mutateSignIn } = useMutation(signIn, {
     onError: () => {
-      enqueueSnackbar(translate('form.passRecovery.messages.failed'), { variant: 'error' });
+      enqueueSnackbar(translate('form.signIn.messages.failed'), { variant: 'error' });
     },
-    onSuccess: () => {
-      enqueueSnackbar(translate('form.passRecovery.messages.success'), { variant: 'success' });
+    onSuccess: (data) => {
+      enqueueSnackbar(translate('form.signIn.messages.success'), { variant: 'success' });
+
+      const { token, role } = data.data.data;
+
+      sessionStorage.setItem('token', token);
+      sessionStorage.setItem('role', role);
+
       setTimeout(() => {
         router.push(appUrls.app.dashboard);
       }, 1000);
+    },
+  });
+
+  const { mutate: mutateAccountActivation } = useMutation(accountActivation, {
+    onError: () => {
+      enqueueSnackbar(translate('page.signIn.messages.failed'), { variant: 'error' });
+    },
+    onSuccess: () => {
+      enqueueSnackbar(translate('page.signIn.messages.success'), { variant: 'success' });
     },
   });
 
@@ -80,9 +100,23 @@ const SignInForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      mutate(values);
+      mutateSignIn(values);
     },
   });
+
+  const isError = (field) => {
+    return formik.touched[field] && Boolean(formik.errors[field]) ? true : false;
+  };
+
+  const errorMessage = (field) => {
+    return formik.touched[field] && formik.errors[field] ? formik.errors[field] : '';
+  };
+
+  useEffect(() => {
+    if (key) {
+      mutateAccountActivation({ key: key });
+    }
+  }, [key]);
 
   return (
     <Card>
@@ -111,9 +145,7 @@ const SignInForm = () => {
                   onChange={formik.handleChange}
                   value={formik.values.email}
                 />
-                <FormHelperText error={formik.touched.email && Boolean(formik.errors.email)}>
-                  {formik.touched.email && formik.errors.email}
-                </FormHelperText>
+                <FormHelperText error={isError(input.email)}>{errorMessage(input.email)}</FormHelperText>
               </FormControl>
             </Grid>
           </Grid>
@@ -136,9 +168,7 @@ const SignInForm = () => {
                   type="password"
                   value={formik.values.password}
                 />
-                <FormHelperText error={formik.touched.password && Boolean(formik.errors.password)}>
-                  {formik.touched.password && formik.errors.password}
-                </FormHelperText>
+                <FormHelperText error={isError(input.password)}>{errorMessage(input.password)}</FormHelperText>
               </FormControl>
             </Grid>
           </Grid>

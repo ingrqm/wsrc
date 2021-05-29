@@ -1,6 +1,6 @@
 import { roles } from 'consts';
 
-import { Dashboard, ExitToApp } from '@material-ui/icons';
+import { Dashboard, Toc } from '@material-ui/icons';
 
 import { appUrls } from 'urls';
 
@@ -11,9 +11,24 @@ export const list = {
       text: 'dashboard',
       url: appUrls.app.dashboard,
     },
+  ],
+  [roles.member]: [
     {
-      icon: <ExitToApp color="primary" />,
-      text: 'sign out',
+      icon: <Dashboard color="primary" />,
+      text: 'dashboard',
+      url: appUrls.app.dashboard,
+    },
+  ],
+  [roles.arbiter]: [
+    {
+      icon: <Dashboard color="primary" />,
+      text: 'dashboard',
+      url: appUrls.app.dashboard,
+    },
+    {
+      icon: <Toc color="primary" />,
+      text: 'table',
+      url: appUrls.app.competitions,
     },
   ],
 };

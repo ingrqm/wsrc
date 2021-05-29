@@ -1,14 +1,18 @@
 export default {
   page: {
-    passRecovery: {
+    passwordRecovery: {
       actions: {
         signIn: 'Do you have an account?',
       },
     },
     signIn: {
       actions: {
-        passRecovery: 'Have you forgotten your password?',
+        passwordRecovery: 'Have you forgotten your password?',
         signUp: 'You do not have an account?',
+      },
+      messages: {
+        failed: 'An error occurred while activating the account',
+        success: 'The account has been activated',
       },
     },
     signUp: {

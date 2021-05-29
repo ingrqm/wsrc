@@ -1,6 +1,6 @@
 export default {
   form: {
-    passRecovery: {
+    passwordRecovery: {
       title: 'recovery password',
       input: {
         email: {
@@ -17,6 +17,35 @@ export default {
       messages: {
         failed: 'there is no user with the given e-mail address',
         success: 'a link to change the password has been sent to the e-mail address',
+      },
+    },
+    passwordChange: {
+      title: 'Change password',
+      input: {
+        password: {
+          label: 'password',
+          validation: {
+            min: 'password must contain at least 5 chars',
+            specialCharacter: 'password must contain at least 1 special character',
+            required: 'password is required',
+          },
+        },
+        replyPassword: {
+          label: 'reply password',
+          validation: {
+            min: 'reply password must contain at least 5 chars',
+            specialCharacter: 'reply password must contain at least 1 special character',
+            match: 'reply passwords must match',
+            required: 'reply password is required',
+          },
+        },
+      },
+      button: {
+        label: 'change password',
+      },
+      messages: {
+        failed: 'error occurred',
+        success: 'password has been changed',
       },
     },
     signIn: {
