@@ -14,6 +14,7 @@
     "@material-ui/icons": "4.11.2",
     "@material-ui/lab": "4.0.0-alpha.58",
     "axios": "0.21.1",
+    "babel-runtime": "^6.26.0",
     "countries-list": "2.6.1",
     "formik": "2.2.8",
     "mgr-pdf-viewer-react": "^1.0.3",
