@@ -17,13 +17,13 @@ import { appUrls, apiUrls } from 'urls';
 
 import { App } from '@layouts';
 
-import { Timer } from './components';
+import { Timer } from '@components';
 
 const getUser = async () => {
   return await request(
     process.env.NEXT_PUBLIC_API_URL,
     'GET',
-    resolveUrl(apiUrls.portal.getUser, { token: sessionStorage.getItem('token') }),
+    resolveUrl(apiUrls.app.getUser, { token: sessionStorage.getItem('token') }),
     {},
   );
 };
@@ -38,13 +38,17 @@ const Dashboard = () => {
   const distance = data
     ? new Date(competition[data.data.data.language][data.data.data.age_category].start).getTime() -
       new Date(data.data.data.datetime).getTime()
-    : 0;
+    : 99999999999;
+
+  const isParticipating = data ? data.data.data.isParticipating : false;
 
   if (!isLoading && error) {
     sessionStorage.clear();
     router.push(appUrls.portal.signIn);
     enqueueSnackbar('there was a problem with the token, you will be sign out', { variant: 'error' });
   }
+
+  console.log(distance);
 
   return (
     <>
@@ -71,12 +75,25 @@ const Dashboard = () => {
             <Typography variant="h4" gutterBottom>
               Welcome
             </Typography>
-            <Typography variant="h6" gutterBottom>
-              You have been confirmed as a competitor
-            </Typography>
-            <Typography variant="h6" gutterBottom>
-              When the timer is end you will be able to start the competition
-            </Typography>
+            {!isParticipating ? (
+              <>
+                <Typography variant="h6" gutterBottom>
+                  You have been confirmed as a competitor
+                </Typography>
+                <Typography variant="h6" gutterBottom>
+                  When the timer is end you will be able to start the competition
+                </Typography>
+              </>
+            ) : (
+              <>
+                <Typography variant="h6" gutterBottom>
+                  You end the competition
+                </Typography>
+                <Typography variant="h6" gutterBottom>
+                  Thank you for your time
+                </Typography>
+              </>
+            )}
             {data && <Timer distance={distance} />}
           </Box>
         )}

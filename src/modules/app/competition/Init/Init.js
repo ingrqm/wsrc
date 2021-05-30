@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import React, { useState, useEffect } from 'react';
+import { useMutation } from 'react-query';
 import { useQuery } from 'react-query';
 
 import { request } from 'base/api';
@@ -24,9 +25,13 @@ const getUser = async () => {
   return await request(
     process.env.NEXT_PUBLIC_API_URL,
     'GET',
-    resolveUrl(apiUrls.portal.getUser, { token: sessionStorage.getItem('token') }),
+    resolveUrl(apiUrls.app.getUser, { token: sessionStorage.getItem('token') }),
     {},
   );
+};
+
+const postCompetition = async (values) => {
+  return request(process.env.NEXT_PUBLIC_API_URL, 'POST', apiUrls.app.competition, values);
 };
 
 const CustomNavigation = ({ page, pages }) => (
@@ -43,6 +48,17 @@ const Init = () => {
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
   const { isLoading, error, data } = useQuery('getCompetitions', getUser);
+  const { mutate: mutateCompetition } = useMutation(postCompetition, {
+    onError: () => {
+      enqueueSnackbar('an error ocurred', { variant: 'error' });
+    },
+    onSuccess: () => {
+      router.push({
+        pathname: appUrls.app.competition.book,
+        query: { scale: scale },
+      });
+    },
+  });
   const [scale, setScale] = useState(1);
 
   const handleIncreaseScale = () => {
@@ -67,10 +83,12 @@ const Init = () => {
   }, []);
 
   const handleStartRead = () => {
-    router.push({
-      pathname: appUrls.app.competition.book,
-      query: { scale: scale },
-    });
+    const payload = {
+      token: sessionStorage.getItem('token'),
+      scale: scale,
+    };
+
+    mutateCompetition(payload);
   };
 
   return (

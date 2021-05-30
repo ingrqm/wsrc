@@ -24,6 +24,9 @@ export const apiUrls = {
     passwordRecovery: '/recovery-password',
     passwordChange: '/recovery-password',
     accountActivation: '/account-activation',
+  },
+  app: {
     getUser: '/user?token=:token',
+    competition: '/competition',
   },
 };
