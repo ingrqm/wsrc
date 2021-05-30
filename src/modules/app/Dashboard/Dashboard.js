@@ -7,7 +7,7 @@ import { useQuery } from 'react-query';
 import { request } from 'base/api';
 import { resolveUrl } from 'utils/url';
 
-import { competition } from '@pages/app/Competition/Competition.data';
+import { competition } from '@pages/app/competition/competition.data';
 import { roles } from 'consts';
 import { useSnackbar } from 'notistack';
 
