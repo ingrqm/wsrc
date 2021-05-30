@@ -3,13 +3,13 @@ import Link from 'next/link';
 import React, { useEffect } from 'react';
 import useCountDown from 'react-countdown-hook';
 
-import { number } from 'prop-types';
+import { number, bool } from 'prop-types';
 
 import { Typography, Button } from '@material-ui/core';
 
 import { appUrls } from 'urls';
 
-const Timer = ({ distance }) => {
+const Timer = ({ distance, isParticipating }) => {
   const [timeLeft, actions] = useCountDown(distance, 1000);
 
   useEffect(() => {
@@ -44,17 +44,20 @@ const Timer = ({ distance }) => {
       </span>
     </Typography>
   ) : (
-    <>
-      <Typography variant="h6">Now you can start the competition</Typography>
-      <Link href={appUrls.app.competition.init}>
-        <Button color="primary">start</Button>
-      </Link>
-    </>
+    !isParticipating && (
+      <>
+        <Typography variant="h6">Now you can start the competition</Typography>
+        <Link href={appUrls.app.competition.init}>
+          <Button color="primary">start</Button>
+        </Link>
+      </>
+    )
   );
 };
 
 Timer.propTypes = {
   distance: number,
+  isParticipating: bool,
 };
 
 export default Timer;

@@ -48,8 +48,6 @@ const Dashboard = () => {
     enqueueSnackbar('there was a problem with the token, you will be sign out', { variant: 'error' });
   }
 
-  console.log(distance);
-
   return (
     <>
       <Head>
@@ -94,7 +92,7 @@ const Dashboard = () => {
                 </Typography>
               </>
             )}
-            {data && <Timer distance={distance} />}
+            {data && <Timer distance={distance} isParticipating={isParticipating} />}
           </Box>
         )}
         {role === roles.arbiter && <div>arbiter</div>}
