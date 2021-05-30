@@ -1,1 +1,1 @@
-export { default } from './Competition';
+export { default } from './Init';

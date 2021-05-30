@@ -1,1 +1,1 @@
-aexport { default } from '@pages/app/competition/Test';
+export { default } from '@pages/app/competition/Test';
