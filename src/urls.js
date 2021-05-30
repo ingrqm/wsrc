@@ -7,8 +7,11 @@ export const appUrls = {
   app: {
     dashboard: '/app/',
     signOut: '/app/sign-out',
-    competition: '/app/competition',
-    competitions: '/app/competitions',
+    competition: {
+      init: '/app/competition/init',
+      book: '/app/competition/book',
+      test: '/app/competition/test',
+    },
   },
 };
 
@@ -21,7 +24,6 @@ export const apiUrls = {
     passwordRecovery: '/recovery-password',
     passwordChange: '/recovery-password',
     accountActivation: '/account-activation',
-    competition: '/competition',
-    getCompetitions: '/competition?token=:token',
+    getUser: '/user?token=:token',
   },
 };

@@ -14,7 +14,7 @@ import IMaxartImg from 'assets/images/footer-brand.png';
 const Portal = ({ children }) => (
   <StyledMain bgcolor="dark.main">
     <StyledHeader>
-      <Image alt="brand" height={76} src={LogoImg} width={200} />
+      <Image alt="brand" height={100} src={LogoImg} width={77} />
     </StyledHeader>
     <Container maxWidth="xs">{children}</Container>
     <StyledFooter color="dark.contrastText">

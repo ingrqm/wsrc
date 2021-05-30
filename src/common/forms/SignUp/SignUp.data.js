@@ -55,11 +55,6 @@ const getLanguageList = () => {
       name: 'polski',
     },
     {
-      flag: 'DE',
-      code: 'DE',
-      name: 'Deutsche',
-    },
-    {
       flag: 'GB',
       code: 'EN',
       name: 'English',

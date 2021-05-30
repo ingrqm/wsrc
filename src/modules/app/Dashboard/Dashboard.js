@@ -1,41 +1,50 @@
 import Head from 'next/head';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 
 import { request } from 'base/api';
 import { resolveUrl } from 'utils/url';
 
+import { competition } from '@pages/app/Competition/Competition.data';
 import { roles } from 'consts';
+import { useSnackbar } from 'notistack';
 
-import { Typography, Box, Button } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 
 import { appUrls, apiUrls } from 'urls';
 
 import { App } from '@layouts';
 
-const competition = async () => {
+import { Timer } from './components';
+
+const getUser = async () => {
   return await request(
     process.env.NEXT_PUBLIC_API_URL,
     'GET',
-    resolveUrl(apiUrls.portal.getCompetitions, { token: sessionStorage.getItem('token') }),
+    resolveUrl(apiUrls.portal.getUser, { token: sessionStorage.getItem('token') }),
     {},
   );
 };
 
 const Dashboard = () => {
-  const [role, setRole] = useState('');
+  const router = useRouter();
+  const { enqueueSnackbar } = useSnackbar();
+  const { isLoading, error, data } = useQuery('getCompetitions', getUser);
 
-  useEffect(() => {
-    setRole(sessionStorage.getItem('role'));
-  }, []);
+  const role = data ? data.data.data.role : '';
 
-  const { data } = useQuery('getCompetitions', competition);
+  const distance = data
+    ? new Date(competition[data.data.data.language][data.data.data.age_category].start).getTime() -
+      new Date(data.data.data.datetime).getTime()
+    : 0;
 
-  const stages = ['talk', 'magazine', 'creativity'];
-
-  const endStages = data ? data.data.data.map(({ category }) => category) : [];
+  if (!isLoading && error) {
+    sessionStorage.clear();
+    router.push(appUrls.portal.signIn);
+    enqueueSnackbar('there was a problem with the token, you will be sign out', { variant: 'error' });
+  }
 
   return (
     <>
@@ -65,28 +74,7 @@ const Dashboard = () => {
             <Typography variant="h6" gutterBottom>
               You have been confirmed as a competitor
             </Typography>
-            {stages.length !== endStages.length && (
-              <Typography variant="h6" gutterBottom>
-                Now you can start the competition
-              </Typography>
-            )}
-            {stages.length === endStages.length && (
-              <>
-                <Typography variant="h6" gutterBottom>
-                  You end the competition
-                </Typography>
-                <Typography variant="h6" gutterBottom>
-                  Thank you for your time
-                </Typography>
-              </>
-            )}
-            {stages.map((item) => (
-              <Link href={`${appUrls.app.competition}?stage=${item}`} key={`stage-${item}`}>
-                <Button color="primary" disabled={endStages.includes(item)}>
-                  {item}
-                </Button>
-              </Link>
-            ))}
+            {data && <Timer distance={distance} />}
           </Box>
         )}
         {role === roles.arbiter && <div>arbiter</div>}

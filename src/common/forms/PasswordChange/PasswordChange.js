@@ -86,7 +86,7 @@ const PasswordChangeForm = () => {
     validationSchema: validationSchema,
     onSubmit: ({ password }) => {
       const payload = {
-        key: key,
+        token: key,
         password: password,
       };
 

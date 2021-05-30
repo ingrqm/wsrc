@@ -114,7 +114,7 @@ const SignInForm = () => {
 
   useEffect(() => {
     if (key) {
-      mutateAccountActivation({ key: key });
+      mutateAccountActivation({ token: key });
     }
   }, [key]);
 

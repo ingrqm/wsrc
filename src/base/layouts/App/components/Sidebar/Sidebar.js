@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { node, func, string, bool } from 'prop-types';
 
-import { Grid, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Grid, List, ListItem, ListItemIcon, ListItemText, Box } from '@material-ui/core';
 
 import { ExitToApp } from '@material-ui/icons';
 
@@ -46,8 +46,10 @@ const Sidebar = ({ isOpen }) => {
 
   return (
     <StyledSidebar anchor="left" open={isOpen} variant="persistent">
-      <Grid container>
-        <Image alt="IMaxart" height={76} src={LogoImg} width={200} />
+      <Grid justify="center" container>
+        <Box my={2}>
+          <Image alt="IMaxart" height={80} src={LogoImg} width={61} />
+        </Box>
       </Grid>
       <List>
         {items.map(({ url, ...rest }, index) => {

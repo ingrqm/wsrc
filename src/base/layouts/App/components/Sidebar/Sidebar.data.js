@@ -1,6 +1,6 @@
 import { roles } from 'consts';
 
-import { Dashboard, Toc } from '@material-ui/icons';
+import { Dashboard } from '@material-ui/icons';
 
 import { appUrls } from 'urls';
 
@@ -24,11 +24,6 @@ export const list = {
       icon: <Dashboard color="primary" />,
       text: 'dashboard',
       url: appUrls.app.dashboard,
-    },
-    {
-      icon: <Toc color="primary" />,
-      text: 'table',
-      url: appUrls.app.competitions,
     },
   ],
 };
