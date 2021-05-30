@@ -74,6 +74,9 @@ const Dashboard = () => {
             <Typography variant="h6" gutterBottom>
               You have been confirmed as a competitor
             </Typography>
+            <Typography variant="h6" gutterBottom>
+              When the timer is end you will be able to start the competition
+            </Typography>
             {data && <Timer distance={distance} />}
           </Box>
         )}

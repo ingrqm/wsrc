@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 
 import { request } from 'base/api';
@@ -12,7 +12,7 @@ import { roles } from 'consts';
 import { useSnackbar } from 'notistack';
 import { number, func } from 'prop-types';
 
-import { Button, Typography, Box, Grid } from '@material-ui/core';
+import { Button, Box, Grid } from '@material-ui/core';
 
 import { appUrls, apiUrls } from 'urls';
 
@@ -29,28 +29,28 @@ const getUser = async () => {
   );
 };
 
-const CustomNavigation = ({ page, pages, handlePrevClick, handleNextClick }) => (
-  <Box>
-    <Button onClick={handlePrevClick}>previous</Button>
-    <Typography>
+const CustomNavigation = ({ page, pages }) => (
+  <Grid justify="space-between" container>
+    <Button color="primary">previous</Button>
+    <Box mt={1}>
       Page {page} from {pages}
-    </Typography>
-    <Button onClick={handleNextClick}>next</Button>
-  </Box>
+    </Box>
+    <Button color="primary">next</Button>
+  </Grid>
 );
 
-const Competition = () => {
+const Init = () => {
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
   const { isLoading, error, data } = useQuery('getCompetitions', getUser);
-  const [scale, setScale] = useState(1.2);
+  const [scale, setScale] = useState(1);
 
   const handleIncreaseScale = () => {
     setScale(Number((scale + 0.1).toFixed(1)));
   };
 
   const handleDecreaseScale = () => {
-    setScale(Number((scale + 0.1).toFixed(1)));
+    setScale(Number((scale - 0.1).toFixed(1)));
   };
 
   const pdf = data ? competition[data.data.data.language][data.data.data.age_category].book : '';
@@ -62,8 +62,16 @@ const Competition = () => {
     enqueueSnackbar('there was a problem with the token, you will be sign out', { variant: 'error' });
   }
 
-  console.log(role);
-  console.log(data);
+  useEffect(() => {
+    enqueueSnackbar('adjust the size of the book before you start reading', { variant: 'info' });
+  }, []);
+
+  const handleStartRead = () => {
+    router.push({
+      pathname: appUrls.app.competition.book,
+      query: { scale: scale },
+    });
+  };
 
   return (
     <>
@@ -71,16 +79,31 @@ const Competition = () => {
         <title>Dashboard</title>
       </Head>
       <App>
+        <Grid justify="space-between" container>
+          <Button color="primary" onClick={handleDecreaseScale}>
+            lower
+          </Button>
+          <Button color="primary" onClick={handleIncreaseScale}>
+            higher
+          </Button>
+        </Grid>
         <Grid justify="center" container>
           {data && role === roles.member && (
-            <StyledPdf
-              document={{
-                base64: pdf,
-              }}
-              navigation={CustomNavigation}
-              scale={scale}
-            />
+            <>
+              <StyledPdf
+                document={{
+                  base64: pdf,
+                }}
+                navigation={CustomNavigation}
+                scale={scale}
+              />
+            </>
           )}
+        </Grid>
+        <Grid justify="center" container>
+          <Button color="primary" onClick={handleStartRead}>
+            start reading
+          </Button>
         </Grid>
       </App>
     </>
@@ -94,4 +117,4 @@ CustomNavigation.propTypes = {
   handleNextClick: func,
 };
 
-export default Competition;
+export default Init;
