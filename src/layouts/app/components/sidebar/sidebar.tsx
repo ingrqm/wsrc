@@ -1,18 +1,26 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
 import { FC, forwardRef } from 'react';
-import { useSnackbar } from 'notistack';
+import { useSelector } from 'react-redux';
+
+import { appUrls } from 'urls';
+
 import { Grid, List, ListItem, ListItemIcon, ListItemText, Box } from '@material-ui/core';
 import { ExitToApp } from '@material-ui/icons';
-import { appUrls } from 'urls';
-import LogoImg from 'assets/images/brand.png';
-import { RootState } from 'redux/store';
-import { useSelector } from 'react-redux';
+
 import { Permission } from 'enums/permission';
+import { useSnackbar } from 'notistack';
+import { RootState } from 'redux/store';
+
 import { list } from './sidebar.data';
-import { StyledSidebar } from './sidebar.styled';
+
 import { ItemTypes } from './sidebar.types';
+
+import { StyledSidebar } from './sidebar.styled';
+
+import LogoImg from 'assets/images/brand.png';
 
 // eslint-disable-next-line react/display-name
 const Item: FC<ItemTypes> = forwardRef<HTMLDivElement, ItemTypes>(({ icon, text, onClick }, ref) => (

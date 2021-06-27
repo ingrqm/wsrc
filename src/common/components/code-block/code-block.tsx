@@ -1,5 +1,5 @@
-import { CopyBlock, dracula } from 'react-code-blocks';
 import { FC } from 'react';
+import { CopyBlock, dracula } from 'react-code-blocks';
 
 const CodeBlock: FC<{ code: string; language?: string; showLineNumbers?: boolean }> = ({
   code,

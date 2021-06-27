@@ -1,6 +1,7 @@
 import { CountryRegionData } from 'react-country-region-selector';
 
 import { continents, countries } from 'countries-list';
+
 import {
   AgeListTypes,
   ContinentListTypes,

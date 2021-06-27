@@ -1,23 +1,35 @@
+import { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useState, useEffect, FC } from 'react';
-import { useSelector } from 'react-redux';
+
+import { useState, useEffect } from 'react';
 import { useMutation } from 'react-query';
-import { competition } from 'views/app/competition/competition.data';
-import { useSnackbar } from 'notistack';
-import { Button, Grid } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '@redux/store';
+
+import { Age } from '@enums/age';
+import { AlignFlex } from '@enums/align';
+import { Language } from '@enums/language';
+import { Permission } from '@enums/permission';
+
 import { appUrls } from 'urls';
-import { App } from 'layouts';
-import { Permission } from 'enums/permission';
-import { RootState } from 'redux/store';
-import { Age } from 'enums/age';
-import { Language } from 'enums/language';
-import { AlignFlex } from 'enums/align';
-import { StyledPdf } from './init.styled';
-import { fetchCompetitionInit } from './init.api';
+
+import { Button, Grid } from '@material-ui/core';
+
+import { useSnackbar } from 'notistack';
+
+import { App } from '@layouts';
+
+import { competition } from '@views/app/competition/competition.data';
+
 import Navigation from './navigation';
 
-const Init: FC = () => {
+import { fetchCompetitionInit } from './init.api';
+
+import { StyledPdf } from './init.styled';
+
+const Init: NextPage = () => {
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -72,13 +84,12 @@ const Init: FC = () => {
   useEffect(() => {
     if (isSignIn) {
       enqueueSnackbar('adjust the size of the book before you start reading', { variant: 'info' });
+
+      if (permission !== Permission.member) {
+        router.push(appUrls.app.dashboard);
+      }
     }
   }, []);
-
-  if (permission !== Permission.member) {
-    router.push(appUrls.app.dashboard);
-    return null;
-  }
 
   return (
     <>

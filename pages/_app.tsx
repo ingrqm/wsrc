@@ -1,15 +1,21 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { AppProps, NextWebVitalsMetric } from 'next/app';
 import NextNprogress from 'nextjs-progressbar';
-import { AppProps } from 'next/app';
+
 import { FC } from 'react';
+import { I18nextProvider } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
-import { I18nextProvider } from 'react-i18next';
-import SnackbarProvider from 'providers/snackbar';
-import { store } from 'redux/store';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { createGlobalStyle } from 'styled-components';
+
+import SnackbarProvider from '@providers/snackbar';
+
+import { store } from '@redux/store';
+
 import i18n from 'i18n';
+
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+import { createGlobalStyle } from 'styled-components';
 
 const queryClient = new QueryClient();
 
@@ -54,6 +60,11 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 `;
+
+export const reportWebVitals = (metric: NextWebVitalsMetric): void => {
+  // eslint-disable-next-line no-console
+  console.log(metric);
+};
 
 const App: FC<AppProps> = ({ Component, pageProps }) => (
   <Provider store={store}>

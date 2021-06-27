@@ -2,17 +2,17 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@components": [
-        "common/components"
-      ],
-      "@components/*": [
-        "common/components/*"
-      ],
       "@layouts": [
         "layouts"
       ],
       "@layouts/*": [
         "layouts/*"
+      ],
+      "@views": [
+        "views"
+      ],
+      "@views/*": [
+        "views/*"
       ],
       "@forms": [
         "common/forms"
@@ -20,17 +20,41 @@
       "@forms/*": [
         "common/forms/*"
       ],
-      "@sections": [
-        "common/sections"
+      "@components": [
+        "common/components"
       ],
-      "@sections/*": [
-        "common/sections/*"
+      "@components/*": [
+        "common/components/*"
       ],
-      "@views": [
-        "views"
+      "@enums": [
+        "enums"
       ],
-      "@views/*": [
-        "views/*"
+      "@enums/*": [
+        "enums/*"
+      ],
+      "@providers": [
+        "providers"
+      ],
+      "@providers/*": [
+        "providers/*"
+      ],
+      "@redux": [
+        "redux"
+      ],
+      "@redux/*": [
+        "redux/*"
+      ],
+      "@utils": [
+        "components"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@contracts": [
+        "contracts"
+      ],
+      "@contracts/*": [
+        "contracts/*"
       ]
     }
   }

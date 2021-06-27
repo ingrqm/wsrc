@@ -1,5 +1,7 @@
 import { FC } from 'react';
+
 import { Box, Button, Grid } from '@material-ui/core';
+
 import { AlignFlex } from 'enums/align';
 
 const Navigation: FC<{ page: number; pages: number }> = ({ page, pages }) => (

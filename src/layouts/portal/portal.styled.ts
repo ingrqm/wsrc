@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-
 import { Box } from '@material-ui/core';
+
+import styled from 'styled-components';
 
 const StyledMain = styled(Box)`
   display: flex;

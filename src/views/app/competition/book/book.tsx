@@ -1,11 +1,21 @@
+import { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useState, useEffect, FC } from 'react';
+
+import { useState, useEffect } from 'react';
 import { useMutation } from 'react-query';
-import { useTheme } from '@material-ui/core/styles';
-import { competition } from 'views/app/competition/competition.data';
-import { Permission } from 'enums/permission';
-import { useSnackbar } from 'notistack';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '@redux/store';
+
+import { Age } from '@enums/age';
+import { AlignFlex } from '@enums/align';
+import { Color } from '@enums/color';
+import { Language } from '@enums/language';
+import { Permission } from '@enums/permission';
+
+import { appUrls } from 'urls';
+
 import {
   Button,
   Grid,
@@ -16,19 +26,21 @@ import {
   DialogContentText,
   useMediaQuery,
 } from '@material-ui/core';
-import { appUrls } from 'urls';
-import { App } from 'layouts';
-import { AlignFlex } from 'enums/align';
-import { RootState } from 'redux/store';
-import { useSelector } from 'react-redux';
-import { Language } from 'enums/language';
-import { Age } from 'enums/age';
-import { Color } from 'enums/color';
-import { StyledPdf } from './book.styled';
+import { useTheme } from '@material-ui/core/styles';
+
+import { useSnackbar } from 'notistack';
+
+import { App } from '@layouts';
+
+import { competition } from '@views/app/competition/competition.data';
+
 import Navigation from './navigation';
+
 import { fetchCompetitionBook } from './book.api';
 
-const Book: FC = () => {
+import { StyledPdf } from './book.styled';
+
+const Book: NextPage = () => {
   const [isOpenDialog, setIsOpenDialog] = useState(false);
   const [scale, setScale] = useState(1);
   const router = useRouter();

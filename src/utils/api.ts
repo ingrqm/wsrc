@@ -13,7 +13,7 @@ export enum Methods {
 }
 
 const getTokenHeader = (): HeaderToken => {
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   const result = {
     Authorization: '',
   };

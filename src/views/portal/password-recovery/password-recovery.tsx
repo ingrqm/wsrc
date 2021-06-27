@@ -1,15 +1,22 @@
+import { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { FC } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { Grid, Box } from '@material-ui/core';
+
 import { appUrls } from 'urls';
-import { Portal } from '@layouts';
-import { PasswordRecoveryForm, PasswordChangeForm } from '@forms';
-import { Link } from '@components';
+
+import { Grid, Box } from '@material-ui/core';
+
 import { Align } from 'enums/align';
 
-const PasswordRecovery: FC = () => {
+import { Portal } from '@layouts';
+
+import { PasswordRecoveryForm, PasswordChangeForm } from '@forms';
+
+import { Link } from '@components';
+
+const PasswordRecovery: NextPage = () => {
   const router = useRouter();
   const { t } = useTranslation();
 

@@ -1,6 +1,9 @@
 import NextLink from 'next/link';
+
 import { FC } from 'react';
+
 import { Align } from 'enums/align';
+
 import { StyledLink } from './link.styled';
 
 const Link: FC<{ href: string; align: Align }> = ({ href, children, align = Align.center }) => (

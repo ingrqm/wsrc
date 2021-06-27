@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router';
+
 import { FC } from 'react';
-import { useMutation } from 'react-query';
 import { useTranslation } from 'react-i18next';
-import { useFormik } from 'formik';
-import { useSnackbar } from 'notistack';
+import { useMutation } from 'react-query';
+
+import { appUrls } from 'urls';
+
 import {
   Card,
   CardActions,
@@ -18,12 +20,18 @@ import {
   Box,
 } from '@material-ui/core';
 import { LockOpen } from '@material-ui/icons';
-import { appUrls } from 'urls';
-import { FormHelperText } from '@components';
+
 import { Align, AlignFlex } from 'enums/align';
-import { initialValues, validationSchema } from './password-change.schema';
-import { fetchPasswordChange } from './password-change.api';
+import { useFormik } from 'formik';
+import { useSnackbar } from 'notistack';
+
+import { FormHelperText } from '@components';
+
 import { FormInputs } from './password-change.enum';
+
+import { fetchPasswordChange } from './password-change.api';
+
+import { initialValues, validationSchema } from './password-change.schema';
 
 const PasswordChangeForm: FC = () => {
   const router = useRouter();

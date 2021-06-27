@@ -1,3 +1,3 @@
-import { Dashboard } from 'views/app/dashboard';
+import { Dashboard } from '@views/app/dashboard';
 
 export default Dashboard;

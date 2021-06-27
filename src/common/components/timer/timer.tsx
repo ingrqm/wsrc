@@ -1,10 +1,13 @@
 import Link from 'next/link';
+
 import { useEffect, FC } from 'react';
 import useCountDown from 'react-countdown-hook';
-import { Typography, Button } from '@material-ui/core';
+
 import { appUrls } from 'urls';
 
-const getFormatTime = (number: number): string => `${number < 10 && '0'}${number}`;
+import { Typography, Button } from '@material-ui/core';
+
+const getFormatTime = (number: number): string => `${number < 10 ? '0' : ''}${number}`;
 
 const Timer: FC<{ distance: number; isParticipating: boolean | undefined }> = ({ distance, isParticipating }) => {
   const [timeLeft, actions] = useCountDown(distance, 1000);

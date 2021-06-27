@@ -1,7 +1,8 @@
-import { FC } from 'react';
+import { NextPage } from 'next';
+
 import { CodeBlock } from '@components';
 
-const Welcome: FC = () => (
+const Welcome: NextPage = () => (
   <>
     Welcome
     <CodeBlock code='<Button />' />

@@ -1,11 +1,21 @@
+import { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useState, FC } from 'react';
+
+import { useState } from 'react';
 import { useMutation } from 'react-query';
-import { useTheme } from '@material-ui/core/styles';
-import { competition } from '@views/app/competition/competition.data';
-import { useFormik } from 'formik';
-import { useSnackbar } from 'notistack';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '@redux/store';
+
+import { Age } from '@enums/age';
+import { AlignFlex } from '@enums/align';
+import { Color } from '@enums/color';
+import { Language } from '@enums/language';
+import { Permission } from '@enums/permission';
+
+import { appUrls } from 'urls';
+
 import {
   Button,
   Grid,
@@ -21,18 +31,18 @@ import {
   Card,
   CardContent,
 } from '@material-ui/core';
-import { appUrls } from 'urls';
+import { useTheme } from '@material-ui/core/styles';
+
+import { useFormik } from 'formik';
+import { useSnackbar } from 'notistack';
+
 import { App } from '@layouts';
-import { Color } from 'enums/color';
-import { AlignFlex } from 'enums/align';
-import { Permission } from 'enums/permission';
-import { RootState } from 'redux/store';
-import { useSelector } from 'react-redux';
-import { Age } from 'enums/age';
-import { Language } from 'enums/language';
+
+import { competition } from '@views/app/competition/competition.data';
+
 import { fetchCompetitionTest } from './test.api';
 
-const Test: FC = () => {
+const Test: NextPage = () => {
   const [isOpenDialog, setIsOpenDialog] = useState(false);
   const router = useRouter();
   const theme = useTheme();

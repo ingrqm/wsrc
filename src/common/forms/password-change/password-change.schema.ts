@@ -1,8 +1,8 @@
+import i18n from 'i18n';
 import * as yup from 'yup';
 
-import i18n from 'i18n';
-
 import { FormInputs } from './password-change.enum';
+
 import { FormTypes } from './password-change.types';
 
 const regex = {

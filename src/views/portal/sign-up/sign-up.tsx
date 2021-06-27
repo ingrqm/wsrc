@@ -1,14 +1,21 @@
+import { NextPage } from 'next';
 import Head from 'next/head';
-import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Portal } from 'layouts';
-import { Grid, Box } from '@material-ui/core';
-import { appUrls } from 'urls';
-import { SignUpForm } from '@forms';
-import { Link } from '@components';
-import { Align } from 'enums/align';
 
-const SignUp: FC = () => {
+import { useTranslation } from 'react-i18next';
+
+import { Align } from '@enums/align';
+
+import { appUrls } from 'urls';
+
+import { Grid, Box } from '@material-ui/core';
+
+import { Portal } from '@layouts';
+
+import { SignUpForm } from '@forms';
+
+import { Link } from '@components';
+
+const SignUp: NextPage = () => {
   const { t } = useTranslation();
 
   return (

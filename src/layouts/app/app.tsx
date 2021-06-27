@@ -1,12 +1,16 @@
 import { useRouter } from 'next/router';
+
 import { useState, useEffect, FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'redux/store';
-import { sliceActions } from 'redux/user/slice';
+
 import { appUrls } from 'urls';
 
-import { StyledMain, StyledContainer } from './app.styled';
+import { RootState } from 'redux/store';
+import { sliceActions } from 'redux/user/slice';
+
 import { Footer, Navbar, Sidebar } from './components';
+
+import { StyledMain, StyledContainer } from './app.styled';
 
 const App: FC = ({ children }) => {
   const router = useRouter();
@@ -19,11 +23,12 @@ const App: FC = ({ children }) => {
 
   useEffect(() => {
     if (!isSignIn) {
+      console.log('sign out app.tsx');
       dispatch(sliceActions.signOutSuccess());
 
       router.push(appUrls.portal.signIn);
     }
-  }, [isSignIn]);
+  }, []);
 
   return (
     <StyledMain $isOpen={isOpen} bgcolor='dark.main'>

@@ -1,8 +1,8 @@
+import i18n from 'i18n';
 import * as yup from 'yup';
 
-import i18n from 'i18n';
-
 import { FormInputs } from './password-recovery.enum';
+
 import { FormTypes } from './password-recovery.types';
 
 export const validationSchema = yup.object({

@@ -44,7 +44,120 @@ module.exports = {
     'import/order': [
       'error',
       {
-        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+        'newlines-between': 'always',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+        groups: ['builtin', 'external', 'internal', 'index', 'parent', 'sibling'],
+        pathGroups: [
+          {
+            pattern: '{react,react/**,react**}',
+            group: 'builtin',
+            position: 'before',
+          },
+          {
+            pattern: '{next,next/**,next**}',
+            group: 'builtin',
+            position: 'before',
+          },
+          {
+            pattern: '{@providers,@providers/**}',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '{@redux,@redux/**}',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '{@utils,@utils/**}',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '{@contracts,@contracts/**}',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '{@types,@types/**}',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '{@enums,@enums/**}',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'urls',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'i18n',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '{@material-ui,@material-ui/**}',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '{@layouts,@layouts/**}',
+            group: 'external',
+            position: 'after',
+          },
+          {
+            pattern: '{@views,@views/**,@views/**/**,@views/**/**/**}',
+            group: 'external',
+            position: 'after',
+          },
+          {
+            pattern: '{@forms,@forms/**}',
+            group: 'external',
+            position: 'after',
+          },
+          {
+            pattern: '{@components,@components/**}',
+            group: 'external',
+            position: 'after',
+          },
+          {
+            pattern: './**.api',
+            group: 'sibling',
+            position: 'after',
+          },
+          {
+            pattern: './**.schema',
+            group: 'sibling',
+            position: 'after',
+          },
+          {
+            pattern: './**.types',
+            group: 'sibling',
+            position: 'after',
+          },
+          {
+            pattern: './**.enums',
+            group: 'sibling',
+            position: 'after',
+          },
+          {
+            pattern: './**.styled',
+            group: 'sibling',
+            position: 'after',
+          },
+          {
+            pattern: 'assets/**',
+            group: 'sibling',
+            position: 'after',
+          },
+        ],
+        pathGroupsExcludedImportTypes: ['builtin'],
       },
     ],
     'react/prop-types': 'off',

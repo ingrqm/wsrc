@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { UserState, SignInUserPayload } from './types';
 
 const initialState: UserState = {
@@ -24,15 +25,19 @@ const slice = createSlice({
       state.age = age;
       state.ageCategory = ageCategory;
       state.isParticipating = isParticipating;
-      console.log('SignInSuccess');
+
+      sessionStorage.setItem(`token`, token);
+      console.log('signInSuccess');
     },
     signInError: (state: UserState) => {
       state.isSignIn = false;
       console.log('signInError');
+      sessionStorage.removeItem(`token`);
     },
     signOutSuccess: (state: UserState) => {
       state.isSignIn = false;
       console.log('signOutSuccess');
+      sessionStorage.removeItem(`token`);
     },
   },
 });

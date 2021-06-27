@@ -1,3 +1,3 @@
-import { Init } from 'views/app/competition/init';
+import { Init } from '@views/app/competition/init';
 
 export default Init;

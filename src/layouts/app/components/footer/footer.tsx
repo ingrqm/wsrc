@@ -1,9 +1,12 @@
 import Image from 'next/image';
 
-import { Grid } from '@material-ui/core';
 import { FC } from 'react';
+
+import { Grid } from '@material-ui/core';
+
+import { StyledFooter, StyledCopyright } from './footer.styled';
+
 import IMaxartImg from 'assets/images/footer-brand.png';
-import { StyledFooter, StyledCopyright } from './Footer.styled';
 
 const Footer: FC<{ isOpen: boolean }> = ({ isOpen }) => (
   <StyledFooter $isOpen={isOpen} color='dark.contrastText'>

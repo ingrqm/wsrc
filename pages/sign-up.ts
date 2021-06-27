@@ -1,3 +1,3 @@
-import { SignUp } from 'views/portal/sign-up';
+import { SignUp } from '@views/portal/sign-up';
 
 export default SignUp;

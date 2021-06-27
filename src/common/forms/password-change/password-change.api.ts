@@ -1,6 +1,7 @@
+import { apiUrls } from 'urls';
+
 import { AccountPasswordChangeReq, AccountPasswordChangeRes } from 'contracts/account';
 import { request, Methods } from 'utils/api';
-import { apiUrls } from 'urls';
 
 export const fetchPasswordChange = async (payload: AccountPasswordChangeReq): Promise<AccountPasswordChangeRes> => {
   const {

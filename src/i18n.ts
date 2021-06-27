@@ -1,7 +1,8 @@
-import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { getTranslations } from 'utils/translations';
+
+import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { getTranslations } from 'utils/translations';
 
 import en from './locales/en';
 import pl from './locales/pl';
@@ -23,7 +24,7 @@ i18n
     fallbackLng: 'en',
     lng: 'en',
     interpolation: {
-      escapeValue: false, // react already safes from xss
+      escapeValue: false,
     },
   });
 

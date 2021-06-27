@@ -1,3 +1,6 @@
+import { Age } from 'enums/age';
+import { Language } from 'enums/language';
+
 import {
   arAdultPdf,
   enAdultPdf,
@@ -14,8 +17,6 @@ import {
   ruAdultPdf,
   zhAdultPdf,
 } from 'assets/books';
-import { Age } from 'enums/age';
-import { Language } from 'enums/language';
 
 type CompetitionTypes = {
   [key in Language]: {
@@ -254,7 +255,7 @@ const competition: CompetitionTypes = {
   },
   [Language.AR]: {
     [Age.adult]: {
-      start: new Date('Sun, 30 May 2021 14:00:00'),
+      start: new Date('Sun, 30 June 2021 14:00:00'),
       book: arAdultPdf,
       questions: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
     },

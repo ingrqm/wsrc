@@ -1,5 +1,7 @@
 import { useRef, useState, FC } from 'react';
+
 import { Button } from '@material-ui/core';
+
 import { StyledFileInput } from './file-input.styled';
 
 const toBase64 = (file: File): Promise<string | ArrayBuffer | null> =>

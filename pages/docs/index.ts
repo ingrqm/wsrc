@@ -1,3 +1,3 @@
-import { Welcome } from 'views/docs/welcome';
+import { Welcome } from '@views/docs/welcome';
 
 export default Welcome;

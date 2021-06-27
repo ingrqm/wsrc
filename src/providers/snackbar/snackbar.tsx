@@ -1,8 +1,8 @@
 import { useRef, FC } from 'react';
 
-import { SnackbarProvider } from 'notistack';
-
 import { ReportProblemOutlined, ErrorOutline, DoneAll, Close } from '@material-ui/icons';
+
+import { SnackbarProvider } from 'notistack';
 
 import { StyledIconWrapper, StyledIconButton } from './snackbar.styled';
 

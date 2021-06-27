@@ -1,10 +1,16 @@
 import { useRouter } from 'next/router';
+
 import { FC, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useMutation } from 'react-query';
 import { useDispatch } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import { useFormik } from 'formik';
-import { useSnackbar } from 'notistack';
+
+import { sliceActions } from '@redux/user/slice';
+
+import { AccountSignInRes } from '@contracts/account';
+
+import { appUrls } from 'urls';
+
 import {
   Card,
   CardActions,
@@ -19,13 +25,17 @@ import {
   Box,
 } from '@material-ui/core';
 import { Mail, LockOpen } from '@material-ui/icons';
-import { sliceActions } from 'redux/user/slice';
+
+import { useFormik } from 'formik';
+import { useSnackbar } from 'notistack';
+
 import { FormHelperText } from '@components';
-import { AccountSignInRes } from 'contracts/account';
-import { appUrls } from 'urls';
-import { fetchAccountActivation, fetchSigIn } from './sign-in.api';
-import { initialValues, validationSchema } from './sign-in.schema';
+
 import { FormInputs } from './sign-in.enum';
+
+import { fetchAccountActivation, fetchSigIn } from './sign-in.api';
+
+import { initialValues, validationSchema } from './sign-in.schema';
 
 const SignInForm: FC = () => {
   const router = useRouter();
@@ -114,7 +124,7 @@ const SignInForm: FC = () => {
                 <Input
                   disabled={isLoading}
                   endAdornment={
-                    <InputAdornment>
+                    <InputAdornment component='div' position='end'>
                       <LockOpen />
                     </InputAdornment>
                   }

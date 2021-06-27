@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-
 import { Drawer } from '@material-ui/core';
+
+import styled from 'styled-components';
 
 const StyledSidebar = styled(Drawer)`
   .MuiDrawer-paper {

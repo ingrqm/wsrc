@@ -1,12 +1,11 @@
 import { useRouter } from 'next/router';
 
 import { FC, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useMutation } from 'react-query';
 
-import { useTranslation } from 'react-i18next';
+import { appUrls } from 'urls';
 
-import { useFormik } from 'formik';
-import { useSnackbar } from 'notistack';
 import {
   Card,
   CardActions,
@@ -22,21 +21,24 @@ import {
   FormControlLabel,
   Checkbox,
 } from '@material-ui/core';
+import { Mail, LockOpen, Call, Face } from '@material-ui/icons';
+
+import { AlignFlex } from 'enums/align';
+import { useFormik } from 'formik';
+import { useSnackbar } from 'notistack';
 
 import { Autocomplete, FormHelperText } from '@components';
 
-import { Mail, LockOpen, Call, Face } from '@material-ui/icons';
+import { ageList, continentList, countryList, regionList, languageList } from './sign-up.data';
+import { FormInputs } from './sign-up.enum';
 
-import { appUrls } from 'urls';
-
-import { AlignFlex } from 'enums/align';
 import { fetchSignUp } from './sign-up.api';
 
-import { ageList, continentList, countryList, regionList, languageList } from './sign-up.data';
 import { initialValues, validationSchema } from './sign-up.schema';
-import { StyledFlag, StyledPrefix } from './sign-up.styled';
+
 import { CountryTypes, FormTypes, LanguageTypes } from './sign-up.types';
-import { FormInputs } from './sign-up.enum';
+
+import { StyledFlag, StyledPrefix } from './sign-up.styled';
 
 const SignUpForm: FC = () => {
   const [countries, setCountries] = useState([]);

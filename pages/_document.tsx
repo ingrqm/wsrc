@@ -2,7 +2,9 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable react/jsx-props-no-spreading */
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+
 import React from 'react';
+
 import { ServerStyleSheets } from '@material-ui/styles';
 
 export default class MyDocument extends Document {

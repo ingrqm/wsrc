@@ -1,6 +1,8 @@
 import { FC } from 'react';
+
 import { IconButton } from '@material-ui/core';
 import { Menu, Notes } from '@material-ui/icons';
+
 import { StyledNavbar } from './navbar.styled';
 
 const Navbar: FC<{ isOpen: boolean; setIsOpen: (isOpen: boolean) => void }> = ({ isOpen, setIsOpen }) => (

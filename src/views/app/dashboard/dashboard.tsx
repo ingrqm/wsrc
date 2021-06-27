@@ -1,18 +1,26 @@
+import { NextPage } from 'next';
 import Head from 'next/head';
-import { FC } from 'react';
-import { useSelector } from 'react-redux';
-import { competition } from '@views/app/competition/competition.data';
-import { Typography, Box } from '@material-ui/core';
-import { App } from '@layouts';
-import { Timer } from '@components';
-import { Permission } from 'enums/permission';
-import { getNow } from 'utils/time';
-import { Align } from 'enums/align';
-import { Age } from 'enums/age';
-import { RootState } from 'redux/store';
-import { Language } from 'enums/language';
 
-const Dashboard: FC = () => {
+import { useSelector } from 'react-redux';
+
+import { RootState } from '@redux/store';
+
+import { getNow } from '@utils/time';
+
+import { Age } from '@enums/age';
+import { Align } from '@enums/align';
+import { Language } from '@enums/language';
+import { Permission } from '@enums/permission';
+
+import { Typography, Box } from '@material-ui/core';
+
+import { App } from '@layouts';
+
+import { competition } from '@views/app/competition/competition.data';
+
+import { Timer } from '@components';
+
+const Dashboard: NextPage = () => {
   const { name, isSignIn, language, ageCategory, permission, isParticipating } = useSelector<
     RootState,
     {
