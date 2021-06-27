@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@components": [
+        "common/components"
+      ],
+      "@components/*": [
+        "common/components/*"
+      ],
+      "@layouts": [
+        "layouts"
+      ],
+      "@layouts/*": [
+        "layouts/*"
+      ],
+      "@forms": [
+        "common/forms"
+      ],
+      "@forms/*": [
+        "common/forms/*"
+      ],
+      "@sections": [
+        "common/sections"
+      ],
+      "@sections/*": [
+        "common/sections/*"
+      ],
+      "@views": [
+        "views"
+      ],
+      "@views/*": [
+        "views/*"
+      ]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+export enum FormInputs {
+  continent = 'continent',
+  country = 'country',
+  region = 'region',
+  crew = 'crew',
+  language = 'language',
+  name = 'name',
+  surname = 'surname',
+  age = 'age',
+  phone = 'phone',
+  email = 'email',
+  password = 'password',
+  replyPassword = 'replyPassword',
+  statute = 'statute',
+}
