@@ -67,6 +67,8 @@ export const reportWebVitals = (metric: NextWebVitalsMetric): void => {
   console.log(metric);
 };
 
+const persistor = persistStore(store);
+
 const App: FC<AppProps> = ({ Component, pageProps }) => (
   <PersistGate loading={null} persistor={persistor}>
     <QueryClientProvider client={queryClient}>
