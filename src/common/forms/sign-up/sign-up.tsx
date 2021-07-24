@@ -4,6 +4,8 @@ import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from 'react-query';
 
+import { AlignFlex } from '@enums/align';
+
 import { appUrls } from 'urls';
 
 import {
@@ -23,7 +25,6 @@ import {
 } from '@material-ui/core';
 import { Mail, LockOpen, Call, Face } from '@material-ui/icons';
 
-import { AlignFlex } from 'enums/align';
 import { useFormik } from 'formik';
 import { useSnackbar } from 'notistack';
 

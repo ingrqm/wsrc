@@ -2,7 +2,7 @@ import { Box } from '@material-ui/core';
 
 import styled from 'styled-components';
 
-const StyledFooter = styled(Box)`
+const StyledFooter = styled(Box)<{ $isOpen: boolean }>`
   margin: 40px 0;
   display: flex;
   transform: translateX(${({ $isOpen }) => ($isOpen ? '250px' : '0')});

@@ -4,11 +4,11 @@ import { useRouter } from 'next/router';
 
 import { useTranslation } from 'react-i18next';
 
+import { Align } from '@enums/align';
+
 import { appUrls } from 'urls';
 
 import { Grid, Box } from '@material-ui/core';
-
-import { Align } from 'enums/align';
 
 import { Portal } from '@layouts';
 
@@ -33,7 +33,7 @@ const PasswordRecovery: NextPage = () => {
             <PasswordRecoveryForm />
             <Grid justify='flex-end' container>
               <Grid item>
-                <Box color='dark.contrastText' mt={2}>
+                <Box color='secondary.contrastText' mt={2}>
                   <Link align={Align.right} href={appUrls.portal.signIn}>
                     {t('page.passwordRecovery.actions.signIn')}
                   </Link>

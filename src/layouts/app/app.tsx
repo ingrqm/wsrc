@@ -3,10 +3,10 @@ import { useRouter } from 'next/router';
 import { useState, useEffect, FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { appUrls } from 'urls';
+import { RootState } from '@redux/store';
+import { sliceActions } from '@redux/user/slice';
 
-import { RootState } from 'redux/store';
-import { sliceActions } from 'redux/user/slice';
+import { appUrls } from 'urls';
 
 import { Footer, Navbar, Sidebar } from './components';
 
@@ -31,7 +31,7 @@ const App: FC = ({ children }) => {
   }, []);
 
   return (
-    <StyledMain $isOpen={isOpen} bgcolor='dark.main'>
+    <StyledMain $isOpen={isOpen} bgcolor='secondary.main'>
       <Sidebar isOpen={isOpen} />
       <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
       <StyledContainer $isOpen={isOpen} container>

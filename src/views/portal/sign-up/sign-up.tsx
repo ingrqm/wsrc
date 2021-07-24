@@ -27,7 +27,7 @@ const SignUp: NextPage = () => {
         <SignUpForm />
         <Grid justify='space-between' container>
           <Grid item>
-            <Box color='dark.contrastText' mt={2}>
+            <Box color='secondary.contrastText' mt={2}>
               <Link align={Align.left} href={appUrls.portal.signIn}>
                 {t('page.signUp.actions.signIn')}
               </Link>

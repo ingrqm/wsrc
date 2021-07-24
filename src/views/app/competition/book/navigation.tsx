@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { Box, Button, Grid } from '@material-ui/core';
+import { AlignFlex } from '@enums/align';
 
-import { AlignFlex } from 'enums/align';
+import { Box, Button, Grid } from '@material-ui/core';
 
 const Navigation: FC<{ page: number; pages: number; handlePrevClick: () => void; handleNextClick: () => void }> = ({
   page,

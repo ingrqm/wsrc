@@ -1,5 +1,5 @@
-import { Age } from 'enums/age';
-import { Language } from 'enums/language';
+import { Age } from '@enums/age';
+import { Language } from '@enums/language';
 
 import {
   arAdultPdf,

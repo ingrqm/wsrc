@@ -1,7 +1,8 @@
-import { apiUrls } from 'urls';
+import { request, Methods } from '@utils/api';
 
-import { CompetitionBookReq, CompetitionBookRes } from 'contracts/competition';
-import { request, Methods } from 'utils/api';
+import { CompetitionBookReq, CompetitionBookRes } from '@contracts/competition';
+
+import { apiUrls } from 'urls';
 
 export const fetchCompetitionBook = async (payload: CompetitionBookReq): Promise<CompetitionBookRes> => {
   const { COMPETITION } = apiUrls;

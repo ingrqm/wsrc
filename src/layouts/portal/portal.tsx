@@ -31,12 +31,12 @@ const Portal: FC = ({ children }) => {
   }, []);
 
   return (
-    <StyledMain bgcolor='dark.main'>
+    <StyledMain bgcolor='secondary.main'>
       <StyledHeader>
         <Image alt='brand' height={100} src={LogoImg} width={77} />
       </StyledHeader>
       <Container maxWidth='xs'>{children}</Container>
-      <StyledFooter color='dark.contrastText'>
+      <StyledFooter color='secondary.contrastText'>
         <Grid container>
           <Grid item>
             <StyledCopyright>© 2021</StyledCopyright>

@@ -2,7 +2,7 @@ import { Box, Grid } from '@material-ui/core';
 
 import styled from 'styled-components';
 
-const StyledMain = styled(Box)`
+const StyledMain = styled(Box)<{ $isOpen: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,7 +10,7 @@ const StyledMain = styled(Box)`
   overflow-x: hidden;
 `;
 
-const StyledContainer = styled(Grid)`
+const StyledContainer = styled(Grid)<{ $isOpen: boolean }>`
   min-height: calc(100vh - 59px - 19px - 80px);
   padding: 1rem;
   transform: translateX(${({ $isOpen }) => ($isOpen ? '250px' : '0')});

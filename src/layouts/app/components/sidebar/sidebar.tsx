@@ -5,14 +5,16 @@ import { useRouter } from 'next/router';
 import { FC, forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 
+import { RootState } from '@redux/store';
+
+import { Permission } from '@enums/permission';
+
 import { appUrls } from 'urls';
 
 import { Grid, List, ListItem, ListItemIcon, ListItemText, Box } from '@material-ui/core';
 import { ExitToApp } from '@material-ui/icons';
 
-import { Permission } from 'enums/permission';
 import { useSnackbar } from 'notistack';
-import { RootState } from 'redux/store';
 
 import { list } from './sidebar.data';
 

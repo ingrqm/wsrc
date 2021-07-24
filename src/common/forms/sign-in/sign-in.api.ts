@@ -1,7 +1,8 @@
-import { apiUrls } from 'urls';
+import { request, Methods } from '@utils/api';
 
-import { AccountSignInReq, AccountSignInRes, AccountActivationReq, AccountActivationRes } from 'contracts/account';
-import { request, Methods } from 'utils/api';
+import { AccountSignInReq, AccountSignInRes, AccountActivationReq, AccountActivationRes } from '@contracts/account';
+
+import { apiUrls } from 'urls';
 
 export const fetchSigIn = async (payload: AccountSignInReq): Promise<AccountSignInRes> => {
   const {

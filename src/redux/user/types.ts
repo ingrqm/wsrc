@@ -1,6 +1,6 @@
-import { Age } from 'enums/age';
-import { Language } from 'enums/language';
-import { Permission } from 'enums/permission';
+import { Age } from '@enums/age';
+import { Language } from '@enums/language';
+import { Permission } from '@enums/permission';
 
 export type UserState = {
   isSignIn: boolean;

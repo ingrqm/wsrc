@@ -1,9 +1,9 @@
+import { Permission } from '@enums/permission';
+
 import { appUrls } from 'urls';
 
 import { SvgIconProps } from '@material-ui/core/SvgIcon';
 import { Dashboard } from '@material-ui/icons';
-
-import { Permission } from 'enums/permission';
 
 type List = {
   [key: string]: {

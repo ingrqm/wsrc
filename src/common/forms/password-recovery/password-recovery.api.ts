@@ -1,7 +1,8 @@
-import { apiUrls } from 'urls';
+import { request, Methods } from '@utils/api';
 
-import { AccountPasswordRecoveryReq, AccountPasswordRecoveryRes } from 'contracts/account';
-import { request, Methods } from 'utils/api';
+import { AccountPasswordRecoveryReq, AccountPasswordRecoveryRes } from '@contracts/account';
+
+import { apiUrls } from 'urls';
 
 export const fetchPasswordRecovery = async (
   payload: AccountPasswordRecoveryReq
