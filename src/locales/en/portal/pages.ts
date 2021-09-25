@@ -1,11 +1,22 @@
 export default {
   page: {
+    passwordChange: {
+      head: {
+        title: 'Password change',
+      },
+    },
     passwordRecovery: {
+      head: {
+        title: 'Password recovery',
+      },
       actions: {
         signIn: 'Do you have an account?',
       },
     },
     signIn: {
+      head: {
+        title: 'Sign in',
+      },
       actions: {
         passwordRecovery: 'Have you forgotten your password?',
         signUp: 'You do not have an account?',
@@ -16,6 +27,9 @@ export default {
       },
     },
     signUp: {
+      head: {
+        title: 'Sign up',
+      },
       actions: {
         signIn: 'Do you have an account?',
       },

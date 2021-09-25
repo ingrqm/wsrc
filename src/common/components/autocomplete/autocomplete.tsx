@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChangeEvent, FC, ReactNode } from 'react';
 
 import { TextField } from '@material-ui/core';
@@ -13,13 +14,13 @@ const AutocompleteWrapper: FC<{
   onChange?: (
     // eslint-disable-next-line @typescript-eslint/ban-types
     event: ChangeEvent<{}>,
-    value: string | null,
+    value: any,
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<string> | undefined
   ) => void;
-  options: [];
-  getOptionLabel?: ((option: string) => string) | undefined;
-  renderOption?: ((option: string, state: AutocompleteRenderOptionState) => ReactNode) | undefined;
+  options: any;
+  getOptionLabel?: ((option: any) => string) | undefined;
+  renderOption?: ((option: any, state: AutocompleteRenderOptionState) => ReactNode) | undefined;
   isError: boolean;
   label: string;
 }> = ({ disabled, onChange, options, getOptionLabel, isError, label, renderOption }) => (

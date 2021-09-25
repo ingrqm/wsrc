@@ -13,3 +13,13 @@ export enum FormInputs {
   replyPassword = 'replyPassword',
   statute = 'statute',
 }
+
+export enum Continent {
+  AF = 'AF',
+  AN = 'AN',
+  AS = 'AS',
+  EU = 'EU',
+  NA = 'NA',
+  OC = 'OC',
+  SA = 'SA',
+}

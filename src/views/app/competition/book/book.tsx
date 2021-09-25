@@ -97,12 +97,10 @@ const Book: NextPage = () => {
 
   useEffect(() => {
     setScale(Number(scaleInit));
+    if (permission !== Permission.member) {
+      router.push(appUrls.app.dashboard);
+    }
   }, []);
-
-  if (permission !== Permission.member) {
-    router.push(appUrls.app.dashboard);
-    return null;
-  }
 
   return (
     <>

@@ -6,37 +6,31 @@ import {
   AgeListTypes,
   ContinentListTypes,
   CountryListTypes,
+  CountryTypes,
   LanguageListTypes,
   RegionListTypes,
 } from './sign-up.types';
 
-const getContinentList = (): ContinentListTypes => Object.values(continents).map((item) => item);
+const getContinentList = (): ContinentListTypes =>
+  Object.entries(continents).map((continent) => ({ code: continent[0], name: continent[1] }));
 
 const getCountryList = (): CountryListTypes => {
-  const data: CountryListTypes = Object.values(countries).map((item) => item);
+  const data: CountryTypes[] = Object.values(countries).map((item) => item);
 
   Object.keys(countries).forEach((item, index) => {
     data[index].code = item;
   });
 
-  const list = {};
-
-  Object.keys(continents).forEach((continent) => {
-    list[continents[continent]] = data.filter((country) => country.continent === continent);
-  });
-
-  return list;
+  return Object.fromEntries(
+    Object.keys(continents).map((continent) => [
+      continent,
+      data.filter((country: CountryTypes) => country.continent === continent),
+    ])
+  );
 };
 
-const getRegionList = (): RegionListTypes => {
-  const list = {};
-
-  CountryRegionData.forEach((item) => {
-    list[item[1]] = item[2].split('|').map((item) => item.split('~')[0]);
-  });
-
-  return list;
-};
+const getRegionList = (): RegionListTypes =>
+  Object.fromEntries(CountryRegionData.map((item) => [item[1], item[2].split('|').map((item) => item.split('~')[0])]));
 
 const getAgeList = (): AgeListTypes => {
   const list = Array.from({ length: 94 }).map((_, index) => index + 6);

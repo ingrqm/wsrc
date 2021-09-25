@@ -83,6 +83,7 @@
   },
   "include": [
     "additional.d.ts",
+    "decs.d.ts",
     "src/**/*"
   ],
   "exclude": [

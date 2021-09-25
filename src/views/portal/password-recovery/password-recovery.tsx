@@ -24,7 +24,10 @@ const PasswordRecovery: NextPage = () => {
 
   return (
     <>
-      <Head>{key ? <title>Password change</title> : <title>Password recovery</title>}</Head>
+      <Head>
+        <title>{key ? t('page.passwordChange.head.title') : t('page.passwordRecovery.head.title')}</title>
+      </Head>
+
       <Portal>
         {key ? (
           <PasswordChangeForm />
@@ -46,4 +49,5 @@ const PasswordRecovery: NextPage = () => {
     </>
   );
 };
+
 export default PasswordRecovery;

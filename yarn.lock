@@ -1262,11 +1262,6 @@ convert-source-map@^1.7.0:
   dependencies:
     safe-buffer "~5.1.1"
 
-cookie@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.4.1.tgz#afd713fe26ebd21ba95ceb61f9a8116e50a537d1"
-  integrity sha512-ZwrFkGJxUR3EIoXtO+yVE69Eb7KlixbaeAWfBQB9vVsNn/o+Yw69gBWSSDK825hQNdN+wF8zELf3dFNl/kxkUA==
-
 core-js-pure@^3.15.0:
   version "3.15.2"
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.15.2.tgz#c8e0874822705f3385d3197af9348f7c9ae2e3ce"
@@ -2537,11 +2532,6 @@ jest-worker@27.0.0-next.5:
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
-js-cookie@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.2.1.tgz#69e106dc5d5806894562902aa5baec3744e9b2b8"
-  integrity sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==
-
 js-sha3@0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/js-sha3/-/js-sha3-0.8.0.tgz#b9b7a5da73afad7dedd0f8c463954cbde6818840"
@@ -2969,14 +2959,6 @@ next-images@^1.7.0:
   dependencies:
     file-loader "^6.2.0"
     url-loader "^4.1.0"
-
-next-persist@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/next-persist/-/next-persist-1.2.4.tgz#40f52ea98d00e42050abbb31ab8064a9bbb0a179"
-  integrity sha512-847Yq0WUXie/DiDn7l2NH0P+88Ow3mbEBZ+LddYx/IRhLEVsOT23H4koS34MBTuQ3574x5izuhUgGOG06+ER6Q==
-  dependencies:
-    cookie "^0.4.1"
-    js-cookie "^2.2.1"
 
 next-redux-wrapper@^7.0.2:
   version "7.0.2"

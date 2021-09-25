@@ -16,23 +16,28 @@ export type FormTypes = {
   [FormInputs.statute]: boolean;
 };
 
-export type ContinentListTypes = string[];
-
-export type CountryTypes = {
+export type ContinentTypes = {
   code: string;
   name: string;
-  native: string;
-  continent: string;
-  phone: string;
+};
+
+export type ContinentListTypes = ContinentTypes[];
+
+export type CountryTypes = {
+  code?: string;
+  name?: string;
+  native?: string;
+  continent?: string;
+  phone?: string;
 };
 
 export type CountryListTypes = {
   [key: string]: CountryTypes[];
-}[];
+};
 
 export type RegionListTypes = {
   [key: string]: string[];
-}[];
+};
 
 export type AgeListTypes = number[];
 

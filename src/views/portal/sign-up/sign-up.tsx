@@ -21,8 +21,9 @@ const SignUp: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Sign up</title>
+        <title>{t('page.signUp.head.title')}</title>
       </Head>
+
       <Portal>
         <SignUpForm />
         <Grid justify='space-between' container>

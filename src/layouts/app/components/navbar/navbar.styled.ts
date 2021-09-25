@@ -2,7 +2,7 @@ import { Box } from '@material-ui/core';
 
 import styled from 'styled-components';
 
-const StyledNavbar = styled(Box)`
+const StyledNavbar = styled(Box)<{ $isOpen: boolean }>`
   width: 100%;
   transform: translateX(${({ $isOpen }) => ($isOpen ? '250px' : '0')});
   transition: ${({ $isOpen }) =>

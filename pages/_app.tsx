@@ -5,17 +5,16 @@ import NextNprogress from 'nextjs-progressbar';
 import { FC } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Provider } from 'react-redux';
 
 import SnackbarProvider from '@providers/snackbar';
 
-import { wrapper } from '@redux/store';
+import { store } from '@redux/store';
 
 import i18n from '@utils/i18n';
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-import { persistStore } from 'redux-persist';
-import { PersistGate } from 'redux-persist/integration/react';
 import { createGlobalStyle } from 'styled-components';
 
 const queryClient = new QueryClient();
@@ -67,10 +66,8 @@ export const reportWebVitals = (metric: NextWebVitalsMetric): void => {
   console.log(metric);
 };
 
-const persistor = persistStore(store);
-
 const App: FC<AppProps> = ({ Component, pageProps }) => (
-  <PersistGate loading={null} persistor={persistor}>
+  <Provider store={store}>
     <QueryClientProvider client={queryClient}>
       <I18nextProvider i18n={i18n}>
         <ThemeProvider theme={theme}>
@@ -82,7 +79,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => (
         </ThemeProvider>
       </I18nextProvider>
     </QueryClientProvider>
-  </PersistGate>
+  </Provider>
 );
 
-export default wrapper.withRedux(App);
+export default App;

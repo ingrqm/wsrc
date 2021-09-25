@@ -21,10 +21,8 @@ const Portal: FC = ({ children }) => {
   const { isSignIn } = useSelector<RootState, { isSignIn: boolean }>(({ user: { isSignIn } }) => ({
     isSignIn,
   }));
-  const state = useSelector<RootState, {}>((state) => state);
 
   useEffect(() => {
-    console.log(state);
     if (isSignIn) {
       router.push(appUrls.app.dashboard);
     }
@@ -35,7 +33,9 @@ const Portal: FC = ({ children }) => {
       <StyledHeader>
         <Image alt='brand' height={100} src={LogoImg} width={77} />
       </StyledHeader>
-      <Container maxWidth='xs'>{children}</Container>
+      <Container maxWidth='xs'>
+        <Grid>{children}</Grid>
+      </Container>
       <StyledFooter color='secondary.contrastText'>
         <Grid container>
           <Grid item>

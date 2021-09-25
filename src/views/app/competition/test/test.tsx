@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMutation } from 'react-query';
 import { useSelector } from 'react-redux';
 
@@ -102,10 +102,11 @@ const Test: NextPage = () => {
   const errorMessage = (field: string): string =>
     (formik.touched[field] && formik.errors[field] && formik.errors[field]) || '';
 
-  if (permission !== Permission.member) {
-    router.push(appUrls.app.dashboard);
-    return null;
-  }
+  useEffect(() => {
+    if (permission !== Permission.member) {
+      router.push(appUrls.app.dashboard);
+    }
+  }, []);
 
   return (
     <>

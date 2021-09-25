@@ -37,13 +37,13 @@ import { fetchSignUp } from './sign-up.api';
 
 import { initialValues, validationSchema } from './sign-up.schema';
 
-import { CountryTypes, FormTypes, LanguageTypes } from './sign-up.types';
+import { ContinentTypes, CountryTypes, FormTypes, LanguageTypes } from './sign-up.types';
 
 import { StyledFlag, StyledPrefix } from './sign-up.styled';
 
 const SignUpForm: FC = () => {
-  const [countries, setCountries] = useState([]);
-  const [regions, setRegions] = useState([]);
+  const [countries, setCountries] = useState<CountryTypes[]>([]);
+  const [regions, setRegions] = useState<string[]>([]);
   const [phonePrefix, setPhonePrefix] = useState('');
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
@@ -65,7 +65,7 @@ const SignUpForm: FC = () => {
     initialValues,
     validationSchema,
     onSubmit: (values: FormTypes) => {
-      const payload = {
+      mutate({
         continent: values[FormInputs.continent],
         country: values[FormInputs.country],
         region: values[FormInputs.region],
@@ -77,9 +77,7 @@ const SignUpForm: FC = () => {
         phone: `+${phonePrefix} ${values[FormInputs.phone]}`,
         email: values[FormInputs.email],
         password: values[FormInputs.password],
-      };
-
-      mutate(payload);
+      });
     },
   });
 
@@ -88,35 +86,30 @@ const SignUpForm: FC = () => {
   const errorMessage = (field: FormInputs): string | undefined =>
     formik.touched[field] && formik.errors[field] ? formik.errors[field] : '';
 
-  const handleChangeContinent = (_, continent: string): void => {
-    const list = continent ? countryList[continent] : [];
-
+  const handleChangeContinent = (continent: ContinentTypes | null): void => {
     formik.setFieldValue(FormInputs.continent, continent || '');
 
-    setCountries(list);
+    setCountries(continent?.code ? countryList[continent.code] : []);
     setRegions([]);
     setPhonePrefix('');
   };
 
-  const handleChangeCountry = (_, country?: CountryTypes): void => {
-    const list = (country?.code && regionList[country.code]) || [];
-    const prefix = country?.phone || '';
-
+  const handleChangeCountry = (country: CountryTypes): void => {
     formik.setFieldValue(FormInputs.country, country?.name || '');
 
-    setRegions(list);
-    setPhonePrefix(prefix);
+    setRegions(country?.code ? regionList[country.code] : []);
+    setPhonePrefix(country?.phone || '');
   };
 
-  const handleRegionChange = (_, region: string): void => {
+  const handleRegionChange = (region: string): void => {
     formik.setFieldValue(FormInputs.region, region || '');
   };
 
-  const handleLanguageChange = (_, language: LanguageTypes): void => {
+  const handleLanguageChange = (language: LanguageTypes): void => {
     formik.setFieldValue(FormInputs.language, language ? language.code : '');
   };
 
-  const handleAgeChange = (_, age: number): void => {
+  const handleAgeChange = (age: number): void => {
     formik.setFieldValue(FormInputs.age, age || '');
   };
 
@@ -139,8 +132,9 @@ const SignUpForm: FC = () => {
                     disabled={isLoading}
                     isError={isError(FormInputs.continent)}
                     label={t('form.signUp.input.continent.label')}
-                    onChange={handleChangeContinent}
+                    onChange={(_, continent: ContinentTypes) => handleChangeContinent(continent)}
                     options={continentList}
+                    getOptionLabel={(option: ContinentTypes) => option.name}
                   />
                   <FormHelperText error={isError(FormInputs.continent)}>
                     {errorMessage(FormInputs.continent)}
@@ -149,7 +143,7 @@ const SignUpForm: FC = () => {
               </Box>
             </Grid>
           </Grid>
-          {countries.length > 0 && (
+          {countries?.length > 0 && (
             <Grid justify={AlignFlex.center} container>
               <Grid xs={10} item>
                 <Box mt={-2}>
@@ -158,7 +152,7 @@ const SignUpForm: FC = () => {
                       disabled={isLoading}
                       isError={isError(FormInputs.country)}
                       getOptionLabel={({ native }) => native}
-                      onChange={handleChangeCountry}
+                      onChange={(_, country) => handleChangeCountry(country)}
                       options={countries}
                       label={t('form.signUp.input.country.label')}
                       renderOption={({ code, native }) => (
@@ -176,14 +170,14 @@ const SignUpForm: FC = () => {
               </Grid>
             </Grid>
           )}
-          {regions.length > 0 && (
+          {regions?.length > 0 && (
             <Grid justify={AlignFlex.center} container>
               <Grid xs={10} item>
                 <Box mt={-2}>
                   <FormControl fullWidth>
                     <Autocomplete
                       disabled={isLoading}
-                      onChange={handleRegionChange}
+                      onChange={(_, region) => handleRegionChange(region)}
                       options={regions}
                       isError={isError(FormInputs.region)}
                       label={t('form.signUp.input.region.label')}
@@ -218,7 +212,7 @@ const SignUpForm: FC = () => {
                   <Autocomplete
                     disabled={isLoading}
                     getOptionLabel={({ name }): string => name}
-                    onChange={handleLanguageChange}
+                    onChange={(_, language) => handleLanguageChange(language)}
                     options={languageList}
                     isError={isError(FormInputs.language)}
                     label={t('form.signUp.input.language.label')}
@@ -280,7 +274,7 @@ const SignUpForm: FC = () => {
                 <FormControl fullWidth>
                   <Autocomplete
                     disabled={isLoading}
-                    onChange={handleAgeChange}
+                    onChange={(_, age) => handleAgeChange(age)}
                     options={ageList}
                     isError={isError(FormInputs.age)}
                     label={t('form.signUp.input.age.label')}
@@ -290,7 +284,7 @@ const SignUpForm: FC = () => {
               </Box>
             </Grid>
             <Grid xs={10} item>
-              <FormControl mt={0} fullWidth>
+              <FormControl fullWidth>
                 <InputLabel error={isError(FormInputs.phone)}>{t('form.signUp.input.phone.label')}</InputLabel>
                 <Input
                   disabled={isLoading}
