@@ -27,16 +27,13 @@ const slice = createSlice({
       state.isParticipating = isParticipating;
 
       sessionStorage.setItem(`token`, token);
-      console.log('signInSuccess');
     },
     signInError: (state: UserState) => {
       state.isSignIn = false;
-      console.log('signInError');
       sessionStorage.removeItem(`token`);
     },
     signOutSuccess: (state: UserState) => {
       state.isSignIn = false;
-      console.log('signOutSuccess');
       sessionStorage.removeItem(`token`);
     },
   },

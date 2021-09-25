@@ -23,7 +23,6 @@ const App: FC = ({ children }) => {
 
   useEffect(() => {
     if (!isSignIn) {
-      console.log('sign out app.tsx');
       dispatch(sliceActions.signOutSuccess());
 
       router.push(appUrls.portal.signIn);
