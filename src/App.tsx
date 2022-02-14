@@ -1,26 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC } from 'react';
+import styled from 'styled-components';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const StyledDot = styled.div`
+  width: 20px;
+  height: 20px;
+  background: ${({ theme }) => theme.color.light.geekBlue[6]}
+`;
+
+const App: FC = () => (
+  <h1 className="text-3xl font-bold decoration-slate-100 text-sky-400/25">
+    Hello world!
+    <StyledDot />
+  </h1>
+);
 
 export default App;
