@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import styled from 'styled-components';
 import { Button } from 'antd';
+import styled from 'styled-components';
 
 const StyledDot = styled.div`
   width: 20px;

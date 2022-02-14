@@ -31,5 +31,79 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'error',
     'react/function-component-definition': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'never',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+        groups: ['builtin', 'external', 'internal', 'index', 'parent', 'sibling'],
+        pathGroups: [
+          {
+            pattern: '{react,react**}',
+            group: 'builtin',
+            position: 'before',
+          },
+          {
+            pattern: '{urls}',
+            group: 'external',
+            position: 'after',
+          },
+          {
+            pattern: '{utils,utils/**}',
+            group: 'external',
+            position: 'after',
+          },
+          {
+            pattern: '{redux,redux/**}',
+            group: 'external',
+            position: 'after',
+          },
+          {
+            pattern: '{hooks}',
+            group: 'external',
+            position: 'after',
+          },
+          {
+            pattern: '{views,views/**}',
+            group: 'external',
+            position: 'after',
+          },
+          {
+            pattern: '{forms,forms/**}',
+            group: 'external',
+            position: 'after',
+          },
+          {
+            pattern: '{components,components/**}',
+            group: 'external',
+            position: 'after',
+          },
+          {
+            pattern: '{**.data}',
+            group: 'sibling',
+            position: 'after',
+          },
+          {
+            pattern: '{styles,styles/**}',
+            group: 'sibling',
+            position: 'after',
+          },
+          {
+            pattern: '{**.styled}',
+            group: 'sibling',
+            position: 'after',
+          },
+          {
+            pattern: '{assets/**}',
+            group: 'sibling',
+            position: 'after',
+          },
+        ],
+        pathGroupsExcludedImportTypes: ['builtin'],
+      },
+    ],
   },
 };

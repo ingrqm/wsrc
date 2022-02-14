@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { theme } from 'styles';
+import { ThemeProvider } from 'styled-components';
 import App from './App';
+import { theme } from 'styles';
 
 import 'antd/dist/antd.css';
 import 'styles/global-style.css';
