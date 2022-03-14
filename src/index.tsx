@@ -7,6 +7,8 @@ import Routes from 'routes';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles';
 
+import 'utils/i18next';
+
 import 'antd/dist/antd.css';
 import 'styles/global-style.css';
 
