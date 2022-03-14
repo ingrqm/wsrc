@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
-const NotFound: FC = () => <>NotFound</>;
+const NotFound = () => <>NotFound</>;
 
 export default NotFound;

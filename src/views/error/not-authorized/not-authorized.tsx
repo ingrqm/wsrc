@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
-const NotAuthorized: FC = () => <>NotAuthorized</>;
+const NotAuthorized = () => <>NotAuthorized</>;
 
 export default NotAuthorized;
