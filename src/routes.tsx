@@ -21,6 +21,7 @@ const AppRoutes = () => (
   <BrowserRouter>
     <Routes>
       <Route path={appRoutes.base}>
+        <Route index element={<Navigate to={appUrls.auth.signIn} />} />
         <Route path={appRoutes.championship.base} element={<Championship />}>
           <Route path={appRoutes.championship.reading} element={<Reading />} />
           <Route path={appRoutes.championship.test} element={<Test />} />
@@ -46,8 +47,8 @@ const AppRoutes = () => (
           <Route path={appRoutes.error.notFound} element={<NotFound />} />
           <Route path={appRoutes.error.notAuthorized} element={<NotAuthorized />} />
         </Route>
-        <Route path='*' element={<Navigate to={appUrls.error.notFound} />} />
       </Route>
+      <Route path='*' element={<Navigate to={appUrls.error.notFound} />} />
     </Routes>
   </BrowserRouter>
 );

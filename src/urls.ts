@@ -31,8 +31,14 @@ export const appRoutes = {
 };
 
 export const appUrls = {
+  app: {
+    dashboard: `/${appRoutes.app.base}/${appRoutes.app.dashboard}`,
+  },
+  auth: {
+    signIn: `/${appRoutes.auth.base}/${appRoutes.auth.signIn}`,
+  },
   error: {
-    notFound: `${appRoutes.error.base}/${appRoutes.error.notFound}`,
+    notFound: `/${appRoutes.error.base}/${appRoutes.error.notFound}`,
   },
 };
 
