@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import Routes from 'routes';
 import { ThemeProvider } from 'styled-components';
-import App from './App';
 import { theme } from 'styles';
 
 import 'antd/dist/antd.css';
@@ -16,7 +16,7 @@ ReactDOM.render(
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <ThemeProvider theme={theme}>
-        <App />
+        <Routes />
       </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>,
