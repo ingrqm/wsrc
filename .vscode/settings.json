@@ -1,3 +1,9 @@
 {
-  "cSpell.words": ["antd", "browserslist", "tailwindcss", "wsrc"]
+  "cSpell.words": [
+    "antd",
+    "browserslist",
+    "languagedetector",
+    "tailwindcss",
+    "wsrc"
+  ]
 }
