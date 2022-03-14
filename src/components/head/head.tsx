@@ -1,22 +1,23 @@
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import { pathToCamelCase } from 'utils/path';
 
 const Head = () => {
   const { t } = useTranslation();
   const location = useLocation();
 
-  const key = location.pathname
-    .replace('/', '')
-    .replaceAll('/', '.')
-    .split('-')
-    .map((string) => (string.includes('.') ? string : string[0].toUpperCase() + string.slice(1)))
-    .join('');
+  const key = pathToCamelCase(location.pathname);
 
   return (
-    <Helmet>
-      <title>{t(`meta.${key}.title`)}</title>
-    </Helmet>
+    <>
+      {key !== '/' && (
+        <Helmet>
+          <title>{t(`meta.${key}.title`)}</title>
+        </Helmet>
+      )}
+      <Outlet />
+    </>
   );
 };
 
