@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { RecoilRoot } from 'recoil';
@@ -16,14 +17,16 @@ const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <ThemeProvider theme={theme}>
-          <Routes />
-        </ThemeProvider>
-      </QueryClientProvider>
-    </RecoilRoot>
+    <HelmetProvider>
+      <RecoilRoot>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
+          <ThemeProvider theme={theme}>
+            <Routes />
+          </ThemeProvider>
+        </QueryClientProvider>
+      </RecoilRoot>
+    </HelmetProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

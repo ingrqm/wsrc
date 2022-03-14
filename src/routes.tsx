@@ -16,11 +16,12 @@ import {
   Test,
   Users,
 } from 'views';
+import { Head } from 'components';
 
 const AppRoutes = () => (
   <BrowserRouter>
     <Routes>
-      <Route path={appRoutes.base}>
+      <Route path={appRoutes.base} element={<Head />}>
         <Route index element={<Navigate to={appUrls.auth.signIn} />} />
         <Route path={appRoutes.championship.base} element={<Championship />}>
           <Route path={appRoutes.championship.reading} element={<Reading />} />
