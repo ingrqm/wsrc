@@ -1,0 +1,134 @@
+{
+  "auth": {
+    "signIn": {
+      "infoBox": {
+        "title": "Ready for the challenge?",
+        "subTitle": "Sign in to your member area and let’s get started!"
+      },
+      "content": {
+        "title": "Sign In",
+        "footer": {
+          "doNotHaveAccount": "You don’t have an account?",
+          "signUp": "Sign Up!"
+        }
+      }
+    },
+    "signUp": {
+      "infoBox": {
+        "title": "Do you want to access?",
+        "subTitle": "To participate in the speed reading test please create your participant account by filling in the fields below. You will receive your activation link to your email address. After activation, you will be able to connect."
+      }
+    },
+    "passwordRemind": {
+      "infoBox": {
+        "title": "Forgot your password?",
+        "subTitle": "No problem, write down your email address. You will receive an email with the link to change your password."
+      }
+    },
+    "passwordRecovery": {
+      "infoBox": {
+        "title": "Recover Password",
+        "subTitle": "You have just arrived this far, now just enter the new password and log in again. Simple, isn't it?"
+      }
+    }
+  },
+  "document": {
+    "statute": {
+      "infoBox": {
+        "title": "The rules",
+        "subTitle": "To enter the competition, you must read and accept the rules"
+      },
+      "content": {
+        "title": "The rules of the World Speed Reading Championship",
+        "paragraph": {
+          "fairPlay": "The participants commit themselves on their honour to respect the rules of fair play and to do the event only individually.",
+          "communicationDevice": "During the speed reading event, the participant is not allowed to use any communication device (mobile phone, talky walky,...) or communication application or software (whatsapp, messenger, Facebook,...) except those provided for the competition. The use of any of these means of communication will be considered as an attempt at fraud and will result in the automatic disqualification of the candidate.",
+          "communicatePhysically": "During the speed reading test, it is strictly forbidden to communicate physically with another person. In the event of communication with another person (outside the APAC staff), the candidate will be disqualified.",
+          "allowNote": "During the reading of the book, the participant is allowed to take notes only on blank sheets of paper before the test.",
+          "referToNote": "The participant may refer to his or her note-taking to answer questions after the reading of the book has been completed.",
+          "readingAids": "The participant is allowed to use his/her own reading aids, such as visual guides or other aids. Such a tool must not contain electronics or a memory or recording system, neither visual nor audio. The use of abnormal tools will result in the disqualification of the participant.",
+          "makeNoise": "It is strictly forbidden for the participant to make noise during the reading event.",
+          "camera": "It is forbidden for the participant to disappear from the camera during the event, even to go to the toilet. The participant must make all arrangements before the event. In case of disappearance from the camera field, the contestant will be disqualified immediately.",
+          "access": "After validating the registration, the candidate will access an online reading area where he/she will do the speed reading test.",
+          "timeToRead": "The maximum time to read the book is 2 hours. Each participant is timed. As soon as the candidate has finished reading, he/she must click on the \"finish reading\" button. The reading time is recorded, the book is automatically taken away and the comprehension questionnaire with 20 questions is taken. The participant then has a maximum of 30 minutes to answer the questions.",
+          "onlyOneDevice": "The participant can only connect to the reading platform from one device (computer, tablet, etc.). For the 2021 events, each participant is connected via the Zoom application with his/her camera switched on. This connection to Zoom can be made from another device different from the one used to read the book. This other device must be equipped with a camera.",
+          "internet": "An internet connection is required to participate in the competition. In case of an internet connection failure on the participant's side, he/she must stay on the book reading page or on the question answering page (without disconnecting) and try to connect again from his/her computer.",
+          "oneChance": "Once the competition has started in one login session, it cannot be continued in another. This means that a candidate who logs out is automatically disqualified.",
+          "noRefund": "Any candidate who is disqualified will not receive a refund."
+        }
+      }
+    }
+  },
+  "error": {
+    "back": "Back to app",
+    "notFound": {
+      "title": "404",
+      "subTitle": "Sorry, the page you visited does not exist."
+    },
+    "notAuthorized": {
+      "title": "403",
+      "subTitle": "Sorry, you are not authorized to access this page."
+    }
+  },
+  "form": {
+    "activation": {
+      "messages": {
+        "loading": "Account activation",
+        "error": "Account activation failed",
+        "success": "Account activation succeeded!"
+      }
+    },
+    "signIn": {
+      "inputs": {
+        "mail": {
+          "label": "E-mail",
+          "placeholder": "Type your e-mail",
+          "validation": {
+            "required": "E-mail is required",
+            "type": "Incorrect e-mail"
+          }
+        },
+        "password": {
+          "label": "Password",
+          "placeholder": "Type your password",
+          "validation": {
+            "required": "Password is required",
+            "min": "Password required minimum 6 characters"
+          }
+        },
+        "rememberMe": { "label": "Remember me" }
+      },
+      "messages": {
+        "loading": "Logging in",
+        "error": "Login failed",
+        "success": "Logged succeeded!"
+      },
+      "forgotPassword": "Forgot your password?",
+      "submit": "sign in"
+    }
+  },
+  "meta": {
+    "suffix": "- WSRC",
+    "app": {
+      "dashboard": { "title": "Dashboard $t(meta.suffix)" },
+      "results": { "title": "Results $t(meta.suffix)" },
+      "users": { "title": "Users $t(meta.suffix)" }
+    },
+    "championship": {
+      "reading": { "title": "Championship Reading $t(meta.suffix)" },
+      "test": { "title": "Championship Test $t(meta.suffix)" },
+      "review": { "title": "Championship Test Review $t(meta.suffix)" }
+    },
+    "auth": {
+      "signUp": { "title": "Sign Up $t(meta.suffix)" },
+      "signIn": { "title": "Sign In $t(meta.suffix)" },
+      "passwordRemind": { "title": "Password Remind $t(meta.suffix)" },
+      "passwordRecovery": { "title": "Password Recovery $t(meta.suffix)" }
+    },
+    "document": { "statute": { "title": "Statute $t(meta.suffix)" } },
+    "error": {
+      "notFound": { "title": "Page not Found $t(meta.suffix)" },
+      "notAuthorized": { "title": "Access denied $t(meta.suffix)" }
+    }
+  }
+}

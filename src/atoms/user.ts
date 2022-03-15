@@ -1,7 +1,7 @@
 import { Permission, Language } from 'enums';
 import { atom } from 'recoil';
 
-type User =
+export type User =
   | undefined
   | {
       id: number;

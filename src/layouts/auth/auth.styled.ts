@@ -105,6 +105,11 @@ export const StyledWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
   padding: 48px;
+
+  .ant-form {
+    max-width: 450px;
+    width: 100%;
+  }
 `;
 
 export const StyledLogoImg = styled.div`

@@ -7,14 +7,4 @@ export const languages = [
     language: Language.en,
     label: 'english',
   },
-  {
-    flag: Flags.PL,
-    language: Language.pl,
-    label: 'polski',
-  },
-  {
-    flag: Flags.FR,
-    language: Language.fr,
-    label: 'français',
-  },
 ];
