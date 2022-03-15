@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { media } from 'styles/media';
 
-export const HeaderImage = styled.div<{ isSignInPage: boolean }>`
+export const HeaderImage = styled.div`
   position: fixed;
   width: 50vw;
   top: 0;
@@ -37,22 +37,6 @@ export const HeaderImage = styled.div<{ isSignInPage: boolean }>`
     left: 0;
     top: 0;
     background: ${({ theme }) => theme.color.custom.auth.purple[5]};
-    opacity: ${({ isSignInPage }) => (isSignInPage ? '0.4' : '1.0')};
-  }
-
-  .ant-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: -1;
-  }
-
-  .ant-image-img {
-    height: 100vh;
-    width: 100%;
-    object-fit: cover;
-    object-position: 33% 50%;
   }
 
   svg {
