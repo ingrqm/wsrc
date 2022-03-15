@@ -8,6 +8,7 @@ export const StyledWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 48px;
 `;
 
 export const StyledWrapperLanguagePicker = styled.div`
