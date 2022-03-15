@@ -19,7 +19,7 @@ export default {
         timeToRead: `The maximum time to read the book is 2 hours. Each participant is timed. As soon as the candidate has finished reading, he/she must click on the "finish reading" button. The reading time is recorded, the book is automatically taken away and the comprehension questionnaire with 20 questions is taken. The participant then has a maximum of 30 minutes to answer the questions.`,
         onlyOneDevice: `The participant can only connect to the reading platform from one device (computer, tablet, etc.). For the 2021 events, each participant is connected via the Zoom application with his/her camera switched on. This connection to Zoom can be made from another device different from the one used to read the book. This other device must be equipped with a camera.`,
         internet: `An internet connection is required to participate in the competition. In case of an internet connection failure on the participant's side, he/she must stay on the book reading page or on the question answering page (without disconnecting) and try to connect again from his/her computer.`,
-        oneChange: `Once the competition has started in one login session, it cannot be continued in another. This means that a candidate who logs out is automatically disqualified.`,
+        oneChance: `Once the competition has started in one login session, it cannot be continued in another. This means that a candidate who logs out is automatically disqualified.`,
         noRefund: 'Any candidate who is disqualified will not receive a refund.',
       },
     },
