@@ -16,7 +16,7 @@ export const HeaderImage = styled.div<{ isSignInPage: boolean }>`
   h3.ant-typography {
     color: ${({ theme }) => theme.color.light.neutral[1]};
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
 
   h1.ant-typography {
@@ -95,6 +95,22 @@ export const HeaderImage = styled.div<{ isSignInPage: boolean }>`
     width: 50vw;
     top: 0;
     right: 0;
+  }
+
+  ${media.md} {
+    svg {
+      &.triangle-small {
+        display: none;
+      }
+
+      &.circle-small {
+        display: none;
+      }
+
+      &.circle-small ~ .circle-small {
+        display: block;
+      }
+    }
   }
 `;
 
