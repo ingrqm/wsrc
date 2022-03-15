@@ -145,7 +145,7 @@ const FormSignIn = () => {
             </Checkbox>
           </Form.Item>
         </Col>
-        <Col className='ml-auto p-[5px]'>
+        <Col className='ml-auto mb-[24px] p-[5px]'>
           <Link onClick={() => navigate(appUrls.auth.passwordRemind)}>{t('form.signIn.forgotPassword')}</Link>
         </Col>
       </Row>
