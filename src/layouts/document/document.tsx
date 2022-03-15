@@ -26,7 +26,7 @@ const Document = () => {
       <Col xs={{ span: 24 }} md={{ span: 12 }}>
         <HeaderImage>
           <Title>{t(`${key}.infoBox.title`)}</Title>
-          <Title level={3}>{t(`${key}.infoBox.description`)}</Title>
+          <Title level={3}>{t(`${key}.infoBox.subTitle`)}</Title>
           <CircleSmallImg />
           <CircleSmallImg />
           <CircleBigImg />
