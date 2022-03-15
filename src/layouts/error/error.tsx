@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
+import { StyledWrapper } from './error.styled';
 
 const Error = () => (
-  <>
-    error layout
+  <StyledWrapper>
     <Outlet />
-  </>
+  </StyledWrapper>
 );
 
 export default Error;
