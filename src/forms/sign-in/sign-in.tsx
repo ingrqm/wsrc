@@ -138,14 +138,14 @@ const FormSignIn = () => {
         />
       </Form.Item>
       <Row>
-        <Col span={12}>
+        <Col>
           <Form.Item name={FormInputs.rememberMe} valuePropName='checked'>
             <Checkbox disabled={activation.isLoading || signIn.isLoading}>
               {t('form.signIn.inputs.rememberMe.label')}
             </Checkbox>
           </Form.Item>
         </Col>
-        <Col span={12} className='text-right p-[5px]'>
+        <Col className='ml-auto p-[5px]'>
           <Link onClick={() => navigate(appUrls.auth.passwordRemind)}>{t('form.signIn.forgotPassword')}</Link>
         </Col>
       </Row>
