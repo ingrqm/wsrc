@@ -1,6 +1,14 @@
 export const theme = {
   fontFamily: 'Lato, sans-serif',
   color: {
+    custom: {
+      auth: {
+        purple: {
+          5: '#6788FF',
+          6: '#6383F4',
+        },
+      },
+    },
     light: {
       dustRed: {
         1: '#fff1f0',
