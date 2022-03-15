@@ -29,13 +29,13 @@ const AppRoutes = () => (
           <Route path={appRoutes.championship.review} element={<Review />} />
         </Route>
         <Route path={appRoutes.app.base} element={<App />}>
-          <Route index element={<Dashboard />} />
+          <Route index element={<Navigate to={appUrls.app.dashboard} />} />
           <Route path={appRoutes.app.dashboard} element={<Dashboard />} />
           <Route path={appRoutes.app.results} element={<Results />} />
           <Route path={appRoutes.app.users} element={<Users />} />
         </Route>
         <Route path={appRoutes.auth.base} element={<Auth />}>
-          <Route index element={<SignIn />} />
+          <Route index element={<Navigate to={appUrls.auth.signIn} />} />
           <Route path={appRoutes.auth.signIn} element={<SignIn />} />
           <Route path={appRoutes.auth.signUp} element={<SignUp />} />
           <Route path={appRoutes.auth.passwordRemind} element={<PasswordRemind />} />
