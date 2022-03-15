@@ -104,6 +104,7 @@ export const StyledWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
+  padding: 48px;
 `;
 
 export const StyledLogoImg = styled.div`
