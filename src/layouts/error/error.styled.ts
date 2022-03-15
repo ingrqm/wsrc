@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from 'styles';
 
 export const StyledWrapper = styled.div`
   position: relative;
@@ -9,6 +10,10 @@ export const StyledWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 48px;
+
+  ${media.xs} {
+    padding: 24px;
+  }
 `;
 
 export const StyledWrapperLanguagePicker = styled.div`

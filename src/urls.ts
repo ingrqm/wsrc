@@ -1,3 +1,5 @@
+const API_URL = `https://api.wsrc.app`;
+
 export const appRoutes = {
   base: '/',
   app: {
@@ -16,8 +18,8 @@ export const appRoutes = {
     base: 'auth',
     signUp: 'sign-up',
     signIn: 'sign-in',
-    passwordRemind: 'remind',
-    passwordRecovery: 'recovery',
+    passwordRemind: 'password-remind',
+    passwordRecovery: 'password-recovery',
   },
   document: {
     base: 'document',
@@ -36,12 +38,21 @@ export const appUrls = {
   },
   auth: {
     signIn: `/${appRoutes.auth.base}/${appRoutes.auth.signIn}`,
+    signUp: `/${appRoutes.auth.base}/${appRoutes.auth.signUp}`,
+    passwordRemind: `/${appRoutes.auth.base}/${appRoutes.auth.passwordRemind}`,
   },
   error: {
     notFound: `/${appRoutes.error.base}/${appRoutes.error.notFound}`,
   },
 };
 
-export const apiUrls = {};
+export const apiUrls = {
+  auth: {
+    activation: `${API_URL}/auth/activation`,
+    signIn: `${API_URL}/auth/sign-in`,
+    signInToken: `${API_URL}/auth/sign-in-token`,
+    logout: `${API_URL}/auth/logout`,
+  },
+};
 
 export const outerUrls = {};

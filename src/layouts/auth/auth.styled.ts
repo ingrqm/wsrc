@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { media } from 'styles/media';
+import { media } from 'styles';
 
 export const HeaderImage = styled.div<{ isSignInPage: boolean }>`
   position: fixed;
@@ -105,6 +105,15 @@ export const StyledWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
   padding: 48px;
+
+  ${media.xs} {
+    padding: 24px;
+  }
+
+  .ant-form {
+    max-width: 450px;
+    width: 100%;
+  }
 `;
 
 export const StyledLogoImg = styled.div`
