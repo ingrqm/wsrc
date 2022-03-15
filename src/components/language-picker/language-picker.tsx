@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 import { Dropdown, Menu } from 'antd';
 import { LanguageIcon } from 'assets/images';
 import { configAtom } from 'atoms/config';
@@ -16,7 +17,9 @@ const LanguagePicker = () => {
     setConfig(newConfig);
   };
 
-  const ActiveFlag = languages.find(({ language }) => language === config.language)?.flag;
+  // const ActiveFlag = languages.find(({ language }) => language === config.language)?.flag;
+
+  return null;
 
   return (
     <Dropdown
@@ -37,7 +40,7 @@ const LanguagePicker = () => {
     >
       <StyledLanguageIcon>
         <LanguageIcon />
-        {ActiveFlag && <ActiveFlag />}
+        {/* {ActiveFlag && <ActiveFlag />} */}
       </StyledLanguageIcon>
     </Dropdown>
   );
