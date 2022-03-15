@@ -12,7 +12,8 @@ import {
 } from 'assets/images';
 import { appUrls } from 'urls';
 import { pathToCamelCase } from 'utils/path';
-import { HeaderImage, StyledLogoImg, StyledWrapper } from './auth.styled';
+import { LanguagePicker } from 'components';
+import { HeaderImage, StyledLogoImg, StyledWrapper, StyledWrapperLanguagePicker } from './auth.styled';
 
 const { Title } = Typography;
 
@@ -28,6 +29,9 @@ const Auth = () => {
     <Row>
       <Col xs={{ span: 24 }} md={{ span: 12 }}>
         <StyledWrapper>
+          <StyledWrapperLanguagePicker>
+            <LanguagePicker />
+          </StyledWrapperLanguagePicker>
           <StyledLogoImg>
             <LogoImg />
           </StyledLogoImg>
