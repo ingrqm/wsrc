@@ -95,3 +95,9 @@ export const StyledLogoImg = styled.div`
   width: 100%;
   margin-bottom: 36px;
 `;
+
+export const StyledWrapperLanguagePicker = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 12px;
+`;

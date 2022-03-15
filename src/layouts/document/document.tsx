@@ -3,7 +3,8 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { Col, Row, Typography } from 'antd';
 import { CircleBigImg, CircleSmallImg, LogoImg, TriangleBigImg, TriangleImg, TriangleSmallImg } from 'assets/images';
 import { pathToCamelCase } from 'utils/path';
-import { HeaderImage, StyledLogoImg, StyledWrapper } from './document.styled';
+import { LanguagePicker } from 'components';
+import { HeaderImage, StyledLogoImg, StyledWrapper, StyledWrapperLanguagePicker } from './document.styled';
 
 const { Title } = Typography;
 
@@ -17,6 +18,9 @@ const Document = () => {
     <Row>
       <Col xs={{ span: 24 }} md={{ span: 12 }}>
         <StyledWrapper>
+          <StyledWrapperLanguagePicker>
+            <LanguagePicker />
+          </StyledWrapperLanguagePicker>
           <StyledLogoImg>
             <LogoImg />
           </StyledLogoImg>
