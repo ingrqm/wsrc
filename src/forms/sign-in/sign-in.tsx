@@ -90,7 +90,7 @@ const FormSignIn = () => {
   });
 
   const handleFinish = (): void => {
-    const payload = {
+    const payload: AuthSignInProps = {
       mail: form.getFieldValue(FormInputs.mail),
       password: form.getFieldValue(FormInputs.password),
     };

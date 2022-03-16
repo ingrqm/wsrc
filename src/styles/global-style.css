@@ -18,3 +18,7 @@ h6.ant-typography,
 .ant-dropdown-trigger:hover {
   cursor: pointer;
 }
+
+form div.ant-form-item-explain .ant-form-item-explain-error:not(:first-child) {
+  display: none;
+}
