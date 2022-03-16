@@ -2,11 +2,11 @@ import { Language, Permission } from 'enums';
 import { apiUrls } from 'urls';
 import { Methods, Request, request } from 'utils/api';
 
-export type AuthActivationProps = {
+export type AuthActivationReq = {
   token: string;
 };
 
-export type AuthActivationReq = AuthActivationProps;
+export type AuthActivationProps = AuthActivationReq;
 
 export type AuthActivationRes = never;
 
@@ -22,12 +22,12 @@ export const fetchAuthActivation = async (payload: AuthActivationProps): Promise
   return data?.data;
 };
 
-export type AuthSignInProps = {
+export type AuthSignInReq = {
   mail: string;
   password: string;
 };
 
-export type AuthSignInReq = AuthSignInProps;
+export type AuthSignInProps = AuthSignInReq;
 
 export type AuthSignInRes = {
   token: string;
@@ -62,9 +62,9 @@ export const fetchAuthSignIn = async (payload: AuthSignInProps): Promise<AuthSig
   return data.data;
 };
 
-export type AuthSignInTokenProps = never;
+export type AuthSignInTokenReq = never;
 
-export type AuthSignInTokenReq = AuthSignInTokenProps;
+export type AuthSignInTokenProps = AuthSignInTokenReq;
 
 export type AuthSignInTokenRes = {
   token: string;
@@ -99,9 +99,9 @@ export const fetchAuthSignInToken = async (): Promise<AuthSignInTokenRet> => {
   return data.data;
 };
 
-export type SignOutProps = never;
+export type SignOutReq = never;
 
-export type SignOutReq = SignOutProps;
+export type SignOutProps = SignOutReq;
 
 export type SignOutRes = never;
 
@@ -113,6 +113,30 @@ export const fetchSignOut = async (): Promise<SignOutRet> => {
   } = apiUrls;
 
   const { data } = await request<SignOutReq, Request<SignOutRes>>(logout, Methods.post);
+
+  return data.data;
+};
+
+export type AuthPasswordRemindReq = {
+  mail: string;
+};
+
+export type AuthPasswordRemindProps = AuthPasswordRemindReq;
+
+export type AuthPasswordRemindRes = never;
+
+export type AuthPasswordRemindRet = AuthPasswordRemindRes;
+
+export const fetchAuthPasswordRemind = async (payload: AuthPasswordRemindProps): Promise<AuthPasswordRemindRet> => {
+  const {
+    auth: { passwordRemind },
+  } = apiUrls;
+
+  const { data } = await request<AuthPasswordRemindReq, Request<AuthPasswordRemindRes>>(
+    passwordRemind,
+    Methods.post,
+    payload
+  );
 
   return data.data;
 };
