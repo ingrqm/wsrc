@@ -23,6 +23,13 @@
       "infoBox": {
         "title": "Forgot your password?",
         "subTitle": "No problem, write down your email address. You will receive an email with the link to change your password."
+      },
+      "content": {
+        "title": "Password remind",
+        "footer": {
+          "doYourRemember": "Do you remember your password?",
+          "signIn": "Sign in!"
+        }
       }
     },
     "passwordRecovery": {
@@ -96,7 +103,9 @@
             "min": "Password required minimum 6 characters"
           }
         },
-        "rememberMe": { "label": "Remember me" }
+        "rememberMe": {
+          "label": "Remember me"
+        }
       },
       "messages": {
         "loading": "Logging in",
@@ -105,30 +114,76 @@
       },
       "forgotPassword": "Forgot your password?",
       "submit": "Sign in"
+    },
+    "passwordRemind": {
+      "inputs": {
+        "mail": {
+          "label": "E-mail",
+          "placeholder": "Type your e-mail",
+          "validation": {
+            "required": "E-mail is required",
+            "type": "Incorrect e-mail"
+          }
+        }
+      },
+      "messages": {
+        "loading": "Password remind is in progress",
+        "error": "Password remind failed",
+        "success": "Password remind succeeded!"
+      },
+      "submit": "Remind"
     }
   },
   "meta": {
     "suffix": "- WSRC",
     "app": {
-      "dashboard": { "title": "Dashboard $t(meta.suffix)" },
-      "results": { "title": "Results $t(meta.suffix)" },
-      "users": { "title": "Users $t(meta.suffix)" }
+      "dashboard": {
+        "title": "Dashboard $t(meta.suffix)"
+      },
+      "results": {
+        "title": "Results $t(meta.suffix)"
+      },
+      "users": {
+        "title": "Users $t(meta.suffix)"
+      }
     },
     "championship": {
-      "reading": { "title": "Championship Reading $t(meta.suffix)" },
-      "test": { "title": "Championship Test $t(meta.suffix)" },
-      "review": { "title": "Championship Test Review $t(meta.suffix)" }
+      "reading": {
+        "title": "Championship Reading $t(meta.suffix)"
+      },
+      "test": {
+        "title": "Championship Test $t(meta.suffix)"
+      },
+      "review": {
+        "title": "Championship Test Review $t(meta.suffix)"
+      }
     },
     "auth": {
-      "signUp": { "title": "Sign Up $t(meta.suffix)" },
-      "signIn": { "title": "Sign In $t(meta.suffix)" },
-      "passwordRemind": { "title": "Password Remind $t(meta.suffix)" },
-      "passwordRecovery": { "title": "Password Recovery $t(meta.suffix)" }
+      "signUp": {
+        "title": "Sign Up $t(meta.suffix)"
+      },
+      "signIn": {
+        "title": "Sign In $t(meta.suffix)"
+      },
+      "passwordRemind": {
+        "title": "Password Remind $t(meta.suffix)"
+      },
+      "passwordRecovery": {
+        "title": "Password Recovery $t(meta.suffix)"
+      }
     },
-    "document": { "statute": { "title": "Statute $t(meta.suffix)" } },
+    "document": {
+      "statute": {
+        "title": "Statute $t(meta.suffix)"
+      }
+    },
     "error": {
-      "notFound": { "title": "Page not Found $t(meta.suffix)" },
-      "notAuthorized": { "title": "Access denied $t(meta.suffix)" }
+      "notFound": {
+        "title": "Page not Found $t(meta.suffix)"
+      },
+      "notAuthorized": {
+        "title": "Access denied $t(meta.suffix)"
+      }
     }
   }
 }
