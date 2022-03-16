@@ -5,6 +5,7 @@
     "browserslist",
     "languagedetector",
     "tailwindcss",
+    "walky",
     "wsrc"
   ],
   "i18n-ally.localesPaths": [
