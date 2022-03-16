@@ -35,7 +35,10 @@
     "passwordRecovery": {
       "infoBox": {
         "title": "Recover Password",
-        "subTitle": "You have just arrived this far, now just enter the new password and log in again. Simple, isn't it?"
+        "subTitle": "You have just arrived this far, now just enter the new password and sign in again. Simple, isn't it?"
+      },
+      "content": {
+        "title": "Password recovery"
       }
     }
   },
@@ -132,6 +135,39 @@
         "success": "Password remind succeeded!"
       },
       "submit": "Remind"
+    },
+    "passwordRecovery": {
+      "inputs": {
+        "password": {
+          "label": "Password",
+          "placeholder": "Type your new password",
+          "validation": {
+            "required": "Password is required",
+            "min": "Password required minimum 6 characters"
+          }
+        },
+        "replyPassword": {
+          "label": "Reply password",
+          "placeholder": "Reply your new password",
+          "validation": {
+            "required": "Password is required",
+            "min": "Password required minimum 6 characters",
+            "match": "Passwords do not match"
+          }
+        }
+      },
+      "messages": {
+        "loading": "Recovery password is in progress",
+        "error": "Recovery password failed",
+        "success": "Password recovered"
+      },
+      "submit": "Change password"
+    },
+    "verifyPasswordToken": {
+      "messages": {
+        "loading": "Token verification is in progress",
+        "error": "Invalid token"
+      }
     }
   },
   "meta": {

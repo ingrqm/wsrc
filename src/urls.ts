@@ -53,6 +53,8 @@ export const apiUrls = {
     signInToken: `${API_URL}/auth/sign-in-token`,
     logout: `${API_URL}/auth/logout`,
     passwordRemind: `${API_URL}/auth/password-remind`,
+    passwordRecovery: `${API_URL}/auth/password-recovery`,
+    verifyPasswordToken: `${API_URL}/auth/password-token`,
   },
 };
 

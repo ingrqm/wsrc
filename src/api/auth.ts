@@ -140,3 +140,57 @@ export const fetchAuthPasswordRemind = async (payload: AuthPasswordRemindProps):
 
   return data.data;
 };
+
+export type AuthPasswordRecoveryReq = {
+  password: string;
+  replyPassword: string;
+  token: string;
+};
+
+export type AuthPasswordRecoveryProps = AuthPasswordRecoveryReq;
+
+export type AuthPasswordRecoveryRes = never;
+
+export type AuthPasswordRecoveryRet = AuthPasswordRecoveryRes;
+
+export const fetchAuthPasswordRecovery = async (
+  payload: AuthPasswordRecoveryProps
+): Promise<AuthPasswordRecoveryRet> => {
+  const {
+    auth: { passwordRecovery },
+  } = apiUrls;
+
+  const { data } = await request<AuthPasswordRecoveryReq, Request<AuthPasswordRecoveryRes>>(
+    passwordRecovery,
+    Methods.post,
+    payload
+  );
+
+  return data.data;
+};
+
+export type AuthVerifyPasswordTokenReq = {
+  token: string;
+};
+
+export type AuthVerifyPasswordTokenProps = AuthVerifyPasswordTokenReq;
+
+export type AuthVerifyPasswordTokenRes = never;
+
+export type AuthVerifyPasswordTokenRet = AuthVerifyPasswordTokenRes;
+
+export const fetchVerifyPasswordToken = async (
+  payload: AuthVerifyPasswordTokenProps
+): Promise<AuthVerifyPasswordTokenRet> => {
+  const {
+    auth: { verifyPasswordToken },
+  } = apiUrls;
+
+  const { data } = await request<AuthVerifyPasswordTokenReq, Request<AuthVerifyPasswordTokenRes>>(
+    verifyPasswordToken,
+    Methods.put,
+    payload
+  );
+
+  return data.data;
+};
