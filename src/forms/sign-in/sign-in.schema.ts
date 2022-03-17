@@ -7,25 +7,27 @@ type ValidationSchema = {
   [key: string]: Rule[];
 };
 
+const { t } = i18n;
+
 export const validationSchema: ValidationSchema = {
   [FormInputs.mail]: [
     {
       type: 'email',
-      message: i18n.t(`form.signIn.inputs.mail.validation.type`),
+      message: t(`form.signIn.inputs.mail.validation.type`),
     },
     {
       required: true,
-      message: i18n.t(`form.signIn.inputs.mail.validation.required`),
+      message: t(`form.signIn.inputs.mail.validation.required`),
     },
   ],
   [FormInputs.password]: [
     {
       required: true,
-      message: i18n.t(`form.signIn.inputs.password.validation.required`),
+      message: t(`form.signIn.inputs.password.validation.required`),
     },
     {
       min: 6,
-      message: i18n.t(`form.signIn.inputs.password.validation.min`),
+      message: t(`form.signIn.inputs.password.validation.min`),
     },
   ],
 };

@@ -7,15 +7,17 @@ type ValidationSchema = {
   [key: string]: Rule[];
 };
 
+const { t } = i18n;
+
 export const validationSchema: ValidationSchema = {
   [FormInputs.mail]: [
     {
       type: 'email',
-      message: i18n.t(`form.passwordRemind.inputs.mail.validation.type`),
+      message: t(`form.passwordRemind.inputs.mail.validation.type`),
     },
     {
       required: true,
-      message: i18n.t(`form.passwordRemind.inputs.mail.validation.required`),
+      message: t(`form.passwordRemind.inputs.mail.validation.required`),
     },
   ],
 };

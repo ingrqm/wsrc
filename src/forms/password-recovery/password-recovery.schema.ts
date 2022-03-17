@@ -7,30 +7,32 @@ type ValidationSchema = {
   [key: string]: Rule[];
 };
 
+const { t } = i18n;
+
 export const validationSchema: ValidationSchema = {
   [FormInputs.password]: [
     {
       required: true,
-      message: i18n.t(`form.passwordRecovery.inputs.password.validation.required`),
+      message: t(`form.passwordRecovery.inputs.password.validation.required`),
     },
     {
       min: 6,
-      message: i18n.t(`form.passwordRecovery.inputs.password.validation.min`),
+      message: t(`form.passwordRecovery.inputs.password.validation.min`),
     },
   ],
   [FormInputs.replyPassword]: [
     {
       required: true,
-      message: i18n.t(`form.passwordRecovery.inputs.password.validation.required`),
+      message: t(`form.passwordRecovery.inputs.password.validation.required`),
     },
     {
       min: 6,
-      message: i18n.t(`form.passwordRecovery.inputs.password.validation.min`),
+      message: t(`form.passwordRecovery.inputs.password.validation.min`),
     },
     ({ getFieldValue }: { getFieldValue: (name: string) => string }) => ({
       validator: (_: any, value: string): Promise<void> =>
         !value || getFieldValue(FormInputs.password) === value ? Promise.resolve() : Promise.reject(new Error()),
-      message: i18n.t('form.passwordRecovery.inputs.replyPassword.validation.match'),
+      message: t('form.passwordRecovery.inputs.replyPassword.validation.match'),
     }),
   ],
 };

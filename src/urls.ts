@@ -41,6 +41,9 @@ export const appUrls = {
     signUp: `/${appRoutes.auth.base}/${appRoutes.auth.signUp}`,
     passwordRemind: `/${appRoutes.auth.base}/${appRoutes.auth.passwordRemind}`,
   },
+  document: {
+    statute: `/${appRoutes.document.base}/${appRoutes.document.statute}`,
+  },
   error: {
     notFound: `/${appRoutes.error.base}/${appRoutes.error.notFound}`,
   },
