@@ -1,3 +1,5 @@
+import { generateApiPath } from 'utils/path';
+
 const API_URL = `https://api.wsrc.app`;
 
 export const appRoutes = {
@@ -41,6 +43,9 @@ export const appUrls = {
     signUp: `/${appRoutes.auth.base}/${appRoutes.auth.signUp}`,
     passwordRemind: `/${appRoutes.auth.base}/${appRoutes.auth.passwordRemind}`,
   },
+  document: {
+    statute: `/${appRoutes.document.base}/${appRoutes.document.statute}`,
+  },
   error: {
     notFound: `/${appRoutes.error.base}/${appRoutes.error.notFound}`,
   },
@@ -50,12 +55,12 @@ export const apiUrls = {
   auth: {
     activation: `${API_URL}/auth/activation`,
     signIn: `${API_URL}/auth/sign-in`,
-    signInToken: `${API_URL}/auth/sign-in-token`,
+    signUp: `${API_URL}/auth/sign-up`,
     logout: `${API_URL}/auth/logout`,
     passwordRemind: `${API_URL}/auth/password-remind`,
     passwordRecovery: `${API_URL}/auth/password-recovery`,
-    verifyPasswordToken: `${API_URL}/auth/password-token`,
   },
+  users: (id: string = '') => `${API_URL}/${generateApiPath('users/:id', { id })}`,
 };
 
 export const outerUrls = {};

@@ -74,7 +74,7 @@ const FormPasswordRecovery = () => {
   }, []);
 
   return (
-    <Form form={form} initialValues={initialValues} layout='vertical' requiredMark='optional' onFinish={handleFinish}>
+    <Form form={form} initialValues={initialValues} layout='vertical' requiredMark={false} onFinish={handleFinish}>
       <Form.Item
         name={FormInputs.password}
         rules={validationSchema[FormInputs.password]}

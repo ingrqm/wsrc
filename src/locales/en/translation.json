@@ -1,4 +1,15 @@
 {
+  "data": {
+    "continent": {
+      "AF": "Africa",
+      "AN": "Antarctica",
+      "AS": "Asia",
+      "EU": "Europe",
+      "NA": "North America",
+      "OC": "Australia",
+      "SA": "South America"
+    }
+  },
   "auth": {
     "signIn": {
       "infoBox": {
@@ -17,6 +28,13 @@
       "infoBox": {
         "title": "Do you want to access?",
         "subTitle": "To participate in the speed reading test please create your participant account by filling in the fields below. You will receive your activation link to your email address. After activation, you will be able to connect."
+      },
+      "content": {
+        "title": "Sign up",
+        "footer": {
+          "doHaveAccount": "Do you have an account?",
+          "signIp": "Sign in!"
+        }
       }
     },
     "passwordRemind": {
@@ -168,7 +186,128 @@
         "loading": "Token verification is in progress",
         "error": "Invalid token"
       }
-    }
+    },
+    "signUp": {
+      "steps": {
+        "account": {
+          "title": "Account"
+        },
+        "profile": {
+          "title": "Profile"
+        },
+        "location": {
+          "title": "Location"
+        }
+      },
+      "next": {
+        "profile": "Profile",
+        "location": "Location"
+      },
+      "inputs": {
+        "mail": {
+          "label": "E-mail",
+          "placeholder": "Type your e-mail",
+          "validation": {
+            "required": "E-mail is required",
+            "type": "Incorrect e-mail"
+          }
+        },
+        "password": {
+          "label": "Password",
+          "placeholder": "Type your password",
+          "validation": {
+            "required": "Password is required",
+            "min": "Password required minimum 6 characters"
+          }
+        },
+        "replyPassword": {
+          "label": "Reply password",
+          "placeholder": "Reply your password",
+          "validation": {
+            "required": "Password is required",
+            "min": "Password required minimum 6 characters",
+            "match": "Passwords do not match"
+          }
+        },
+        "language": {
+          "label": "Language",
+          "placeholder": "Select your language",
+          "validation": {
+            "required": "Language is required"
+          }
+        },
+        "name": {
+          "label": "Name",
+          "placeholder": "Type your name",
+          "validation": {
+            "required": "Name is required"
+          }
+        },
+        "lastName": {
+          "label": "Last name",
+          "placeholder": "Type your last name",
+          "validation": {
+            "required": "Last name is required"
+          }
+        },
+        "age": {
+          "label": "Age",
+          "placeholder": "Select your age",
+          "validation": {
+            "required": "Age is required"
+          }
+        },
+        "phone": {
+          "label": "Phone number",
+          "placeholder": "Type your phone number",
+          "validation": {
+            "required": "Phone number is required"
+          }
+        },
+        "continent": {
+          "label": "Continent",
+          "placeholder": "Select your continent",
+          "validation": {
+            "required": "Continent is required"
+          }
+        },
+        "country": {
+          "label": "Country",
+          "placeholder": "Select your country",
+          "validation": {
+            "required": "Country is required"
+          }
+        },
+        "region": {
+          "label": "Region",
+          "placeholder": "Select your region",
+          "validation": {
+            "required": "Region is required"
+          }
+        },
+        "crew": {
+          "label": "Crew",
+          "placeholder": "Type your crew name"
+        },
+        "statute": {
+          "placeholder": {
+            "accept": "I accept",
+            "statute": "statute"
+          },
+          "validation": {
+            "required": "Need to accept statute"
+          }
+        }
+      },
+      "back": "Back",
+      "submit": "Sign up",
+      "messages": {
+        "loading": "Sign up is in progress",
+        "error": "Sign up failed",
+        "success": "An account has been created. A message with an activation link has been sent to the e-mail address"
+      }
+    },
+    "optional": "(optional)"
   },
   "meta": {
     "suffix": "- WSRC",

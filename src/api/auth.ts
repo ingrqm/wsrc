@@ -1,6 +1,7 @@
 import { Language, Permission } from 'enums';
 import { apiUrls } from 'urls';
 import { Methods, Request, request } from 'utils/api';
+import { LanguageChampionship } from 'forms/sign-up/sign-up.enum';
 
 export type AuthActivationReq = {
   token: string;
@@ -23,8 +24,8 @@ export const fetchAuthActivation = async (payload: AuthActivationProps): Promise
 };
 
 export type AuthSignInReq = {
-  mail: string;
-  password: string;
+  mail?: string;
+  password?: string;
 };
 
 export type AuthSignInProps = AuthSignInReq;
@@ -62,57 +63,51 @@ export const fetchAuthSignIn = async (payload: AuthSignInProps): Promise<AuthSig
   return data.data;
 };
 
-export type AuthSignInTokenReq = never;
-
-export type AuthSignInTokenProps = AuthSignInTokenReq;
-
-export type AuthSignInTokenRes = {
-  token: string;
-  user: {
-    id: number;
-    name: string;
-    surname: string;
-    age: number;
-    phone: string;
-    mail: string;
-    crew: string;
-    continent: string;
-    country: string;
-    region: string;
-    language: {
-      app: Language;
-      championship: Language;
-    };
-    permission: Permission;
-  };
+export type AuthSignUpReq = {
+  mail: string;
+  password: string;
+  language_app: Language;
+  language_championship: LanguageChampionship;
+  name: string;
+  last_name: string;
+  age: number;
+  phone: string;
+  continent: string;
+  country: string;
+  region: string;
+  crew: string | null;
 };
 
-export type AuthSignInTokenRet = AuthSignInTokenRes;
+export type AuthSignUpProps = AuthSignUpReq;
 
-export const fetchAuthSignInToken = async (): Promise<AuthSignInTokenRet> => {
+export type AuthSignUpRes = never;
+
+export type AuthSignUpRet = AuthSignUpRes;
+
+export const fetchAuthSignUp = async ({ ...payload }: AuthSignUpProps): Promise<AuthSignUpRet> => {
   const {
-    auth: { signInToken },
+    auth: { signUp },
   } = apiUrls;
 
-  const { data } = await request<AuthSignInTokenReq, Request<AuthSignInTokenRes>>(signInToken, Methods.post);
+  const { data } = await request<AuthSignUpReq, Request<AuthSignUpRes>>(signUp, Methods.post, payload);
 
   return data.data;
 };
 
-export type SignOutReq = never;
+export type AuthSignOutReq = never;
 
-export type SignOutProps = SignOutReq;
+export type AuthSignOutProps = AuthSignOutReq;
 
-export type SignOutRes = never;
+export type AuthSignOutRes = never;
 
-export type SignOutRet = SignOutRes;
+export type AuthSignOutRet = AuthSignOutRes;
 
-export const fetchSignOut = async (): Promise<SignOutRet> => {
+export const fetchAuthSignOut = async (): Promise<AuthSignOutRet> => {
   const {
     auth: { logout },
   } = apiUrls;
 
-  const { data } = await request<SignOutReq, Request<SignOutRes>>(logout, Methods.post);
+  const { data } = await request<AuthSignOutReq, Request<AuthSignOutRes>>(logout, Methods.post);
 
   return data.data;
 };
@@ -183,12 +178,12 @@ export const fetchVerifyPasswordToken = async (
   payload: AuthVerifyPasswordTokenProps
 ): Promise<AuthVerifyPasswordTokenRet> => {
   const {
-    auth: { verifyPasswordToken },
+    auth: { passwordRecovery },
   } = apiUrls;
 
   const { data } = await request<AuthVerifyPasswordTokenReq, Request<AuthVerifyPasswordTokenRes>>(
-    verifyPasswordToken,
-    Methods.put,
+    passwordRecovery,
+    Methods.get,
     payload
   );
 
