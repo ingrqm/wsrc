@@ -65,7 +65,7 @@ const Location = ({ setView, values, form, handleValuesChange }: Props) => {
           placeholder={t('form.signUp.inputs.continent.placeholder')}
           options={continentOptions}
           optionFilterProp='label'
-          onChange={() => handleValuesChange({ [FormInputs.country]: null, [FormInputs.region]: null })}
+          onChange={() => handleValuesChange({ [FormInputs.country]: undefined, [FormInputs.region]: undefined })}
           showSearch
         />
       </Form.Item>
@@ -78,7 +78,7 @@ const Location = ({ setView, values, form, handleValuesChange }: Props) => {
           placeholder={t('form.signUp.inputs.country.placeholder')}
           options={countryOptions}
           optionFilterProp='label'
-          onChange={() => handleValuesChange({ [FormInputs.region]: null })}
+          onChange={() => handleValuesChange({ [FormInputs.region]: undefined })}
           disabled={countryOptions.length === 0}
           showSearch
         />

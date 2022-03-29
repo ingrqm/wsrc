@@ -101,18 +101,4 @@ export const validationSchema: ValidationSchema = {
   ],
 };
 
-export const initialValues: FormTypes = {
-  [FormInputs.mail]: '',
-  [FormInputs.password]: '',
-  [FormInputs.replyPassword]: '',
-  [FormInputs.language]: null,
-  [FormInputs.name]: '',
-  [FormInputs.lastName]: '',
-  [FormInputs.age]: null,
-  [FormInputs.phone]: '',
-  [FormInputs.continent]: null,
-  [FormInputs.country]: null,
-  [FormInputs.region]: null,
-  [FormInputs.crew]: '',
-  [FormInputs.statute]: false,
-};
+export const initialValues: Partial<FormTypes> = {};

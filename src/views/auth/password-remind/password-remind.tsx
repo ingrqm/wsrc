@@ -19,7 +19,7 @@ const PasswordRemind = () => {
       <Paragraph className='mt-10'>
         {t('auth.passwordRemind.content.footer.doYourRemember')}
         {` `}
-        <Link onClick={() => navigate(appUrls.auth.signUp)}>{t('auth.passwordRemind.content.footer.signIn')}</Link>
+        <Link onClick={() => navigate(appUrls.auth.signIn)}>{t('auth.passwordRemind.content.footer.signIn')}</Link>
       </Paragraph>
     </>
   );

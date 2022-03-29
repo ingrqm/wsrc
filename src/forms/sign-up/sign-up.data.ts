@@ -1,50 +1,50 @@
 import Flags from 'country-flag-icons/react/3x2';
-import { languageChampionship } from './sign-up.enum';
+import { LanguageChampionship } from './sign-up.enum';
 
 export const languages = [
   {
     flag: Flags.AR,
-    language: languageChampionship.ar,
+    language: LanguageChampionship.ar,
     label: 'عربي',
   },
   {
     flag: Flags.DE,
-    language: languageChampionship.de,
+    language: LanguageChampionship.de,
     label: 'deutsch',
   },
   {
     flag: Flags.GB,
-    language: languageChampionship.en,
+    language: LanguageChampionship.en,
     label: 'english',
   },
   {
     flag: Flags.ES,
-    language: languageChampionship.es,
+    language: LanguageChampionship.es,
     label: 'español',
   },
   {
     flag: Flags.FR,
-    language: languageChampionship.fr,
+    language: LanguageChampionship.fr,
     label: 'français',
   },
   {
     flag: Flags.IT,
-    language: languageChampionship.it,
+    language: LanguageChampionship.it,
     label: 'italiano',
   },
   {
     flag: Flags.PL,
-    language: languageChampionship.pl,
+    language: LanguageChampionship.pl,
     label: 'polski',
   },
   {
     flag: Flags.PT,
-    language: languageChampionship.pt,
+    language: LanguageChampionship.pt,
     label: 'português',
   },
   {
     flag: Flags.RU,
-    language: languageChampionship.ru,
+    language: LanguageChampionship.ru,
     label: 'pусский',
   },
 ];

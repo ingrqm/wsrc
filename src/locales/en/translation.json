@@ -300,7 +300,12 @@
         }
       },
       "back": "Back",
-      "submit": "Sign up"
+      "submit": "Sign up",
+      "messages": {
+        "loading": "Sign up is in progress",
+        "error": "Sign up failed",
+        "success": "An account has been created. A message with an activation link has been sent to the e-mail address"
+      }
     },
     "optional": "(optional)"
   },

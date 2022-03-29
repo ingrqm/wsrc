@@ -8,9 +8,9 @@ export enum FormInputs {
   mail = 'mail',
   password = 'password',
   replyPassword = 'replyPassword',
-  language = 'language',
+  language = 'language_championship',
   name = 'name',
-  lastName = 'lastName',
+  lastName = 'last_name',
   age = 'age',
   phone = 'phone',
   continent = 'continent',
@@ -20,14 +20,14 @@ export enum FormInputs {
   statute = 'statute',
 }
 
-export enum languageChampionship {
-  fr = 'fr',
-  pl = 'pl',
-  en = 'en',
-  de = 'de',
-  es = 'es',
-  it = 'it',
-  pt = 'pt',
-  ru = 'ru',
-  ar = 'ar',
+export enum LanguageChampionship {
+  fr = 'FR',
+  pl = 'PL',
+  en = 'EN',
+  de = 'DE',
+  es = 'ES',
+  it = 'IT',
+  pt = 'PT',
+  ru = 'RU',
+  ar = 'AR',
 }

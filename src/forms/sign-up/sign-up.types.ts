@@ -1,17 +1,17 @@
-import { FormInputs, languageChampionship } from './sign-up.enum';
+import { FormInputs, LanguageChampionship } from './sign-up.enum';
 
 export type FormTypes = {
   [FormInputs.mail]: string;
   [FormInputs.password]: string;
   [FormInputs.replyPassword]: string;
-  [FormInputs.language]: languageChampionship | null;
+  [FormInputs.language]: LanguageChampionship;
   [FormInputs.name]: string;
   [FormInputs.lastName]: string;
-  [FormInputs.age]: number | null;
+  [FormInputs.age]: number;
   [FormInputs.phone]: string;
-  [FormInputs.continent]: string | null;
-  [FormInputs.country]: string | null;
-  [FormInputs.region]: string | null;
+  [FormInputs.continent]: string;
+  [FormInputs.country]: string;
+  [FormInputs.region]: string;
   [FormInputs.crew]: string;
   [FormInputs.statute]: boolean;
 };
