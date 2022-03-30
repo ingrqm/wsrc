@@ -19,7 +19,7 @@ export type Request<T> = {
 };
 
 const getTokenHeader = (): HeaderToken => {
-  const token = sessionStorage.getItem('token');
+  const token = sessionStorage.getItem('authorization') || localStorage.getItem('authorization');
 
   const result = {
     Authorization: token || '',
@@ -44,7 +44,8 @@ export const handleApiError = (error: AxiosError<Error>): void => {
     const { status } = error.response;
 
     if (status === 401 || status === 403) {
-      localStorage.removeItem('token');
+      sessionStorage.removeItem('authorization');
+      localStorage.removeItem('authorization');
       window.location.reload();
     }
   }

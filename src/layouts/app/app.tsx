@@ -1,10 +1,13 @@
 import { Outlet } from 'react-router-dom';
+import { PrivateWrapper } from 'components';
 
 const App = () => (
-  <>
-    app layout
-    <Outlet />
-  </>
+  <PrivateWrapper>
+    <div>
+      app layout
+      <Outlet />
+    </div>
+  </PrivateWrapper>
 );
 
 export default App;
