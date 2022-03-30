@@ -11,7 +11,7 @@ import {
   fetchAuthActivation,
   fetchAuthSignIn,
 } from 'api';
-import { User, userAtom } from 'atoms/user';
+import { initialUserAtom, UserAtom, userAtom } from 'atoms/user';
 import { useMutationWithError, userParams } from 'hooks';
 import { useRecoilState } from 'recoil';
 import { appUrls } from 'urls';
@@ -50,27 +50,28 @@ const FormSignIn = () => {
     errorMessage: t('form.signIn.messages.error'),
     successMessage: t('form.signIn.messages.success'),
     onError: () => {
-      setUser(undefined);
-      localStorage.removeItem('token');
-      sessionStorage.removeItem('token');
+      setUser(initialUserAtom);
+      localStorage.removeItem('authorization');
+      sessionStorage.removeItem('authorization');
     },
     onSuccess: (response) => {
-      const user: User = {
-        id: response.user.id,
-        name: response.user.name,
-        surname: response.user.surname,
-        mail: response.user.mail,
-        phone: response.user.phone,
-        permission: response.user.permission,
-        age: response.user.age,
-        continent: response.user.continent,
-        country: response.user.country,
-        region: response.user.region,
-        crew: response.user.crew,
-        language: {
-          app: response.user.language.app,
-          championship: response.user.language.championship,
-        },
+      const user: UserAtom = {
+        isLoggedIn: true,
+        id: response.id,
+        mail: response.mail,
+        permission: response.permission,
+        language_app: response.language_app,
+        language_championship: response.language_championship,
+        authorization: response.authorization,
+        name: response.name,
+        last_name: response.last_name,
+        age: response.age,
+        phone: response.phone,
+        continent: response.continent,
+        country: response.country,
+        region: response.region,
+        crew: response.crew,
+        datetime: response.datetime,
       };
 
       setUser(user);
@@ -78,11 +79,11 @@ const FormSignIn = () => {
       navigate(appUrls.app.dashboard);
 
       if (form.getFieldValue([FormInputs.rememberMe])) {
-        localStorage.setItem('token', response.token);
-        sessionStorage.removeItem('token');
+        localStorage.setItem('authorization', response.authorization);
+        sessionStorage.removeItem('authorization');
       } else {
-        sessionStorage.setItem('token', response.token);
-        localStorage.removeItem('token');
+        sessionStorage.setItem('authorization', response.authorization);
+        localStorage.removeItem('authorization');
       }
 
       form.resetFields();
@@ -99,14 +100,12 @@ const FormSignIn = () => {
   };
 
   useEffect(() => {
-    const token = key;
-
-    if (token) {
-      activation.mutateAsync({ token });
+    if (key) {
+      activation.mutateAsync({ key });
       return;
     }
 
-    if (user !== undefined) {
+    if (user.isLoggedIn) {
       navigate(appUrls.app.dashboard);
     }
   }, []);
