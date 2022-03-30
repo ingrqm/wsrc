@@ -36,7 +36,7 @@ export const HeaderImage = styled.div<{ isSignInPage: boolean }>`
     position: absolute;
     left: 0;
     top: 0;
-    background: ${({ theme }) => theme.color.custom.auth.purple[5]};
+    background: ${({ theme }) => theme.color.custom.purple[5]};
     opacity: ${({ isSignInPage }) => (isSignInPage ? '0.4' : '1.0')};
   }
 

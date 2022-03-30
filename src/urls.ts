@@ -37,17 +37,26 @@ export const appRoutes = {
 export const appUrls = {
   app: {
     dashboard: `/${appRoutes.app.base}/${appRoutes.app.dashboard}`,
+    results: `/${appRoutes.app.base}/${appRoutes.app.results}`,
+    users: `/${appRoutes.app.base}/${appRoutes.app.users}`,
+  },
+  championship: {
+    reading: `/${appRoutes.championship.base}/${appRoutes.championship.reading}`,
+    test: `/${appRoutes.championship.base}/${appRoutes.championship.test}`,
+    review: `/${appRoutes.championship.base}/${appRoutes.championship.review}`,
   },
   auth: {
     signIn: `/${appRoutes.auth.base}/${appRoutes.auth.signIn}`,
     signUp: `/${appRoutes.auth.base}/${appRoutes.auth.signUp}`,
     passwordRemind: `/${appRoutes.auth.base}/${appRoutes.auth.passwordRemind}`,
+    passwordRecovery: `/${appRoutes.auth.base}/${appRoutes.auth.passwordRecovery}`,
   },
   document: {
     statute: `/${appRoutes.document.base}/${appRoutes.document.statute}`,
   },
   error: {
     notFound: `/${appRoutes.error.base}/${appRoutes.error.notFound}`,
+    notAuthorized: `/${appRoutes.error.base}/${appRoutes.error.notAuthorized}`,
   },
 };
 

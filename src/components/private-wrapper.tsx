@@ -8,7 +8,7 @@ import { useRecoilState } from 'recoil';
 import { appUrls } from 'urls';
 
 type Props = {
-  children: ReactElement | null;
+  children: ReactElement | ReactElement[] | null;
 };
 
 const PrivateWrapper = ({ children }: Props) => {
@@ -44,8 +44,6 @@ const PrivateWrapper = ({ children }: Props) => {
       };
 
       setUser(user);
-
-      navigate(appUrls.app.dashboard);
     },
   });
 
@@ -60,7 +58,8 @@ const PrivateWrapper = ({ children }: Props) => {
     }
   }, []);
 
-  return user.isLoggedIn ? children : null;
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  return user.isLoggedIn ? <>{children}</> : null;
 };
 
 export default PrivateWrapper;

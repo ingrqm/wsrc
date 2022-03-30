@@ -10,6 +10,24 @@
       "SA": "South America"
     }
   },
+  "app": {
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "results": "Results",
+      "users": "users"
+    },
+    "header": {
+      "navbar": {
+        "signOut": "Sign out"
+      },
+      "hero": {
+        "dashboard": {
+          "title": "Hi {{name}},",
+          "subTitle": "welcome in your championship panel"
+        }
+      }
+    }
+  },
   "auth": {
     "signIn": {
       "infoBox": {
