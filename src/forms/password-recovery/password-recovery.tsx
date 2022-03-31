@@ -32,6 +32,7 @@ const FormPasswordRecovery = () => {
       mutationKey: 'verifyPasswordTokenMutate',
       loadingMessage: t('form.verifyPasswordToken.messages.loading'),
       errorMessage: t('form.verifyPasswordToken.messages.error'),
+      successMessage: t('form.verifyPasswordToken.messages.success'),
       onError: () => {
         navigate(appUrls.auth.signIn);
       },
@@ -56,18 +57,15 @@ const FormPasswordRecovery = () => {
   const handleFinish = (): void => {
     const payload: AuthPasswordRecoveryProps = {
       password: form.getFieldValue(FormInputs.password),
-      replyPassword: form.getFieldValue(FormInputs.replyPassword),
-      token: key as string,
+      key: key as string,
     };
 
     passwordRecovery.mutateAsync(payload);
   };
 
   useEffect(() => {
-    const token = key;
-
-    if (token) {
-      verify.mutateAsync({ token });
+    if (key) {
+      verify.mutateAsync({ key });
     } else {
       navigate(appUrls.auth.signIn);
     }
