@@ -1,9 +1,11 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, Typography } from 'antd';
-import { User, userAtom } from 'atoms/user';
+import { AuthSignOutProps, AuthSignOutRet, fetchAuthSignOut } from 'api';
+import { initialUserAtom, userAtom } from 'atoms/user';
+import { useMutationWithError } from 'hooks';
 import { t } from 'i18next';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { appUrls } from 'urls';
 import { LanguagePicker } from 'components';
 import { Hero, Navbar, Wrapper } from './header.styled';
@@ -16,8 +18,27 @@ type Props = {
 };
 
 const Header = ({ isOpen, onOpen }: Props) => {
-  const user = useRecoilValue(userAtom) as User;
+  const [user, setUser] = useRecoilState(userAtom);
+  const navigate = useNavigate();
   const location = useLocation();
+
+  const signOut = useMutationWithError<AuthSignOutRet, Error, AuthSignOutProps>(() => fetchAuthSignOut(), {
+    mutationKey: 'signOutMutate',
+    loadingMessage: t('form.signOut.messages.loading'),
+    errorMessage: t('form.signOut.messages.error'),
+    successMessage: t('form.signOut.messages.success'),
+    onSettled: () => {
+      setUser(initialUserAtom);
+      navigate(appUrls.auth.signIn);
+
+      sessionStorage.removeItem('authorization');
+      localStorage.removeItem('authorization');
+    },
+  });
+
+  const handleLogout = () => {
+    signOut.mutateAsync({});
+  };
 
   return (
     <Wrapper isOpen={isOpen}>
@@ -27,7 +48,7 @@ const Header = ({ isOpen, onOpen }: Props) => {
         <Dropdown
           overlay={
             <Menu>
-              <Menu.Item>{t('app.header.navbar.signOut')}</Menu.Item>
+              <Menu.Item onClick={handleLogout}>{t('app.header.navbar.signOut')}</Menu.Item>
             </Menu>
           }
           trigger={['click']}

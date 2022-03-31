@@ -9,7 +9,7 @@ export type AuthActivationReq = {
 
 export type AuthActivationProps = AuthActivationReq;
 
-export type AuthActivationRes = never;
+export type AuthActivationRes = unknown;
 
 export type AuthActivationRet = AuthActivationRes;
 
@@ -77,7 +77,7 @@ export type AuthSignUpReq = {
 
 export type AuthSignUpProps = AuthSignUpReq;
 
-export type AuthSignUpRes = never;
+export type AuthSignUpRes = unknown;
 
 export type AuthSignUpRet = AuthSignUpRes;
 
@@ -91,11 +91,11 @@ export const fetchAuthSignUp = async ({ ...payload }: AuthSignUpProps): Promise<
   return data.data;
 };
 
-export type AuthSignOutReq = never;
+export type AuthSignOutReq = unknown;
 
 export type AuthSignOutProps = AuthSignOutReq;
 
-export type AuthSignOutRes = never;
+export type AuthSignOutRes = unknown;
 
 export type AuthSignOutRet = AuthSignOutRes;
 
@@ -115,7 +115,7 @@ export type AuthPasswordRemindReq = {
 
 export type AuthPasswordRemindProps = AuthPasswordRemindReq;
 
-export type AuthPasswordRemindRes = never;
+export type AuthPasswordRemindRes = unknown;
 
 export type AuthPasswordRemindRet = AuthPasswordRemindRes;
 
@@ -140,7 +140,7 @@ export type AuthPasswordRecoveryReq = {
 
 export type AuthPasswordRecoveryProps = AuthPasswordRecoveryReq;
 
-export type AuthPasswordRecoveryRes = never;
+export type AuthPasswordRecoveryRes = unknown;
 
 export type AuthPasswordRecoveryRet = AuthPasswordRecoveryRes;
 
@@ -166,7 +166,7 @@ export type AuthVerifyPasswordTokenReq = {
 
 export type AuthVerifyPasswordTokenProps = AuthVerifyPasswordTokenReq;
 
-export type AuthVerifyPasswordTokenRes = never;
+export type AuthVerifyPasswordTokenRes = unknown;
 
 export type AuthVerifyPasswordTokenRet = AuthVerifyPasswordTokenRes;
 
