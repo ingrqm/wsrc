@@ -1,4 +1,6 @@
+import { CloseOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
+import { media } from 'styles';
 
 export const Wrapper = styled.div<{ isOpen: boolean }>`
   position: fixed;
@@ -12,6 +14,13 @@ export const Wrapper = styled.div<{ isOpen: boolean }>`
   border: 1px solid rgba(0, 0, 0, 0.06);
   transition: left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   z-index: ${({ theme }) => theme.level.low};
+
+  ${media.xs} {
+    width: 100%;
+    top: 0;
+    left: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
+    height: 100%;
+  }
 `;
 
 export const Header = styled.div`
@@ -53,5 +62,17 @@ export const Item = styled.li`
     cursor: pointer;
     background: ${({ theme }) => theme.color.light.neutral[2]};
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+`;
+
+export const CloseIcon = styled(CloseOutlined)`
+  display: none;
+
+  ${media.xs} {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-size: 24px;
+    display: flex;
   }
 `;
