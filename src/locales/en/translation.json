@@ -326,7 +326,14 @@
         "success": "An account has been created. A message with an activation link has been sent to the e-mail address"
       }
     },
-    "optional": "(optional)"
+    "optional": "(optional)",
+    "signOut": {
+      "messages": {
+        "loading": "Sign out is in progress",
+        "error": "Sign out failed",
+        "success": "Signed out"
+      }
+    }
   },
   "meta": {
     "suffix": "- WSRC",
