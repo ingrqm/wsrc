@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from 'styles';
 
 export const Wrapper = styled.div<{ isOpen: boolean }>`
   position: relative;
@@ -6,6 +7,10 @@ export const Wrapper = styled.div<{ isOpen: boolean }>`
   padding-left: ${({ isOpen }) => (isOpen ? 'calc(250px + 48px)' : '24px')};
   background: ${({ theme }) => theme.color.custom.purple[5]};
   transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  ${media.xs} {
+    padding-left: 24px;
+  }
 `;
 
 export const Navbar = styled.div`
