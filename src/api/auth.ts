@@ -135,8 +135,7 @@ export const fetchAuthPasswordRemind = async (payload: AuthPasswordRemindProps):
 
 export type AuthPasswordRecoveryReq = {
   password: string;
-  replyPassword: string;
-  token: string;
+  key: string;
 };
 
 export type AuthPasswordRecoveryProps = AuthPasswordRecoveryReq;
@@ -162,7 +161,7 @@ export const fetchAuthPasswordRecovery = async (
 };
 
 export type AuthVerifyPasswordTokenReq = {
-  token: string;
+  key: string;
 };
 
 export type AuthVerifyPasswordTokenProps = AuthVerifyPasswordTokenReq;
@@ -171,9 +170,9 @@ export type AuthVerifyPasswordTokenRes = never;
 
 export type AuthVerifyPasswordTokenRet = AuthVerifyPasswordTokenRes;
 
-export const fetchVerifyPasswordToken = async (
-  payload: AuthVerifyPasswordTokenProps
-): Promise<AuthVerifyPasswordTokenRet> => {
+export const fetchVerifyPasswordToken = async ({
+  ...payload
+}: AuthVerifyPasswordTokenProps): Promise<AuthVerifyPasswordTokenRet> => {
   const {
     auth: { passwordRecovery },
   } = apiUrls;

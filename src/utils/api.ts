@@ -34,6 +34,7 @@ export const request = async <T, Y>(url: string, method: Methods, data?: T): Pro
     headers: getTokenHeader(),
     url,
     data,
+    ...(method === Methods.get ? { params: data } : {}),
   };
 
   return axios(requestConfig);

@@ -202,7 +202,8 @@
     "verifyPasswordToken": {
       "messages": {
         "loading": "Token verification is in progress",
-        "error": "Invalid token"
+        "error": "Invalid token",
+        "success": "Valid token"
       }
     },
     "signUp": {
