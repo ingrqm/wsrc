@@ -6,6 +6,6 @@ export const Content = styled.div<{ isOpen: boolean }>`
   transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
   ${media.xs} {
-    padding-left: 24px;
+    padding: 24px;
   }
 `;
