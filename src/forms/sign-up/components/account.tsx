@@ -1,9 +1,8 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Button, Form, FormInstance, Input, Select } from 'antd';
-import { StyledFlag } from 'components/language-picker/language-picker.styled';
-import { languages } from '../sign-up.data';
+import { languageOptions } from '../sign-up.data';
 import { FormInputs, Views } from '../sign-up.enum';
 import { validationSchema } from '../sign-up.schema';
 
@@ -14,20 +13,6 @@ type Props = {
 
 const Account = ({ setView, form }: Props) => {
   const { t } = useTranslation();
-
-  const languageOptions = useMemo(
-    () =>
-      languages.map(({ flag: Flag, label, language }) => ({
-        label: (
-          <StyledFlag>
-            <Flag />
-            {label}
-          </StyledFlag>
-        ),
-        value: language,
-      })),
-    []
-  );
 
   const handleNextStep = useCallback(async () => {
     if (

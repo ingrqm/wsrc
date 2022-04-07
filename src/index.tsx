@@ -5,13 +5,20 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { RecoilRoot } from 'recoil';
 import Routes from 'routes';
-import { ThemeProvider } from 'styled-components';
-import { theme } from 'styles';
+import styled, { ThemeProvider } from 'styled-components';
+import { TimeCounter } from 'components';
+import { GlobalStyle, theme } from 'styles';
 
 import 'utils/i18next';
 
 import 'antd/dist/antd.css';
 import 'styles/global-style.css';
+
+const Wrapper = styled.div`
+  > button {
+    margin: 36px 36px !important;
+  }
+`;
 
 const queryClient = new QueryClient();
 
@@ -20,8 +27,10 @@ ReactDOM.render(
     <HelmetProvider>
       <RecoilRoot>
         <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
+          <ReactQueryDevtools initialIsOpen={false} containerElement={Wrapper} />
           <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <TimeCounter />
             <Routes />
           </ThemeProvider>
         </QueryClientProvider>

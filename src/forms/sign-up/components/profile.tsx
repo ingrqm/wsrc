@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Col, Form, FormInstance, Input, Row, Select } from 'antd';
+import { ageOptions } from '../sign-up.data';
 import { FormInputs, Views } from '../sign-up.enum';
 import { validationSchema } from '../sign-up.schema';
 
@@ -11,10 +12,6 @@ type Props = {
 
 const Profile = ({ form, setView }: Props) => {
   const { t } = useTranslation();
-
-  const ageOptions = Array.from({ length: 94 })
-    .map((_, index) => index + 6)
-    .map((age) => ({ value: age, label: age }));
 
   const handleNextStep = useCallback(async () => {
     if (await form.validateFields([FormInputs.name, FormInputs.lastName, FormInputs.age, FormInputs.phone])) {
