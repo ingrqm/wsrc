@@ -35,42 +35,42 @@ const PersonalData = () => {
   return (
     <Form layout='vertical' requiredMark={false}>
       <Tabs defaultActiveKey='1' centered>
-        <TabPane tab='Account' key='1'>
-          <Form.Item label='User ID'>
+        <TabPane tab={t('app.dashboard.personalData.tabs.account.title')} key='account'>
+          <Form.Item label={t('form.personalData.inputs.userId.label')}>
             <Input value={user.id} disabled />
           </Form.Item>
-          <Form.Item label='Email'>
+          <Form.Item label={t('form.personalData.inputs.mail.label')}>
             <Input value={user.mail} disabled />
           </Form.Item>
-          <Form.Item label='Language'>
+          <Form.Item label={t('form.personalData.inputs.language.label')}>
             <Select value={user.language_championship} options={languageOptions} disabled />
           </Form.Item>
         </TabPane>
-        <TabPane tab='Profile' key='2'>
-          <Form.Item label='Name'>
+        <TabPane tab={t('app.dashboard.personalData.tabs.profile.title')} key='profile'>
+          <Form.Item label={t('form.personalData.inputs.name.label')}>
             <Input value={user.name} disabled />
           </Form.Item>
-          <Form.Item label='Last name'>
+          <Form.Item label={t('form.personalData.inputs.lastName.label')}>
             <Input value={user.last_name} disabled />
           </Form.Item>
-          <Form.Item label='Age'>
+          <Form.Item label={t('form.personalData.inputs.age.label')}>
             <Select options={ageOptions} value={user.age} disabled />
           </Form.Item>
-          <Form.Item label='Phone'>
+          <Form.Item label={t('form.personalData.inputs.phone.label')}>
             <Input value={user.phone} disabled />
           </Form.Item>
         </TabPane>
-        <TabPane tab='Location' key='3'>
-          <Form.Item label='Continent'>
+        <TabPane tab={t('app.dashboard.personalData.tabs.location.title')} key='location'>
+          <Form.Item label={t('form.personalData.inputs.continent.label')}>
             <Select options={continentOptions} value={user.continent} disabled />
           </Form.Item>
-          <Form.Item label='Country'>
+          <Form.Item label={t('form.personalData.inputs.country.label')}>
             <Select options={countryOptions} value={user.country} disabled />
           </Form.Item>
-          <Form.Item label='Region'>
+          <Form.Item label={t('form.personalData.inputs.region.label')}>
             <Select options={regionOptions} value={user.region} disabled />
           </Form.Item>
-          <Form.Item label='Crew'>
+          <Form.Item label={t('form.personalData.inputs.crew.label')}>
             <Input value={user.crew} disabled />
           </Form.Item>
         </TabPane>

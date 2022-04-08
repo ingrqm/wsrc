@@ -1,19 +1,28 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Col, Row, Typography } from 'antd';
+import { Card, Col, Row, Typography } from 'antd';
+import { fetchStatisticsDashboard, StatisticsDashboardRet } from 'api';
 import { User, userAtom } from 'atoms/user';
 import { Permission } from 'enums';
+import { useQueryWithError } from 'hooks';
+import { t } from 'i18next';
 import { useRecoilValue } from 'recoil';
 import { appUrls } from 'urls';
+import { snakeToCamelCase } from 'utils/convert';
 import { AspectRatio } from 'components';
 import { PersonalData, Competition } from './components';
-import { Wrapper } from './dashboard.styled';
+import { Widget, Wrapper } from './dashboard.styled';
+import { getTutorialUrl } from './dashboard.utils';
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 
 const Dashboard = () => {
   const user = useRecoilValue(userAtom) as User;
   const navigate = useNavigate();
+
+  const statistics = useQueryWithError<StatisticsDashboardRet, Error>('statisticsDashboard', fetchStatisticsDashboard, {
+    enabled: [Permission.arbiter, Permission.admin, Permission.superAdmin].includes(user?.permission),
+  });
 
   const isAuthorized = [Permission.user, Permission.arbiter, Permission.admin, Permission.superAdmin].includes(
     user?.permission
@@ -31,16 +40,29 @@ const Dashboard = () => {
         <Col span={24}>
           <Competition />
         </Col>
+        {statistics.data && (
+          <Col span={24}>
+            <Row gutter={[10, 10]} justify='center'>
+              {Object.entries(statistics.data).map(([key, value]) => (
+                <Widget>
+                  <Card>
+                    <Paragraph ellipsis={{ rows: 1, expandable: false }}>
+                      {t(`app.dashboard.widget.${snakeToCamelCase(key)}`)}
+                    </Paragraph>
+                    <Text type='secondary'>{value}</Text>
+                  </Card>
+                </Widget>
+              ))}
+            </Row>
+          </Col>
+        )}
         <Col xs={{ span: 24 }} md={{ span: 12 }}>
-          <Title level={3}>Tutorial</Title>
-          <Paragraph>
-            Watch the introductory video to learn more about how the platform works during the Speed Reading
-            Championship
-          </Paragraph>
+          <Title level={3}>{t('app.dashboard.tutorial.title')}</Title>
+          <Paragraph>{t('app.dashboard.tutorial.subTitle')}</Paragraph>
           <AspectRatio x={16} y={9}>
             <iframe
-              src='https://www.youtube.com/embed/QK5EVGqNg8U'
-              title='YouTube video player'
+              src={getTutorialUrl(user?.permission)}
+              title={t('app.dashboard.tutorial.iframe.title')}
               frameBorder='0'
               allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
               allowFullScreen
@@ -48,7 +70,7 @@ const Dashboard = () => {
           </AspectRatio>
         </Col>
         <Col xs={{ span: 24 }} md={{ span: 12 }}>
-          <Title level={3}>Personal data</Title>
+          <Title level={3}>{t('app.dashboard.personalData.title')}</Title>
           <PersonalData />
         </Col>
       </Row>

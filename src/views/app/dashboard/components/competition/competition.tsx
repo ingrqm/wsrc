@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Button, Typography } from 'antd';
 import { timeAtom } from 'atoms/time';
 import { startCompetition } from 'config';
@@ -6,8 +7,11 @@ import { useRecoilValue } from 'recoil';
 
 const { Title } = Typography;
 
+const leadZero = (number: number): string => `${number}`.padStart(2, '0');
+
 const Competition = () => {
   const time = useRecoilValue(timeAtom);
+  const { t } = useTranslation();
 
   const timeLeft = new Date(startCompetition);
 
@@ -18,19 +22,21 @@ const Competition = () => {
 
   const isAvailable = compareAsc(time, timeLeft) === 1;
 
+  const timer = `${leadZero(hours)}:${leadZero(minutes)}:${leadZero(seconds)}`;
+
+  const calendarDays = days
+    ? `${days} ${days === 1 ? t('app.dashboard.competition.start.day') : t('app.dashboard.competition.start.days')} ${t(
+        'app.dashboard.competition.start.and'
+      )}`
+    : '';
+
   return isAvailable ? (
     <>
-      <Title level={3}>Join to the competition!</Title>
-      <Button type='primary'>Start</Button>
+      <Title level={3}>{t('app.dashboard.competition.join.title')}</Title>
+      <Button type='primary'>{t('app.dashboard.competition.join.start')}</Button>
     </>
   ) : (
-    <Title level={3}>
-      Start of the competition in{' '}
-      {`${days && `${days} days and`} ${`${hours}`.padStart(2, '0')}:${`${minutes}`.padStart(
-        2,
-        '0'
-      )}:${`${seconds}`.padStart(2, '0')}`}{' '}
-    </Title>
+    <Title level={3}>{t('app.dashboard.competition.start.title', { calendarDays, timer })}</Title>
   );
 };
 

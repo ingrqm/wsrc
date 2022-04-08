@@ -14,7 +14,7 @@
     "sidebar": {
       "dashboard": "Dashboard",
       "results": "Results",
-      "users": "users"
+      "users": "Users"
     },
     "header": {
       "navbar": {
@@ -24,6 +24,48 @@
         "dashboard": {
           "title": "Hi {{name}},",
           "subTitle": "welcome in your championship panel"
+        }
+      }
+    },
+    "dashboard": {
+      "competition": {
+        "start": {
+          "day": "day",
+          "days": "days",
+          "and": "and ",
+          "title": "Start of the competition in {{calendarDays}}{{timer}}"
+        },
+        "join": {
+          "title": "Join to the competition!",
+          "start": "start"
+        }
+      },
+      "widget": {
+        "results": "Results",
+        "resultsWithoutArbiter": "Results without arbiter",
+        "resultsWaitingForReview": "Results waiting for review",
+        "reviews": "Reviews",
+        "users": "Users"
+      },
+      "tutorial": {
+        "title": "Tutorial",
+        "subTitle": "Watch the introductory video to learn more about how the platform works during the Speed Reading Championship",
+        "iframe": {
+          "title": "Tutorial video"
+        }
+      },
+      "personalData": {
+        "title": "Personal data",
+        "tabs": {
+          "account": {
+            "title": "Account"
+          },
+          "profile": {
+            "title": "Profile"
+          },
+          "location": {
+            "title": "Location"
+          }
         }
       }
     }
@@ -122,6 +164,43 @@
         "loading": "Account activation",
         "error": "Account activation failed",
         "success": "Account activation succeeded!"
+      }
+    },
+    "personalData": {
+      "inputs": {
+        "userId": {
+          "label": "User ID"
+        },
+        "mail": {
+          "label": "E-mail"
+        },
+        "language": {
+          "label": "Language"
+        },
+        "name": {
+          "label": "Name"
+        },
+        "lastName": {
+          "label": "Last name"
+        },
+        "age": {
+          "label": "Age"
+        },
+        "phone": {
+          "label": "Phone number"
+        },
+        "continent": {
+          "label": "Continent"
+        },
+        "country": {
+          "label": "Country"
+        },
+        "region": {
+          "label": "Region"
+        },
+        "crew": {
+          "label": "Crew"
+        }
       }
     },
     "signIn": {
