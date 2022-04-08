@@ -11,9 +11,10 @@ import {
   fetchAuthActivation,
   fetchAuthSignIn,
 } from 'api';
+import { timeAtom } from 'atoms/time';
 import { initialUserAtom, UserAtom, userAtom } from 'atoms/user';
 import { useMutationWithError, userParams } from 'hooks';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { appUrls } from 'urls';
 import { FormInputs } from './sign-in.enum';
 import { initialValues, validationSchema } from './sign-in.schema';
@@ -28,6 +29,7 @@ const FormSignIn = () => {
   const { t } = useTranslation();
   const [form] = Form.useForm();
   const [user, setUser] = useRecoilState(userAtom);
+  const setTime = useSetRecoilState(timeAtom);
   const navigate = useNavigate();
   const { key } = userParams<Params>();
 
@@ -75,6 +77,7 @@ const FormSignIn = () => {
       };
 
       setUser(user);
+      setTime(new Date(response.time));
 
       navigate(appUrls.app.dashboard);
 

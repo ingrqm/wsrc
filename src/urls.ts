@@ -69,6 +69,9 @@ export const apiUrls = {
     passwordRemind: `${API_URL}/auth/password-remind`,
     passwordRecovery: `${API_URL}/auth/password-recovery`,
   },
+  statistics: {
+    dashboard: `${API_URL}/statistics/dashboard`,
+  },
   users: (id: string = '') => `${API_URL}/${generateApiPath('users/:id', { id })}`,
 };
 

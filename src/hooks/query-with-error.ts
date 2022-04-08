@@ -1,69 +1,30 @@
-import { MutationFunction, useMutation, UseMutationOptions, UseMutationResult, useQueryClient } from 'react-query';
-import { message } from 'antd';
+import { QueryFunction, QueryKey, useQuery, UseQueryOptions, UseQueryResult } from 'react-query';
 import { AxiosError } from 'axios';
 import { handleApiError } from 'utils/api';
 
-interface UseMutationOptionsEx {
-  loadingMessage?: string;
+interface UseQueryOptionsEx {
   errorMessage?: string;
   successMessage?: string;
   invalidateQueryKey?: string;
 }
 
-type MutationOptions<TData, TError, TVariables, TContext> = UseMutationOptionsEx &
-  UseMutationOptions<TData, TError, TVariables, TContext>;
+type QueryOptions<TData, TError> = UseQueryOptionsEx & UseQueryOptions<TData, TError>;
 
-export default <TData = unknown, TError = unknown, TVariables = void, TContext = unknown>(
-  func: MutationFunction<TData, TVariables>,
-  options?: MutationOptions<TData, TError, TVariables, TContext>
-): UseMutationResult<TData, TError, TVariables, TContext> => {
-  const queryClient = useQueryClient();
-
-  const wrapFunc: MutationFunction<TData, TVariables> = (props) => {
-    if (options) {
-      const { loadingMessage, mutationKey } = options;
-
-      if (loadingMessage && mutationKey) {
-        message.loading({ content: loadingMessage, key: mutationKey });
-      }
-    }
-
-    return func(props);
-  };
-
-  return useMutation(wrapFunc, {
+export default <TQueryFnData, Error>(
+  queryKey: QueryKey,
+  queryFn: QueryFunction<TQueryFnData, QueryKey>,
+  options?: QueryOptions<TQueryFnData, Error>
+): UseQueryResult<TQueryFnData, Error> =>
+  useQuery<TQueryFnData, Error>(queryKey, queryFn, {
     ...options,
-    onError: (error, variables, context) => {
+    onError: (error) => {
       handleApiError(error as unknown as AxiosError);
 
       if (options) {
-        const { onError, errorMessage, mutationKey } = options;
-
-        if (errorMessage) {
-          message.error({ content: errorMessage, key: mutationKey });
-        }
-
+        const { onError } = options;
         if (onError) {
-          onError(error, variables, context);
-        }
-      }
-    },
-    onSuccess: async (data, variables, context) => {
-      if (options) {
-        const { onSuccess, successMessage, mutationKey, invalidateQueryKey } = options;
-
-        if (successMessage) {
-          message.success({ content: successMessage, key: mutationKey });
-        }
-
-        if (invalidateQueryKey) {
-          await queryClient.invalidateQueries(invalidateQueryKey);
-        }
-
-        if (onSuccess) {
-          onSuccess(data, variables, context);
+          onError(error);
         }
       }
     },
   });
-};

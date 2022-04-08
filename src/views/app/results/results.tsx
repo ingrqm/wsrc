@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, userAtom } from 'atoms/user';
 import { Permission } from 'enums';
@@ -9,7 +9,10 @@ const Results = () => {
   const user = useRecoilValue(userAtom) as User;
   const navigate = useNavigate();
 
-  const isAuthorized = [Permission.arbiter, Permission.admin, Permission.superAdmin].includes(user?.permission);
+  const isAuthorized = useMemo(
+    () => [Permission.arbiter, Permission.admin, Permission.superAdmin].includes(user?.permission),
+    [user?.permission]
+  );
 
   useEffect(() => {
     if (!isAuthorized) {

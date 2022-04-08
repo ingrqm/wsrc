@@ -46,6 +46,7 @@ export type AuthSignInRes = {
   region: string;
   crew: string;
   datetime: Date;
+  time: Date;
 };
 
 export type AuthSignInRet = AuthSignInRes;
