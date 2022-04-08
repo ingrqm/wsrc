@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Typography } from 'antd';
 import { timeAtom } from 'atoms/time';
@@ -9,26 +10,40 @@ const { Title } = Typography;
 
 const leadZero = (number: number): string => `${number}`.padStart(2, '0');
 
+const timeLeft = new Date(startCompetition);
+
 const Competition = () => {
   const time = useRecoilValue(timeAtom);
   const { t } = useTranslation();
 
-  const timeLeft = new Date(startCompetition);
+  const days = useMemo(() => differenceInDays(timeLeft, time), [timeLeft, time]);
+  const hours = useMemo(() => differenceInHours(timeLeft, time) - days * 24, [timeLeft, time, days]);
+  const minutes = useMemo(
+    () => differenceInMinutes(timeLeft, time) - days * 24 * 60 - hours * 60,
+    [timeLeft, time, days, hours]
+  );
+  const seconds = useMemo(
+    () => differenceInSeconds(timeLeft, time) - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60,
+    [timeLeft, time, days, hours, minutes]
+  );
 
-  const days = differenceInDays(timeLeft, time);
-  const hours = differenceInHours(timeLeft, time) - days * 24;
-  const minutes = differenceInMinutes(timeLeft, time) - days * 24 * 60 - hours * 60;
-  const seconds = differenceInSeconds(timeLeft, time) - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60;
+  const isAvailable = useMemo(() => compareAsc(time, timeLeft) === 1, [timeLeft, time]);
 
-  const isAvailable = compareAsc(time, timeLeft) === 1;
+  const timer = useMemo(
+    () => `${leadZero(hours)}:${leadZero(minutes)}:${leadZero(seconds)}`,
+    [hours, minutes, seconds]
+  );
 
-  const timer = `${leadZero(hours)}:${leadZero(minutes)}:${leadZero(seconds)}`;
-
-  const calendarDays = days
-    ? `${days} ${days === 1 ? t('app.dashboard.competition.start.day') : t('app.dashboard.competition.start.days')} ${t(
-        'app.dashboard.competition.start.and'
-      )}`
-    : '';
+  const calendarDays = useMemo(
+    () =>
+      // eslint-disable-next-line no-nested-ternary
+      days
+        ? days === 1
+          ? t('app.dashboard.competition.start.day', { days })
+          : t('app.dashboard.competition.start.days', { days })
+        : '',
+    [days]
+  );
 
   return isAvailable ? (
     <>

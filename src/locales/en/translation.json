@@ -30,9 +30,8 @@
     "dashboard": {
       "competition": {
         "start": {
-          "day": "day",
-          "days": "days",
-          "and": "and ",
+          "day": "{{days}} day and",
+          "days": "{{days}} days and",
           "title": "Start of the competition in {{calendarDays}}{{timer}}"
         },
         "join": {

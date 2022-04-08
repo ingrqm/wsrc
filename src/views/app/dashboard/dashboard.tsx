@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, Col, Row, Typography } from 'antd';
 import { fetchStatisticsDashboard, StatisticsDashboardRet } from 'api';
@@ -24,8 +24,9 @@ const Dashboard = () => {
     enabled: [Permission.arbiter, Permission.admin, Permission.superAdmin].includes(user?.permission),
   });
 
-  const isAuthorized = [Permission.user, Permission.arbiter, Permission.admin, Permission.superAdmin].includes(
-    user?.permission
+  const isAuthorized = useMemo(
+    () => [Permission.user, Permission.arbiter, Permission.admin, Permission.superAdmin].includes(user?.permission),
+    [user?.permission]
   );
 
   useEffect(() => {
