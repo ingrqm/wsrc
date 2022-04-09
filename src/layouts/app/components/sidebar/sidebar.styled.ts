@@ -13,7 +13,7 @@ export const Wrapper = styled.div<{ isOpen: boolean }>`
   border-radius: 2px;
   border: 1px solid rgba(0, 0, 0, 0.06);
   transition: left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  z-index: ${({ theme }) => theme.level.low};
+  z-index: ${({ theme }) => theme.level.bottom};
 
   ${media.xs} {
     width: 100%;

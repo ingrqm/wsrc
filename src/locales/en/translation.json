@@ -8,6 +8,12 @@
       "NA": "North America",
       "OC": "Australia",
       "SA": "South America"
+    },
+    "permission": {
+      "user": "user",
+      "arbiter": "arbiter",
+      "admin": "admin",
+      "superAdmin": "super admin"
     }
   },
   "app": {
@@ -65,6 +71,31 @@
           "location": {
             "title": "Location"
           }
+        }
+      }
+    },
+    "users": {
+      "title": "Users",
+      "table": {
+        "header": {
+          "userId": "User ID",
+          "name": "name",
+          "lastName": "last name",
+          "mail": "e-mail",
+          "permission": "permission",
+          "active": "active account",
+          "language": "language",
+          "crew": "crew",
+          "actions": "actions",
+          "action": {
+            "edit": "edit"
+          },
+          "join": "join"
+        }
+      },
+      "modal": {
+        "edit": {
+          "title": "Edit user, {{fullName}}"
         }
       }
     }
@@ -411,6 +442,11 @@
         "error": "Sign out failed",
         "success": "Signed out"
       }
+    },
+    "signInToken": {
+      "messages": {
+        "error": "Session has expired"
+      }
     }
   },
   "meta": {
@@ -463,6 +499,28 @@
       "notAuthorized": {
         "title": "Access denied $t(meta.suffix)"
       }
+    }
+  },
+  "components": {
+    "table": {
+      "filterTitle": "Filter menu",
+      "filterConfirm": "Filter",
+      "filterReset": "Reset",
+      "filterEmptyText": "No filters",
+      "filterCheckall": "Select all items",
+      "filterSearchPlaceholder": "Search in filters",
+      "filterSearchInputPlaceholder": "Search in column",
+      "emptyText": "No data",
+      "selectAll": "Select current page",
+      "selectInvert": "Invert current page",
+      "selectNone": "Clear all data",
+      "selectionAll": "Select all data",
+      "sortTitle": "Sort",
+      "expand": "Expand row",
+      "collapse": "Collapse row",
+      "triggerDesc": "Click to sort descending",
+      "triggerAsc": "Click to sort ascending",
+      "cancelSort": "Click to cancel sorting"
     }
   }
 }

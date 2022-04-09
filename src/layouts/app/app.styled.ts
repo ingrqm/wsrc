@@ -8,4 +8,8 @@ export const Content = styled.div<{ isOpen: boolean }>`
   ${media.xs} {
     padding: 24px;
   }
+
+  > .ant-typography {
+    margin-bottom: 24px;
+  }
 `;

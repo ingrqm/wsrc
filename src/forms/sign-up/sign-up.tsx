@@ -39,7 +39,7 @@ const FormSignIn = () => {
     const payload: AuthSignUpProps = {
       [FormInputs.mail]: values[FormInputs.mail],
       [FormInputs.password]: values[FormInputs.password],
-      language_app: Language.en,
+      languageApp: Language.en,
       [FormInputs.language]: values[FormInputs.language],
       [FormInputs.name]: values[FormInputs.name],
       [FormInputs.lastName]: values[FormInputs.lastName],

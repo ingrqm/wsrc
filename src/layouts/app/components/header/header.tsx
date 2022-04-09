@@ -48,7 +48,9 @@ const Header = ({ isOpen, onOpen }: Props) => {
         <Dropdown
           overlay={
             <Menu>
-              <Menu.Item onClick={handleLogout}>{t('app.header.navbar.signOut')}</Menu.Item>
+              <Menu.Item onClick={handleLogout} key='signOut'>
+                {t('app.header.navbar.signOut')}
+              </Menu.Item>
             </Menu>
           }
           trigger={['click']}

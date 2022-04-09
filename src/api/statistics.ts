@@ -7,13 +7,13 @@ export type StatisticsDashboardProps = StatisticsDashboardReq;
 
 export type StatisticsDashboardRes =
   | {
-      results_waiting_for_review: number;
+      resultsWaitingForReview: number;
       reviews: number;
     }
   | {
       results: number;
-      results_without_arbiter: number;
-      results_waiting_for_review: number;
+      resultsWithoutArbiter: number;
+      resultsWaitingForReview: number;
       reviews: number;
       user: number;
     };
