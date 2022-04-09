@@ -62,18 +62,18 @@ const FormSignIn = () => {
         id: response.id,
         mail: response.mail,
         permission: response.permission,
-        language_app: response.language_app,
-        language_championship: response.language_championship,
+        languageApp: response.languageApp,
+        languageChampionship: response.languageChampionship,
         authorization: response.authorization,
         name: response.name,
-        last_name: response.last_name,
+        lastName: response.lastName,
         age: response.age,
         phone: response.phone,
         continent: response.continent,
         country: response.country,
         region: response.region,
         crew: response.crew,
-        datetime: response.datetime,
+        datetime: response.join,
       };
 
       setUser(user);

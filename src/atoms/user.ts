@@ -6,11 +6,11 @@ export type User = {
   id: number;
   mail: string;
   permission: Permission;
-  language_app: Language;
-  language_championship: LanguageChampionship;
+  languageApp: Language;
+  languageChampionship: LanguageChampionship;
   authorization: string;
   name: string;
-  last_name: string;
+  lastName: string;
   age: number;
   phone: string;
   continent: string;

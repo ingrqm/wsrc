@@ -1,4 +1,14 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { camelToSnakeCase, charToHtmlCode, htmlCodesToChar, snakeToCamelCase } from 'utils/convert';
+
+type DataRequestType =
+  | {
+      [key: string]: boolean | number | string | (string | boolean | number)[] | DataRequestType;
+    }
+  | boolean
+  | number
+  | string
+  | (string | boolean | number)[];
 
 type HeaderToken = {
   Authorization: string;
@@ -17,6 +27,64 @@ export type Request<T> = {
   data: T;
   message: string[];
 };
+
+const responseParser = (data?: DataRequestType): DataRequestType | undefined => {
+  switch (typeof data) {
+    case 'string':
+      return htmlCodesToChar(data);
+    case 'object':
+      if (Array.isArray(data)) {
+        return data.map((val) => responseParser(val)) as DataRequestType;
+      }
+      return Object.fromEntries(
+        Object.entries(data).map(([key, value]) => [snakeToCamelCase(key), responseParser(value)])
+      ) as DataRequestType;
+
+    default:
+      return data;
+  }
+};
+
+const requestParser = (data?: DataRequestType): DataRequestType | undefined => {
+  switch (typeof data) {
+    case 'string':
+      return charToHtmlCode(data);
+    case 'object':
+      if (Array.isArray(data)) {
+        return data.map((val) => requestParser(val)) as DataRequestType;
+      }
+      return Object.fromEntries(
+        Object.entries(data).map(([key, value]) => [camelToSnakeCase(key), requestParser(value)])
+      ) as DataRequestType;
+
+    default:
+      return data;
+  }
+};
+
+axios.interceptors.response.use(
+  ({ data, ...request }) => {
+    const mappedRequest = {
+      ...request,
+      data: responseParser(data),
+    };
+
+    return mappedRequest;
+  },
+  (error) => Promise.reject(error)
+);
+
+axios.interceptors.request.use(
+  ({ data, ...request }) => {
+    const mappedRequest = {
+      ...request,
+      data: requestParser(data),
+    };
+
+    return mappedRequest;
+  },
+  (error) => Promise.reject(error)
+);
 
 const getTokenHeader = (): HeaderToken => {
   const token = sessionStorage.getItem('authorization') || localStorage.getItem('authorization');

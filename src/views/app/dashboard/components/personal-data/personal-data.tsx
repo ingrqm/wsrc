@@ -43,7 +43,7 @@ const PersonalData = () => {
             <Input value={user.mail} disabled />
           </Form.Item>
           <Form.Item label={t('form.personalData.inputs.language.label')}>
-            <Select value={user.language_championship} options={languageOptions} disabled />
+            <Select value={user.languageChampionship} options={languageOptions} disabled />
           </Form.Item>
         </TabPane>
         <TabPane tab={t('app.dashboard.personalData.tabs.profile.title')} key='profile'>
@@ -51,7 +51,7 @@ const PersonalData = () => {
             <Input value={user.name} disabled />
           </Form.Item>
           <Form.Item label={t('form.personalData.inputs.lastName.label')}>
-            <Input value={user.last_name} disabled />
+            <Input value={user.lastName} disabled />
           </Form.Item>
           <Form.Item label={t('form.personalData.inputs.age.label')}>
             <Select options={ageOptions} value={user.age} disabled />

@@ -8,7 +8,6 @@ import { useQueryWithError } from 'hooks';
 import { t } from 'i18next';
 import { useRecoilValue } from 'recoil';
 import { appUrls } from 'urls';
-import { snakeToCamelCase } from 'utils/convert';
 import { AspectRatio } from 'components';
 import { PersonalData, Competition } from './components';
 import { Widget, Wrapper } from './dashboard.styled';
@@ -45,11 +44,9 @@ const Dashboard = () => {
           <Col span={24}>
             <Row gutter={[10, 10]} justify='center'>
               {Object.entries(statistics.data).map(([key, value]) => (
-                <Widget>
+                <Widget key={key}>
                   <Card>
-                    <Paragraph ellipsis={{ rows: 1, expandable: false }}>
-                      {t(`app.dashboard.widget.${snakeToCamelCase(key)}`)}
-                    </Paragraph>
+                    <Paragraph ellipsis={{ rows: 1, expandable: false }}>{t(`app.dashboard.widget.${key}`)}</Paragraph>
                     <Text type='secondary'>{value}</Text>
                   </Card>
                 </Widget>

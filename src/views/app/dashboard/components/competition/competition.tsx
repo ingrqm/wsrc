@@ -36,11 +36,12 @@ const Competition = () => {
 
   const calendarDays = useMemo(
     () =>
-      // eslint-disable-next-line no-nested-ternary
       days
-        ? days === 1
-          ? t('app.dashboard.competition.start.day', { days })
-          : t('app.dashboard.competition.start.days', { days })
+        ? `${
+            days === 1
+              ? t('app.dashboard.competition.start.day', { days })
+              : t('app.dashboard.competition.start.days', { days })
+          } `
         : '',
     [days]
   );
