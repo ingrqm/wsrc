@@ -111,8 +111,7 @@ const Users = () => {
         key: 'language',
         dataIndex: 'language',
         render: (language: LanguageChampionship) => languageOptions.find((lang) => lang.value === language)?.label,
-        // eslint-disable-next-line no-nested-ternary
-        sorter: (a: UsersListRow, b: UsersListRow) => (a.language === b.language ? 0 : a.language ? -1 : 1),
+        sorter: (a: UsersListRow, b: UsersListRow) => a.language.localeCompare(b.language),
         filters: languageOptions.map(({ label, value }) => ({
           text: <div className='inline-flex relative top-[4px]'>{label}</div>,
           value,
