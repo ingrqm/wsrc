@@ -68,11 +68,13 @@ export const apiUrls = {
     logout: `${API_URL}/auth/logout`,
     passwordRemind: `${API_URL}/auth/password-remind`,
     passwordRecovery: `${API_URL}/auth/password-recovery`,
+    passwordReset: `${API_URL}/auth/password-reset`,
   },
   statistics: {
     dashboard: `${API_URL}/statistics/dashboard`,
   },
   users: (id: string = '') => `${API_URL}/${generateApiPath('users/:id', { id })}`,
+  logs: (id: string = '') => `${API_URL}/${generateApiPath('logs/:id', { id })}`,
 };
 
 export const outerUrls = {};

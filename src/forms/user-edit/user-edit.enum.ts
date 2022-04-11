@@ -1,13 +1,6 @@
-export enum Views {
-  account = 'account',
-  profile = 'profile',
-  location = 'location',
-}
-
 export enum FormInputs {
   mail = 'mail',
-  password = 'password',
-  replyPassword = 'replyPassword',
+  permission = 'permission',
   languageChampionship = 'languageChampionship',
   name = 'name',
   lastName = 'lastName',
@@ -17,5 +10,11 @@ export enum FormInputs {
   country = 'country',
   region = 'region',
   crew = 'crew',
-  statute = 'statute',
+}
+
+export enum Tab {
+  account = 'account',
+  profile = 'profile',
+  location = 'location',
+  logs = 'logs',
 }

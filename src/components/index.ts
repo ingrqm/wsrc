@@ -4,3 +4,8 @@ export * from './aspect-ratio';
 export * from './filter-search';
 export { default as TimeCounter } from './time-counter';
 export { default as PrivateWrapper } from './private-wrapper';
+export { default as ContentWrapper } from './content-wrapper';
+export { default as BrowserIcon } from './browser-icon';
+export { default as PlatformIcon } from './platform-icon';
+export { default as DeviceIcon } from './device-icon';
+export { default as LogWithTranslation } from './log-with-translation';

@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Button, Form, FormInstance, Input, Select } from 'antd';
-import { languageOptions } from '../sign-up.data';
+import { languageChampionshipOptions } from 'data';
 import { FormInputs, Views } from '../sign-up.enum';
 import { validationSchema } from '../sign-up.schema';
 
@@ -16,7 +16,12 @@ const Account = ({ setView, form }: Props) => {
 
   const handleNextStep = useCallback(async () => {
     if (
-      await form.validateFields([FormInputs.mail, FormInputs.password, FormInputs.replyPassword, FormInputs.language])
+      await form.validateFields([
+        FormInputs.mail,
+        FormInputs.password,
+        FormInputs.replyPassword,
+        FormInputs.languageChampionship,
+      ])
     ) {
       setView(Views.profile);
     }
@@ -46,11 +51,16 @@ const Account = ({ setView, form }: Props) => {
         <Input.Password placeholder={t('form.signUp.inputs.replyPassword.placeholder')} prefix={<LockOutlined />} />
       </Form.Item>
       <Form.Item
-        name={FormInputs.language}
-        label={t('form.signUp.inputs.language.label')}
-        rules={validationSchema[FormInputs.language]}
+        name={FormInputs.languageChampionship}
+        label={t('form.signUp.inputs.languageChampionship.label')}
+        rules={validationSchema[FormInputs.languageChampionship]}
       >
-        <Select placeholder={t('form.signUp.inputs.language.placeholder')} options={languageOptions} />
+        <Select
+          placeholder={t('form.signUp.inputs.languageChampionship.placeholder')}
+          options={languageChampionshipOptions}
+          filterOption={(search, option) => option?.label.props.children[1].includes(search)}
+          showSearch
+        />
       </Form.Item>
       <Button type='primary' block onClick={handleNextStep}>
         {t('form.signUp.next.profile')}

@@ -1,0 +1,17 @@
+export enum Platform {
+  android = 'Android',
+  blackBerry = 'BlackBerry',
+  freeBSD = 'FreeBSD',
+  iOS = 'iOS',
+  linux = 'Linux',
+  macintosh = 'Macintosh',
+  netBSD = 'NetBSD',
+  nokia = 'Nokia',
+  openBSD = 'OpenBSD',
+  openSolaris = 'OpenSolaris',
+  symbian = 'Symbian',
+  unknown = 'unknown',
+  windows = 'Windows',
+  windowsCE = 'Windows CE',
+  windowsPhone = 'Windows Phone',
+}

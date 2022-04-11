@@ -1,8 +1,16 @@
 import Flags from 'country-flag-icons/react/3x2';
+import { LanguageApp, LanguageChampionship } from 'enums';
 import { StyledFlag } from 'components/language-picker/language-picker.styled';
-import { LanguageChampionship } from './sign-up.enum';
 
-export const languages = [
+export const languagesApp = [
+  {
+    flag: Flags.GB,
+    language: LanguageApp.en,
+    label: 'english',
+  },
+];
+
+export const languagesChampionship = [
   {
     flag: Flags.AR,
     language: LanguageChampionship.ar,
@@ -50,7 +58,7 @@ export const languages = [
   },
 ];
 
-export const languageOptions = languages.map(({ flag: Flag, label, language }) => ({
+export const languageAppOptions = languagesApp.map(({ flag: Flag, label, language }) => ({
   label: (
     <StyledFlag>
       <Flag />
@@ -60,6 +68,12 @@ export const languageOptions = languages.map(({ flag: Flag, label, language }) =
   value: language,
 }));
 
-export const ageOptions = Array.from({ length: 94 })
-  .map((_, index) => index + 6)
-  .map((age) => ({ value: age, label: age }));
+export const languageChampionshipOptions = languagesChampionship.map(({ flag: Flag, label, language }) => ({
+  label: (
+    <StyledFlag>
+      <Flag />
+      {label}
+    </StyledFlag>
+  ),
+  value: language,
+}));

@@ -2,9 +2,8 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Form, Input, Select, Tabs } from 'antd';
 import { userAtom } from 'atoms/user';
-import { continents, countries, regions } from 'data';
+import { continents, countries, regions, ageOptions, languageChampionshipOptions } from 'data';
 import { useRecoilValue } from 'recoil';
-import { ageOptions, languageOptions } from 'forms/sign-up/sign-up.data';
 
 const { TabPane } = Tabs;
 
@@ -42,8 +41,8 @@ const PersonalData = () => {
           <Form.Item label={t('form.personalData.inputs.mail.label')}>
             <Input value={user.mail} disabled />
           </Form.Item>
-          <Form.Item label={t('form.personalData.inputs.language.label')}>
-            <Select value={user.languageChampionship} options={languageOptions} disabled />
+          <Form.Item label={t('form.personalData.inputs.languageChampionship.label')}>
+            <Select value={user.languageChampionship} options={languageChampionshipOptions} disabled />
           </Form.Item>
         </TabPane>
         <TabPane tab={t('app.dashboard.personalData.tabs.profile.title')} key='profile'>

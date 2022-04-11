@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { fetchAuthSignIn } from 'api';
 import { timeAtom } from 'atoms/time';
 import { initialUserAtom, UserAtom, userAtom } from 'atoms/user';
+import { MutationKey } from 'enums';
 import { useMutationWithError } from 'hooks';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { appUrls } from 'urls';
@@ -19,7 +20,7 @@ const PrivateWrapper = ({ children }: Props) => {
   const { t } = useTranslation();
 
   const authSignInToken = useMutationWithError(fetchAuthSignIn, {
-    mutationKey: 'signInTokenMutate',
+    mutationKey: MutationKey.signInToken,
     errorMessage: t('form.signInToken.messages.error'),
     onError: () => {
       setUser(initialUserAtom);

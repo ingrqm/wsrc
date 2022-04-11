@@ -5,15 +5,14 @@ import { MoreOutlined, SearchOutlined } from '@ant-design/icons';
 import { Badge, Button, Dropdown, Menu, Table, Typography } from 'antd';
 import { fetchUsersList, UsersListRes, UsersListRow } from 'api';
 import { User, userAtom } from 'atoms/user';
+import { languageChampionshipOptions } from 'data';
 import { compareAsc } from 'date-fns';
-import { Permission } from 'enums';
+import { Permission, LanguageChampionship, QueryKey } from 'enums';
 import { useQueryWithError } from 'hooks';
 import { useRecoilValue } from 'recoil';
 import { appUrls } from 'urls';
-import { languageOptions } from 'forms/sign-up/sign-up.data';
-import { LanguageChampionship } from 'forms/sign-up/sign-up.enum';
+import { UserEdit } from 'forms';
 import { FilterSearch } from 'components';
-import { EditUserModal } from './components';
 
 const { Title } = Typography;
 
@@ -28,7 +27,7 @@ const Users = () => {
     [user.permission]
   );
 
-  const users = useQueryWithError<UsersListRes, Error>('usersList', fetchUsersList);
+  const users = useQueryWithError<UsersListRes, Error>(QueryKey.usersList, fetchUsersList);
 
   const columns = useMemo(
     () => [
@@ -69,8 +68,7 @@ const Users = () => {
       {
         title: t('app.users.table.header.permission'),
         key: 'permission',
-        dataIndex: 'permission',
-        render: (permission: string) => t(`data.permission.${permission}`),
+        render: ({ permission }: UsersListRow): string => t(`data.permission.${permission}`),
         sorter: (a: UsersListRow, b: UsersListRow) =>
           t(`data.permission.${a.permission}`).localeCompare(t(`data.permission.${b.permission}`)),
         filters: Object.values(Permission).map((item) => ({
@@ -82,8 +80,7 @@ const Users = () => {
       {
         title: t('app.users.table.header.active'),
         key: 'active',
-        dataIndex: 'active',
-        render: (active: boolean) => <Badge color={active ? 'green' : 'red'} />,
+        render: ({ active }: UsersListRow) => <Badge color={active ? 'green' : 'red'} />,
         // eslint-disable-next-line no-nested-ternary
         sorter: (a: UsersListRow, b: UsersListRow) => (a.active === b.active ? 0 : a.active ? -1 : 1),
         filters: [
@@ -107,12 +104,13 @@ const Users = () => {
         onFilter: (value: boolean | string | number, record: UsersListRow) => record.active === value,
       },
       {
-        title: t('app.users.table.header.language'),
+        title: t('app.users.table.header.languageChampionship'),
         key: 'language',
         dataIndex: 'language',
-        render: (language: LanguageChampionship) => languageOptions.find((lang) => lang.value === language)?.label,
+        render: (language: LanguageChampionship) =>
+          languageChampionshipOptions.find((lang) => lang.value === language)?.label,
         sorter: (a: UsersListRow, b: UsersListRow) => a.language.localeCompare(b.language),
-        filters: languageOptions.map(({ label, value }) => ({
+        filters: languageChampionshipOptions.map(({ label, value }) => ({
           text: <div className='inline-flex relative top-[4px]'>{label}</div>,
           value,
         })),
@@ -136,8 +134,7 @@ const Users = () => {
       {
         title: t('app.users.table.header.actions'),
         key: 'action',
-        dataIndex: 'id',
-        render: (id: number) => (
+        render: ({ id }: UsersListRow) => (
           <Dropdown
             overlay={
               <Menu>
@@ -174,7 +171,7 @@ const Users = () => {
         locale={t('components.table', { returnObjects: true })}
         rowKey='id'
       />
-      <EditUserModal userId={userId} setUserId={setUserId} />
+      <UserEdit userId={userId} setUserId={setUserId} />
     </>
   );
 };
