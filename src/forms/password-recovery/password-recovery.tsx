@@ -11,6 +11,7 @@ import {
   fetchAuthPasswordRecovery,
   fetchVerifyPasswordToken,
 } from 'api';
+import { MutationKey } from 'enums';
 import { useMutationWithError, userParams } from 'hooks';
 import { appUrls } from 'urls';
 import { FormInputs } from './password-recovery.enum';
@@ -29,7 +30,7 @@ const FormPasswordRecovery = () => {
   const verify = useMutationWithError<AuthVerifyPasswordTokenRet, Error, AuthVerifyPasswordTokenProps>(
     (payload) => fetchVerifyPasswordToken(payload),
     {
-      mutationKey: 'verifyPasswordTokenMutate',
+      mutationKey: MutationKey.verifyPasswordToken,
       loadingMessage: t('form.verifyPasswordToken.messages.loading'),
       errorMessage: t('form.verifyPasswordToken.messages.error'),
       successMessage: t('form.verifyPasswordToken.messages.success'),
@@ -42,7 +43,7 @@ const FormPasswordRecovery = () => {
   const passwordRecovery = useMutationWithError<AuthPasswordRecoveryRet, Error, AuthPasswordRecoveryProps>(
     (payload) => fetchAuthPasswordRecovery(payload),
     {
-      mutationKey: 'passwordRecoveryMutate',
+      mutationKey: MutationKey.passwordRecovery,
       loadingMessage: t('form.passwordRecovery.messages.loading'),
       errorMessage: t('form.passwordRecovery.messages.error'),
       successMessage: t('form.passwordRecovery.messages.success'),

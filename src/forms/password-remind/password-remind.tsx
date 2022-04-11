@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { MailOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import { AuthPasswordRemindProps, AuthPasswordRemindRet, fetchAuthPasswordRemind } from 'api';
+import { MutationKey } from 'enums';
 import { useMutationWithError } from 'hooks';
 import { appUrls } from 'urls';
 import { FormInputs } from './password-remind.enum';
@@ -16,7 +17,7 @@ const FormPasswordRemind = () => {
   const passwordRemind = useMutationWithError<AuthPasswordRemindRet, Error, AuthPasswordRemindProps>(
     (payload) => fetchAuthPasswordRemind(payload),
     {
-      mutationKey: 'passwordRemindMutate',
+      mutationKey: MutationKey.passwordRemind,
       loadingMessage: t('form.passwordRemind.messages.loading'),
       errorMessage: t('form.passwordRemind.messages.error'),
       successMessage: t('form.passwordRemind.messages.success'),

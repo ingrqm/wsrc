@@ -2,15 +2,15 @@
 import { Dropdown, Menu } from 'antd';
 import { LanguageIcon } from 'assets/images';
 import { configAtom } from 'atoms/config';
-import { Language } from 'enums';
+import { languagesApp } from 'data';
+import { LanguageApp } from 'enums';
 import { useRecoilState } from 'recoil';
 import i18n from 'utils/i18next';
-import { languages } from './language-picker.data';
 import { StyledFlag, StyledLanguageIcon } from './language-picker.styled';
 
 const LanguagePicker = () => {
   const [config, setConfig] = useRecoilState(configAtom);
-  const handleChangeLanguage = (language: Language) => {
+  const handleChangeLanguage = (language: LanguageApp) => {
     const newConfig = { ...config, language };
 
     i18n.changeLanguage(language);
@@ -25,7 +25,7 @@ const LanguagePicker = () => {
     <Dropdown
       overlay={
         <Menu>
-          {languages.map(({ flag: Flag, language, label }) => (
+          {languagesApp.map(({ flag: Flag, language, label }) => (
             <Menu.Item key={language} onClick={() => handleChangeLanguage(language)}>
               <StyledFlag>
                 <Flag />

@@ -3,8 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Form, Steps } from 'antd';
 import { AuthSignUpProps, AuthSignUpRet, fetchAuthSignUp } from 'api';
-import { Language, MutationKey } from 'enums';
+import { configAtom } from 'atoms/config';
+import { MutationKey } from 'enums';
 import { useMutationWithError } from 'hooks';
+import { useRecoilValue } from 'recoil';
 import { appUrls } from 'urls';
 import { Account, Location, Profile } from './components';
 import { FormInputs, Views } from './sign-up.enum';
@@ -21,6 +23,7 @@ const FormSignIn = () => {
   const [values, setValues] = useState<FormTypes>(initialValues as FormTypes);
   const [view, setView] = useState<Views>(Views.account);
   const navigate = useNavigate();
+  const config = useRecoilValue(configAtom);
 
   const currentStep = steps.findIndex((key) => key === view);
 
@@ -39,8 +42,8 @@ const FormSignIn = () => {
     const payload: AuthSignUpProps = {
       [FormInputs.mail]: values[FormInputs.mail],
       [FormInputs.password]: values[FormInputs.password],
-      languageApp: Language.en,
-      [FormInputs.language]: values[FormInputs.language],
+      languageApp: config.language,
+      [FormInputs.languageChampionship]: values[FormInputs.languageChampionship],
       [FormInputs.name]: values[FormInputs.name],
       [FormInputs.lastName]: values[FormInputs.lastName],
       [FormInputs.age]: values[FormInputs.age],

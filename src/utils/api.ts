@@ -28,7 +28,7 @@ export type Request<T> = {
   message: string[];
 };
 
-const responseParser = (data?: DataRequestType): DataRequestType | undefined => {
+const responseParser = (data: DataRequestType | undefined | null): DataRequestType | undefined | null => {
   switch (typeof data) {
     case 'string':
       return htmlCodesToChar(data);
@@ -36,16 +36,18 @@ const responseParser = (data?: DataRequestType): DataRequestType | undefined => 
       if (Array.isArray(data)) {
         return data.map((val) => responseParser(val)) as DataRequestType;
       }
-      return Object.fromEntries(
-        Object.entries(data).map(([key, value]) => [snakeToCamelCase(key), responseParser(value)])
-      ) as DataRequestType;
+      return data
+        ? (Object.fromEntries(
+            Object.entries(data).map(([key, value]) => [snakeToCamelCase(key), responseParser(value)])
+          ) as DataRequestType)
+        : data;
 
     default:
       return data;
   }
 };
 
-const requestParser = (data?: DataRequestType): DataRequestType | undefined => {
+const requestParser = (data: DataRequestType | undefined | null): DataRequestType | undefined | null => {
   switch (typeof data) {
     case 'string':
       return charToHtmlCode(data);
@@ -53,9 +55,11 @@ const requestParser = (data?: DataRequestType): DataRequestType | undefined => {
       if (Array.isArray(data)) {
         return data.map((val) => requestParser(val)) as DataRequestType;
       }
-      return Object.fromEntries(
-        Object.entries(data).map(([key, value]) => [camelToSnakeCase(key), requestParser(value)])
-      ) as DataRequestType;
+      return data
+        ? (Object.fromEntries(
+            Object.entries(data).map(([key, value]) => [camelToSnakeCase(key), requestParser(value)])
+          ) as DataRequestType)
+        : data;
 
     default:
       return data;

@@ -1,8 +1,8 @@
-import { Language } from 'enums';
+import { LanguageApp } from 'enums';
 import en from './en/translation.json';
 
 export default {
-  [Language.en]: {
+  [LanguageApp.en]: {
     translation: en,
   },
 };

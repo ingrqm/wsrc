@@ -1,10 +1,9 @@
-import { LanguageChampionship } from 'enums';
-import { FormInputs } from './sign-up.enum';
+import { Permission, LanguageChampionship } from 'enums';
+import { FormInputs } from './user-edit.enum';
 
 export type FormTypes = {
   [FormInputs.mail]: string;
-  [FormInputs.password]: string;
-  [FormInputs.replyPassword]: string;
+  [FormInputs.permission]: Permission;
   [FormInputs.languageChampionship]: LanguageChampionship;
   [FormInputs.name]: string;
   [FormInputs.lastName]: string;
@@ -14,5 +13,4 @@ export type FormTypes = {
   [FormInputs.country]: string;
   [FormInputs.region]: string;
   [FormInputs.crew]: string;
-  [FormInputs.statute]: boolean;
 };

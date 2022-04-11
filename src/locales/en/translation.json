@@ -1,5 +1,19 @@
 {
   "data": {
+    "unknown": "Unknown",
+    "logs": {
+      "user-edit": "User data has been edited",
+      "user-edit-by-user": "User data has been edited by {{fullName}}",
+      "password-reset-by-user": "Password reset by {{fullName}}",
+      "password-recovery-by-link": "Password changed via link",
+      "password-recovery-by-user": "Password changed by {{fullName}}",
+      "password-remind": "Password change link sent",
+      "activation-by-link": "Account activated via link",
+      "activation-by-user": "Account activated by {{fullName}}",
+      "logout": "Logged out",
+      "sign-in": "Sign in",
+      "sign-up": "Account created"
+    },
     "continent": {
       "AF": "Africa",
       "AN": "Antarctica",
@@ -84,7 +98,7 @@
           "mail": "e-mail",
           "permission": "permission",
           "active": "active account",
-          "language": "language",
+          "languageChampionship": "language",
           "crew": "crew",
           "actions": "actions",
           "action": {
@@ -204,7 +218,7 @@
         "mail": {
           "label": "E-mail"
         },
-        "language": {
+        "languageChampionship": {
           "label": "Language"
         },
         "name": {
@@ -357,7 +371,7 @@
             "match": "Passwords do not match"
           }
         },
-        "language": {
+        "languageChampionship": {
           "label": "Language",
           "placeholder": "Select your language",
           "validation": {
@@ -446,6 +460,107 @@
     "signInToken": {
       "messages": {
         "error": "Session has expired"
+      }
+    },
+    "editUser": {
+      "submit": "Edit",
+      "tabs": {
+        "account": {
+          "title": "Account"
+        },
+        "profile": {
+          "title": "Profile"
+        },
+        "location": {
+          "title": "Location"
+        },
+        "logs": {
+          "title": "Logs"
+        }
+      },
+      "table": {
+        "header": {
+          "browser": "browser",
+          "device": "device",
+          "platform": "platform",
+          "ip": "IP address",
+          "datetime": "date",
+          "action": "action"
+        }
+      },
+      "inputs": {
+        "activeAccount": {
+          "placeholder": "Active account"
+        },
+        "defaultPassword": {
+          "placeholder": "default password"
+        },
+        "mail": {
+          "placeholder": "Type e-mail",
+          "label": "E-mail"
+        },
+        "languageChampionship": {
+          "label": "Language",
+          "placeholder": "Select language"
+        },
+        "name": {
+          "label": "Name",
+          "placeholder": "Type name"
+        },
+        "lastName": {
+          "label": "Last name",
+          "placeholder": "Type last name"
+        },
+        "age": {
+          "label": "Age",
+          "placeholder": "Select age"
+        },
+        "phone": {
+          "label": "Phone number",
+          "placeholder": "Type phone number"
+        },
+        "continent": {
+          "label": "Continent",
+          "placeholder": "Select continent"
+        },
+        "country": {
+          "label": "Country",
+          "placeholder": "Select country"
+        },
+        "region": {
+          "label": "Region",
+          "placeholder": "Select region"
+        },
+        "crew": {
+          "label": "Crew",
+          "placeholder": "Type crew name"
+        },
+        "permission": {
+          "label": "Permission",
+          "placeholder": "Select permission"
+        }
+      },
+      "verifyAccount": "verify e-mail",
+      "defaultPassword": "reset password",
+      "modal": {
+        "confirm": {
+          "title": "User data has changed",
+          "content": "While editing the form, user data on the server changed. Do you want to refresh the data and lose the changes or save the current progress?",
+          "okText": "Save",
+          "cancelText": "Refresh"
+        }
+      },
+      "messages": {
+        "loading": "Editing user is in progress",
+        "error": "Failed to edit user",
+        "success": "User data has been changed"
+      }
+    },
+    "passwordReset": {
+      "messages": {
+        "success": "password reset",
+        "error": "Password reset failed",
+        "loading": "Password reset is in progress"
       }
     }
   },

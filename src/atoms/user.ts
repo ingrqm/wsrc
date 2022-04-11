@@ -1,12 +1,11 @@
-import { Permission, Language } from 'enums';
+import { LanguageApp, LanguageChampionship, Permission } from 'enums';
 import { atom } from 'recoil';
-import { LanguageChampionship } from 'forms/sign-up/sign-up.enum';
 
 export type User = {
   id: number;
   mail: string;
   permission: Permission;
-  languageApp: Language;
+  languageApp: LanguageApp;
   languageChampionship: LanguageChampionship;
   authorization: string;
   name: string;
@@ -26,6 +25,7 @@ export type UserAtom = {
 
 export const initialUserAtom: UserAtom = {
   isLoggedIn: false,
+  languageApp: LanguageApp.en,
 };
 
 export const userAtom = atom({

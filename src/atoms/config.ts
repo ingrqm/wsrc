@@ -1,8 +1,8 @@
-import { Language } from 'enums';
+import { LanguageApp } from 'enums';
 import { atom } from 'recoil';
 
 type Config = {
-  language: Language;
+  language: LanguageApp;
 };
 
 const localStorageConfig = localStorage.getItem('config');
@@ -10,7 +10,7 @@ const localStorageConfig = localStorage.getItem('config');
 export const defaultConfig: Config = localStorageConfig
   ? (JSON.parse(localStorageConfig) as Config)
   : {
-      language: Language.en,
+      language: LanguageApp.en,
     };
 
 export const configAtom = atom({

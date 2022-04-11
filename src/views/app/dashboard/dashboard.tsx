@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Card, Col, Row, Typography } from 'antd';
 import { fetchStatisticsDashboard, StatisticsDashboardRet } from 'api';
 import { User, userAtom } from 'atoms/user';
-import { Permission } from 'enums';
+import { Permission, QueryKey } from 'enums';
 import { useQueryWithError } from 'hooks';
 import { t } from 'i18next';
 import { useRecoilValue } from 'recoil';
@@ -19,9 +19,13 @@ const Dashboard = () => {
   const user = useRecoilValue(userAtom) as User;
   const navigate = useNavigate();
 
-  const statistics = useQueryWithError<StatisticsDashboardRet, Error>('statisticsDashboard', fetchStatisticsDashboard, {
-    enabled: [Permission.arbiter, Permission.admin, Permission.superAdmin].includes(user?.permission),
-  });
+  const statistics = useQueryWithError<StatisticsDashboardRet, Error>(
+    QueryKey.statisticsDashboard,
+    fetchStatisticsDashboard,
+    {
+      enabled: [Permission.arbiter, Permission.admin, Permission.superAdmin].includes(user?.permission),
+    }
+  );
 
   const isAuthorized = useMemo(
     () => [Permission.user, Permission.arbiter, Permission.admin, Permission.superAdmin].includes(user?.permission),

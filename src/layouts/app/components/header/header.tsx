@@ -3,6 +3,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/
 import { Dropdown, Menu, Typography } from 'antd';
 import { AuthSignOutProps, AuthSignOutRet, fetchAuthSignOut } from 'api';
 import { initialUserAtom, userAtom } from 'atoms/user';
+import { MutationKey } from 'enums';
 import { useMutationWithError } from 'hooks';
 import { t } from 'i18next';
 import { useRecoilState } from 'recoil';
@@ -23,7 +24,7 @@ const Header = ({ isOpen, onOpen }: Props) => {
   const location = useLocation();
 
   const signOut = useMutationWithError<AuthSignOutRet, Error, AuthSignOutProps>(() => fetchAuthSignOut(), {
-    mutationKey: 'signOutMutate',
+    mutationKey: MutationKey.signOut,
     loadingMessage: t('form.signOut.messages.loading'),
     errorMessage: t('form.signOut.messages.error'),
     successMessage: t('form.signOut.messages.success'),

@@ -1,7 +1,8 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { PhoneOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Col, Form, FormInstance, Input, Row, Select } from 'antd';
-import { ageOptions } from '../sign-up.data';
+import { ageOptions } from 'data';
 import { FormInputs, Views } from '../sign-up.enum';
 import { validationSchema } from '../sign-up.schema';
 
@@ -26,14 +27,14 @@ const Profile = ({ form, setView }: Props) => {
         label={t('form.signUp.inputs.name.label')}
         rules={validationSchema[FormInputs.name]}
       >
-        <Input placeholder={t('form.signUp.inputs.name.placeholder')} />
+        <Input placeholder={t('form.signUp.inputs.name.placeholder')} prefix={<UserOutlined />} />
       </Form.Item>
       <Form.Item
         name={FormInputs.lastName}
         label={t('form.signUp.inputs.lastName.label')}
         rules={validationSchema[FormInputs.lastName]}
       >
-        <Input placeholder={t('form.signUp.inputs.lastName.placeholder')} />
+        <Input placeholder={t('form.signUp.inputs.lastName.placeholder')} prefix={<UserOutlined />} />
       </Form.Item>
       <Form.Item
         name={FormInputs.age}
@@ -47,7 +48,7 @@ const Profile = ({ form, setView }: Props) => {
         label={t('form.signUp.inputs.phone.label')}
         rules={validationSchema[FormInputs.phone]}
       >
-        <Input placeholder={t('form.signUp.inputs.phone.placeholder')} />
+        <Input placeholder={t('form.signUp.inputs.phone.placeholder')} prefix={<PhoneOutlined />} />
       </Form.Item>
       <Row gutter={[10, 0]}>
         <Col span={12}>

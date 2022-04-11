@@ -1,7 +1,6 @@
-import { Language, Permission } from 'enums';
+import { LanguageApp, LanguageChampionship, Permission } from 'enums';
 import { apiUrls } from 'urls';
 import { Methods, Request, request } from 'utils/api';
-import { LanguageChampionship } from 'forms/sign-up/sign-up.enum';
 
 export type AuthActivationReq = {
   key: string;
@@ -34,7 +33,7 @@ export type AuthSignInRes = {
   id: number;
   mail: string;
   permission: Permission;
-  languageApp: Language;
+  languageApp: LanguageApp;
   languageChampionship: LanguageChampionship;
   authorization: string;
   name: string;
@@ -64,7 +63,7 @@ export const fetchAuthSignIn = async (payload: AuthSignInProps): Promise<AuthSig
 export type AuthSignUpReq = {
   mail: string;
   password: string;
-  languageApp: Language;
+  languageApp: LanguageApp;
   languageChampionship: LanguageChampionship;
   name: string;
   lastName: string;
@@ -154,6 +153,30 @@ export const fetchAuthPasswordRecovery = async (
 
   const { data } = await request<AuthPasswordRecoveryReq, Request<AuthPasswordRecoveryRes>>(
     passwordRecovery,
+    Methods.post,
+    payload
+  );
+
+  return data.data;
+};
+
+export type AuthPasswordResetReq = {
+  id: number;
+};
+
+export type AuthPasswordResetProps = AuthPasswordResetReq;
+
+export type AuthPasswordResetRes = unknown;
+
+export type AuthPasswordResetRet = AuthPasswordResetRes;
+
+export const fetchAuthPasswordReset = async (payload: AuthPasswordResetProps): Promise<AuthPasswordResetRet> => {
+  const {
+    auth: { passwordReset },
+  } = apiUrls;
+
+  const { data } = await request<AuthPasswordResetReq, Request<AuthPasswordResetRes>>(
+    passwordReset,
     Methods.post,
     payload
   );

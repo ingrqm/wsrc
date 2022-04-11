@@ -1,7 +1,7 @@
 import { Rule } from 'antd/lib/form';
 import i18n from 'utils/i18next';
-import { FormInputs } from './sign-up.enum';
-import { FormTypes } from './sign-up.types';
+import { FormInputs } from './user-edit.enum';
+import { FormTypes } from './user-edit.types';
 
 type ValidationSchema = {
   [key: string]: Rule[];
@@ -19,31 +19,6 @@ export const validationSchema: ValidationSchema = {
       required: true,
       message: t(`form.signUp.inputs.mail.validation.required`),
     },
-  ],
-  [FormInputs.password]: [
-    {
-      required: true,
-      message: t(`form.signUp.inputs.password.validation.required`),
-    },
-    {
-      min: 6,
-      message: t(`form.signUp.inputs.password.validation.min`),
-    },
-  ],
-  [FormInputs.replyPassword]: [
-    {
-      required: true,
-      message: t(`form.signUp.inputs.password.validation.required`),
-    },
-    {
-      min: 6,
-      message: t(`form.signUp.inputs.password.validation.min`),
-    },
-    ({ getFieldValue }: { getFieldValue: (name: string) => string }) => ({
-      validator: (_: any, value: string): Promise<void> =>
-        !value || getFieldValue(FormInputs.password) === value ? Promise.resolve() : Promise.reject(new Error()),
-      message: t('form.signUp.inputs.replyPassword.validation.match'),
-    }),
   ],
   [FormInputs.languageChampionship]: [
     {
@@ -91,12 +66,6 @@ export const validationSchema: ValidationSchema = {
     {
       required: true,
       message: t(`form.signUp.inputs.region.validation.required`),
-    },
-  ],
-  [FormInputs.statute]: [
-    {
-      validator: (_, value) => (value ? Promise.resolve() : Promise.reject()),
-      message: t(`form.signUp.inputs.statute.validation.required`),
     },
   ],
 };

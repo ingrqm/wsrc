@@ -13,6 +13,7 @@ import {
 } from 'api';
 import { timeAtom } from 'atoms/time';
 import { initialUserAtom, UserAtom, userAtom } from 'atoms/user';
+import { MutationKey } from 'enums';
 import { useMutationWithError, userParams } from 'hooks';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { appUrls } from 'urls';
@@ -33,21 +34,18 @@ const FormSignIn = () => {
   const navigate = useNavigate();
   const { key } = userParams<Params>();
 
-  const activation = useMutationWithError<AuthActivationRes, Error, AuthActivationProps>(
-    (payload) => fetchAuthActivation(payload),
-    {
-      mutationKey: 'activationMutate',
-      loadingMessage: t('form.activation.messages.loading'),
-      errorMessage: t('form.activation.messages.error'),
-      successMessage: t('form.activation.messages.success'),
-      onSettled: () => {
-        navigate(appUrls.auth.signIn, { replace: true });
-      },
-    }
-  );
+  const activation = useMutationWithError<AuthActivationRes, Error, AuthActivationProps>(fetchAuthActivation, {
+    mutationKey: MutationKey.activation,
+    loadingMessage: t('form.activation.messages.loading'),
+    errorMessage: t('form.activation.messages.error'),
+    successMessage: t('form.activation.messages.success'),
+    onSettled: () => {
+      navigate(appUrls.auth.signIn, { replace: true });
+    },
+  });
 
   const signIn = useMutationWithError<AuthSignInRet, Error, AuthSignInProps>((payload) => fetchAuthSignIn(payload), {
-    mutationKey: 'signInMutate',
+    mutationKey: MutationKey.signIn,
     loadingMessage: t('form.signIn.messages.loading'),
     errorMessage: t('form.signIn.messages.error'),
     successMessage: t('form.signIn.messages.success'),
