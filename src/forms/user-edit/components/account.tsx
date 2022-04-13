@@ -78,13 +78,18 @@ const Account = ({ values, user: userQuery }: Props) => {
         label={t('form.editUser.inputs.mail.label')}
         rules={validationSchema[FormInputs.mail]}
       >
-        <Input placeholder={t('form.editUser.inputs.mail.placeholder')} prefix={<MailOutlined />} />
+        <Input
+          placeholder={t('form.editUser.inputs.mail.placeholder')}
+          prefix={<MailOutlined />}
+          disabled={user.permission !== Permission.superAdmin}
+        />
       </Form.Item>
       <Form.Item name={FormInputs.languageChampionship} label={t('form.editUser.inputs.languageChampionship.label')}>
         <Select
           options={languageChampionshipOptions}
           placeholder={t('form.editUser.inputs.languageChampionship.placeholder')}
           filterOption={(search, option) => option?.label.props.children[1].includes(search)}
+          disabled={user.permission !== Permission.superAdmin}
           showSearch
         />
       </Form.Item>
@@ -92,10 +97,10 @@ const Account = ({ values, user: userQuery }: Props) => {
         <Select
           options={permissionOptions}
           placeholder={t('form.editUser.inputs.permission.placeholder')}
-          showSearch
           disabled={
             user.permission !== Permission.superAdmin && values[FormInputs.permission] === Permission.superAdmin
           }
+          showSearch
         />
       </Form.Item>
       <Row>
@@ -104,7 +109,7 @@ const Account = ({ values, user: userQuery }: Props) => {
           <div className='flex items-center justify-between'>
             <Badge className='ml-3' color={userQuery.data?.activeAccount ? 'green' : 'red'} />
             {!userQuery.data?.activeAccount && (
-              <Button type='link' onClick={handleVerifyMail}>
+              <Button type='link' onClick={handleVerifyMail} disabled={user.permission !== Permission.superAdmin}>
                 {t('form.editUser.verifyAccount')}
               </Button>
             )}
@@ -115,7 +120,7 @@ const Account = ({ values, user: userQuery }: Props) => {
           <div className='flex items-center justify-between'>
             <Badge className='ml-3' color={userQuery.data?.defaultPassword ? 'green' : 'red'} />
             {!userQuery.data?.defaultPassword && (
-              <Button type='link' onClick={handlePasswordReset}>
+              <Button type='link' onClick={handlePasswordReset} disabled={user.permission !== Permission.superAdmin}>
                 {t('form.editUser.defaultPassword')}
               </Button>
             )}

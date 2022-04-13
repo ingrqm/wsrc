@@ -2,7 +2,11 @@
   "data": {
     "unknown": "Unknown",
     "logs": {
+      "end-competition": "The competition has ended",
+      "start-test": "The test has started filling",
+      "start-reading": "The competition has started",
       "user-edit": "User data has been edited",
+      "user-delete-by-user": "User has been removed by {{fullName}}",
       "user-edit-by-user": "User data has been edited by {{fullName}}",
       "password-reset-by-user": "Password reset by {{fullName}}",
       "password-recovery-by-link": "Password changed via link",
@@ -102,7 +106,8 @@
           "crew": "crew",
           "actions": "actions",
           "action": {
-            "edit": "edit"
+            "edit": "edit",
+            "delete": "delete"
           },
           "join": "join"
         }
@@ -562,6 +567,42 @@
         "error": "Password reset failed",
         "loading": "Password reset is in progress"
       }
+    },
+    "startCompetition": {
+      "messages": {
+        "loading": "The competition is starting",
+        "error": "The competition could not start",
+        "success": "The competition has started"
+      }
+    },
+    "startTest": {
+      "messages": {
+        "loading": "The test is starting",
+        "error": "The test could not be started",
+        "success": "Test started"
+      }
+    },
+    "endCompetition": {
+      "messages": {
+        "loading": "Saving answers is in progress",
+        "error": "Answers could not be saved",
+        "success": "The answers was saved"
+      }
+    },
+    "deleteUser": {
+      "messages": {
+        "loading": "Account is being deleted",
+        "error": "Account could not be deleted",
+        "success": "Account has been deleted"
+      },
+      "modal": {
+        "confirm": {
+          "cancelText": "No",
+          "okText": "Yes",
+          "content": "You are not able to undo this step",
+          "title": "Are you sure to delete account?"
+        }
+      }
     }
   },
   "meta": {
@@ -636,6 +677,40 @@
       "triggerDesc": "Click to sort descending",
       "triggerAsc": "Click to sort ascending",
       "cancelSort": "Click to cancel sorting"
+    }
+  },
+  "championship": {
+    "reading": {
+      "navigation": {
+        "chapter": "chapter",
+        "firstPage": "first page",
+        "lastPage": "last page",
+        "startTest": "start test",
+        "page": "page"
+      },
+      "modal": {
+        "confirm": {
+          "title": "Are you sure to start test?",
+          "content": "You are not able to undo this step",
+          "okText": "Yes",
+          "cancelText": "no"
+        }
+      }
+    },
+    "test": {
+      "modal": {
+        "confirm": {
+          "title": "Are you sure to finish test?",
+          "content": "You are not able to undo this step",
+          "okText": "Yes",
+          "cancelText": "No"
+        }
+      },
+      "navigation": {
+        "finish": "finish",
+        "next": "next",
+        "previous": "previous"
+      }
     }
   }
 }

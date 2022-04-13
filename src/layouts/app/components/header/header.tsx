@@ -1,5 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Dropdown, Menu, Typography } from 'antd';
 import { AuthSignOutProps, AuthSignOutRet, fetchAuthSignOut } from 'api';
 import { initialUserAtom, userAtom } from 'atoms/user';
@@ -50,7 +52,7 @@ const Header = ({ isOpen, onOpen }: Props) => {
           overlay={
             <Menu>
               <Menu.Item onClick={handleLogout} key='signOut'>
-                {t('app.header.navbar.signOut')}
+                <FontAwesomeIcon className='mr-1' icon={faArrowRightFromBracket} /> {t('app.header.navbar.signOut')}
               </Menu.Item>
             </Menu>
           }

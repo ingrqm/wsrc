@@ -2,7 +2,10 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TeamOutlined } from '@ant-design/icons';
 import { Form, Input, Select } from 'antd';
+import { userAtom } from 'atoms/user';
 import { continents, countries, regions } from 'data';
+import { Permission } from 'enums';
+import { useRecoilValue } from 'recoil';
 import { FormInputs } from '../user-edit.enum';
 import { validationSchema } from '../user-edit.schema';
 import { FormTypes } from '../user-edit.types';
@@ -14,6 +17,7 @@ type Props = {
 
 const Location = ({ values, handleValuesChange }: Props) => {
   const { t } = useTranslation();
+  const user = useRecoilValue(userAtom);
 
   const continentOptions = useMemo(
     () => continents.map(({ code }) => ({ value: code, label: t(`data.continent.${code}`) })),
@@ -48,6 +52,7 @@ const Location = ({ values, handleValuesChange }: Props) => {
           options={continentOptions}
           optionFilterProp='label'
           onChange={() => handleValuesChange({ [FormInputs.country]: undefined, [FormInputs.region]: undefined })}
+          disabled={user.permission !== Permission.superAdmin}
           showSearch
         />
       </Form.Item>
@@ -61,7 +66,7 @@ const Location = ({ values, handleValuesChange }: Props) => {
           options={countryOptions}
           optionFilterProp='label'
           onChange={() => handleValuesChange({ [FormInputs.region]: undefined })}
-          disabled={countryOptions.length === 0}
+          disabled={countryOptions.length === 0 || user.permission !== Permission.superAdmin}
           showSearch
         />
       </Form.Item>
@@ -74,7 +79,7 @@ const Location = ({ values, handleValuesChange }: Props) => {
           placeholder={t('form.editUser.inputs.region.placeholder')}
           options={regionOptions}
           optionFilterProp='label'
-          disabled={regionOptions.length === 0}
+          disabled={regionOptions.length === 0 || user.permission !== Permission.superAdmin}
           showSearch
         />
       </Form.Item>
@@ -88,7 +93,11 @@ const Location = ({ values, handleValuesChange }: Props) => {
         }
         rules={validationSchema[FormInputs.crew]}
       >
-        <Input placeholder={t('form.editUser.inputs.crew.placeholder')} prefix={<TeamOutlined />} />
+        <Input
+          placeholder={t('form.editUser.inputs.crew.placeholder')}
+          prefix={<TeamOutlined />}
+          disabled={user.permission !== Permission.superAdmin}
+        />
       </Form.Item>
     </>
   );

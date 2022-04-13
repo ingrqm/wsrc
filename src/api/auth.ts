@@ -31,6 +31,10 @@ export type AuthSignInProps = AuthSignInReq;
 
 export type AuthSignInRes = {
   id: number;
+  idResult?: number;
+  startReading?: Date;
+  startTest?: Date | null;
+  endTest?: Date | null;
   mail: string;
   permission: Permission;
   languageApp: LanguageApp;

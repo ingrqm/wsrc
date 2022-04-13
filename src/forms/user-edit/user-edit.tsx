@@ -135,6 +135,7 @@ const UserEdit = ({ userId, setUserId }: Props) => {
 
   const handleUserEditModalCancel = useCallback(() => {
     form.resetFields();
+    setTabKey(Tab.account);
     setUserId(undefined);
     setIsNewData(false);
     handleValuesChange();

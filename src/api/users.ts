@@ -127,3 +127,21 @@ export const fetchUserEdit = async ({ id, ...payload }: UserEditProps): Promise<
 
   return data?.data;
 };
+
+export type UserDeleteReq = unknown;
+
+export type UserDeleteProps = {
+  id: number;
+};
+
+export type UserDeleteRes = unknown;
+
+export type UserDeleteRet = UserDeleteRes;
+
+export const fetchUserDelete = async ({ id }: UserDeleteProps): Promise<UserDeleteRet> => {
+  const { users } = apiUrls;
+
+  const { data } = await request<UserDeleteReq, Request<UserDeleteRes>>(users(id.toString()), Methods.delete);
+
+  return data?.data;
+};

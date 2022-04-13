@@ -3,6 +3,7 @@ export enum QueryKey {
   userLogs = 'userLogs',
   usersList = 'usersList',
   statisticsDashboard = 'statisticsDashboard',
+  resultDetails = 'resultDetails',
 }
 
 export enum MutationKey {
@@ -17,4 +18,8 @@ export enum MutationKey {
   activation = 'activationMutate',
   activationByUser = 'activationByUserMutate',
   userEdit = 'userEditMutate',
+  userDelete = 'userDeleteMutate',
+  startCompetition = 'startCompetition',
+  startTest = 'startTest',
+  endCompetition = 'endCompetition',
 }

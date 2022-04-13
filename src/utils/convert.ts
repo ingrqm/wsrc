@@ -27,3 +27,5 @@ export const charToHtmlCode = (string: string): string => {
 
   return newString;
 };
+
+export const leadZero = (number: number): string => `${number}`.padStart(2, '0');
