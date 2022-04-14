@@ -42,10 +42,14 @@ const Test = () => {
     [user]
   );
 
-  const steps =
-    (book && Array.from({ length: Math.ceil(Object.keys(book.questions).length / 4) }).map((_, index) => index)) || [];
+  const steps = useMemo(
+    () =>
+      (book && Array.from({ length: Math.ceil(Object.keys(book.questions).length / 4) }).map((_, index) => index)) ||
+      [],
+    [book]
+  );
 
-  const handleFinish = () => {
+  const handleFinish = useCallback(() => {
     endCompetition.mutate({
       answers: form.getFieldsValue(true),
     });
@@ -53,7 +57,7 @@ const Test = () => {
       skipReading: false,
       skipTest: false,
     });
-  };
+  }, [form]);
 
   const handleConfirm = useCallback(async () => {
     Modal.confirm({
