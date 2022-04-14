@@ -59,10 +59,6 @@ const PrivateWrapper = ({ children }: Props) => {
     },
   });
 
-  const handleSignIn = () => {
-    authSignInToken.mutateAsync({});
-  };
-
   useEffect(() => {
     if (user.isLoggedIn) return;
     const token = sessionStorage.getItem('authorization') || localStorage.getItem('authorization');
@@ -70,13 +66,8 @@ const PrivateWrapper = ({ children }: Props) => {
     if (token === null) {
       navigate(appUrls.auth.signIn);
     } else {
-      handleSignIn();
+      authSignInToken.mutateAsync({});
     }
-
-    window.addEventListener('focus', handleSignIn);
-
-    // eslint-disable-next-line consistent-return
-    return () => window.removeEventListener('focus', handleSignIn);
   }, []);
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
