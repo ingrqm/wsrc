@@ -3,6 +3,7 @@ import { atom } from 'recoil';
 
 export type User = {
   id: number;
+  idResult: number;
   mail: string;
   permission: Permission;
   languageApp: LanguageApp;

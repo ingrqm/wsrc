@@ -70,9 +70,15 @@ export const apiUrls = {
     passwordRecovery: `${API_URL}/auth/password-recovery`,
     passwordReset: `${API_URL}/auth/password-reset`,
   },
+  championship: {
+    startCompetition: `${API_URL}/championship/start-competition`,
+    startTest: `${API_URL}/championship/start-test`,
+    endCompetition: `${API_URL}/championship/end-competition`,
+  },
   statistics: {
     dashboard: `${API_URL}/statistics/dashboard`,
   },
+  results: (id: string = '') => `${API_URL}/${generateApiPath('results/:id', { id })}`,
   users: (id: string = '') => `${API_URL}/${generateApiPath('users/:id', { id })}`,
   logs: (id: string = '') => `${API_URL}/${generateApiPath('logs/:id', { id })}`,
 };

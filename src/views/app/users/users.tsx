@@ -1,20 +1,22 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { MoreOutlined, SearchOutlined } from '@ant-design/icons';
-import { Badge, Button, Dropdown, Menu, Table, Typography } from 'antd';
-import { fetchUsersList, UsersListRes, UsersListRow } from 'api';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Badge, Button, Dropdown, Menu, Modal, Table, Typography } from 'antd';
+import { fetchUserDelete, fetchUsersList, UserDeleteProps, UserDeleteRet, UsersListRet, UsersListRow } from 'api';
 import { User, userAtom } from 'atoms/user';
 import { languageChampionshipOptions } from 'data';
 import { compareAsc } from 'date-fns';
-import { Permission, LanguageChampionship, QueryKey } from 'enums';
-import { useQueryWithError } from 'hooks';
+import { Permission, LanguageChampionship, QueryKey, MutationKey } from 'enums';
+import { useMutationWithError, useQueryWithError } from 'hooks';
 import { useRecoilValue } from 'recoil';
 import { appUrls } from 'urls';
 import { UserEdit } from 'forms';
 import { FilterSearch } from 'components';
 
-const { Title } = Typography;
+const { Text, Title } = Typography;
 
 const Users = () => {
   const user = useRecoilValue(userAtom) as User;
@@ -27,7 +29,31 @@ const Users = () => {
     [user.permission]
   );
 
-  const users = useQueryWithError<UsersListRes, Error>(QueryKey.usersList, fetchUsersList);
+  const deleteUser = useMutationWithError<UserDeleteRet, Error, UserDeleteProps>(fetchUserDelete, {
+    mutationKey: MutationKey.userDelete,
+    invalidateQueryKey: QueryKey.usersList,
+    loadingMessage: t('form.deleteUser.messages.loading'),
+    errorMessage: t('form.deleteUser.messages.error'),
+    successMessage: t('form.deleteUser.messages.success'),
+  });
+
+  const users = useQueryWithError<UsersListRet, Error>(QueryKey.usersList, fetchUsersList);
+
+  const handleDeleteUser = (id: number) => {
+    deleteUser.mutate({
+      id,
+    });
+  };
+
+  const handleConfirm = useCallback(async (id: number) => {
+    Modal.confirm({
+      title: t('form.deleteUser.modal.confirm.title'),
+      content: t('form.deleteUser.modal.confirm.content'),
+      okText: t('form.deleteUser.modal.confirm.okText'),
+      cancelText: t('form.deleteUser.modal.confirm.cancelText'),
+      onOk: () => handleDeleteUser(id),
+    });
+  }, []);
 
   const columns = useMemo(
     () => [
@@ -139,11 +165,17 @@ const Users = () => {
             overlay={
               <Menu>
                 <Menu.Item onClick={() => setUserId(id)} key='edit'>
-                  {t('app.users.table.header.action.edit')}
+                  <FontAwesomeIcon className='mr-1' icon={faPenToSquare} /> {t('app.users.table.header.action.edit')}
                 </Menu.Item>
+                {user.permission === Permission.superAdmin && (
+                  <Menu.Item onClick={() => handleConfirm(id)} key='delete'>
+                    <Text type='danger'>
+                      <FontAwesomeIcon className='mr-1' icon={faTrash} /> {t('app.users.table.header.action.delete')}
+                    </Text>
+                  </Menu.Item>
+                )}
               </Menu>
             }
-            placement='bottom'
             trigger={['click']}
             arrow
           >
@@ -166,7 +198,7 @@ const Users = () => {
       <Title level={3}>{t('app.users.title')}</Title>
       <Table
         columns={columns}
-        dataSource={users?.data || []}
+        dataSource={users?.data?.sort((a, b) => b.id - a.id) || []}
         scroll={{ x: true }}
         locale={t('components.table', { returnObjects: true })}
         rowKey='id'

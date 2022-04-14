@@ -13,7 +13,7 @@ const TimeCounter = () => {
     return () => {
       clearInterval(timerRef.current);
     };
-  }, [setTime]);
+  }, [time]);
 
   return null;
 };

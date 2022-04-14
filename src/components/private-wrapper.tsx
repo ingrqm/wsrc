@@ -2,6 +2,7 @@ import { ReactElement, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { fetchAuthSignIn } from 'api';
+import { competitionAtom } from 'atoms/competition';
 import { timeAtom } from 'atoms/time';
 import { initialUserAtom, UserAtom, userAtom } from 'atoms/user';
 import { MutationKey } from 'enums';
@@ -17,6 +18,7 @@ const PrivateWrapper = ({ children }: Props) => {
   const navigate = useNavigate();
   const [user, setUser] = useRecoilState(userAtom);
   const setTime = useSetRecoilState(timeAtom);
+  const setCompetition = useSetRecoilState(competitionAtom);
   const { t } = useTranslation();
 
   const authSignInToken = useMutationWithError(fetchAuthSignIn, {
@@ -48,6 +50,12 @@ const PrivateWrapper = ({ children }: Props) => {
 
       setUser(user);
       setTime(new Date(response.time));
+      setCompetition({
+        id: response.idResult,
+        startReading: response.startReading,
+        startTest: response.startTest,
+        endTest: response.endTest,
+      });
     },
   });
 

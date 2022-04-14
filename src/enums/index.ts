@@ -1,3 +1,4 @@
+export * from './age';
 export * from './browser';
 export * from './device';
 export * from './key';

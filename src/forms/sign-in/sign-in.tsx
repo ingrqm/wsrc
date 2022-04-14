@@ -5,12 +5,13 @@ import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Col, Form, Input, Row, Typography } from 'antd';
 import {
   AuthActivationProps,
-  AuthActivationRes,
+  AuthActivationRet,
   AuthSignInProps,
   AuthSignInRet,
   fetchAuthActivation,
   fetchAuthSignIn,
 } from 'api';
+import { competitionAtom } from 'atoms/competition';
 import { timeAtom } from 'atoms/time';
 import { initialUserAtom, UserAtom, userAtom } from 'atoms/user';
 import { MutationKey } from 'enums';
@@ -30,11 +31,12 @@ const FormSignIn = () => {
   const { t } = useTranslation();
   const [form] = Form.useForm();
   const [user, setUser] = useRecoilState(userAtom);
+  const setCompetition = useSetRecoilState(competitionAtom);
   const setTime = useSetRecoilState(timeAtom);
   const navigate = useNavigate();
   const { key } = userParams<Params>();
 
-  const activation = useMutationWithError<AuthActivationRes, Error, AuthActivationProps>(fetchAuthActivation, {
+  const activation = useMutationWithError<AuthActivationRet, Error, AuthActivationProps>(fetchAuthActivation, {
     mutationKey: MutationKey.activation,
     loadingMessage: t('form.activation.messages.loading'),
     errorMessage: t('form.activation.messages.error'),
@@ -76,6 +78,12 @@ const FormSignIn = () => {
 
       setUser(user);
       setTime(new Date(response.time));
+      setCompetition({
+        id: response.idResult,
+        startReading: response.startReading,
+        startTest: response.startTest,
+        endTest: response.endTest,
+      });
 
       navigate(appUrls.app.dashboard);
 

@@ -1,4 +1,6 @@
 export const codes = [
+  { code: '&amp;', char: `&` },
+
   // { code: '&#033;', char: `!` },
   { code: '&#034;', char: `"` },
   // { code: '&#035;', char: `#` },
