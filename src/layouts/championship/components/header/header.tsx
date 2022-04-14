@@ -3,6 +3,7 @@ import { competitionAtom } from 'atoms/competition';
 import { useRecoilValue } from 'recoil';
 import { appUrls } from 'urls';
 import { Timer } from './components';
+import { ChampionshipStep } from './header.enum';
 import { Navbar, Wrapper } from './header.styled';
 
 const Header = () => {
@@ -13,9 +14,11 @@ const Header = () => {
     <Wrapper>
       <Navbar>
         {competition?.startReading && location.pathname === appUrls.championship.reading && (
-          <Timer type='startReading' />
+          <Timer type={ChampionshipStep.startReading} />
         )}
-        {competition?.startTest && location.pathname === appUrls.championship.test && <Timer type='startTest' />}
+        {competition?.startTest && location.pathname === appUrls.championship.test && (
+          <Timer type={ChampionshipStep.startTest} />
+        )}
       </Navbar>
     </Wrapper>
   );

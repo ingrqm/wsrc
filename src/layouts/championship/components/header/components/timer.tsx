@@ -5,11 +5,12 @@ import { timeAtom } from 'atoms/time';
 import { compareAsc, differenceInDays, differenceInHours, differenceInMinutes, differenceInSeconds } from 'date-fns';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { leadZero } from 'utils/convert';
+import { ChampionshipStep } from '../header.enum';
 
 const { Title } = Typography;
 
 type Props = {
-  type: 'startReading' | 'startTest';
+  type: ChampionshipStep;
 };
 
 const Timer = ({ type }: Props) => {
@@ -19,11 +20,11 @@ const Timer = ({ type }: Props) => {
 
   const timeLeft = new Date(competition[type] as Date);
 
-  if (type === 'startReading') {
+  if (type === ChampionshipStep.startReading) {
     timeLeft.setMinutes(timeLeft.getMinutes() + 2 * 60);
   }
 
-  if (type === 'startTest') {
+  if (type === ChampionshipStep.startTest) {
     timeLeft.setMinutes(timeLeft.getMinutes() + 30);
   }
 
@@ -47,13 +48,13 @@ const Timer = ({ type }: Props) => {
 
   const handleSkip = () => {
     if (isEndOfTime) {
-      if (skipCompetition.skipReading === false && type === 'startReading') {
+      if (skipCompetition.skipReading === false && type === ChampionshipStep.startReading) {
         setSkipCompetition({
           ...skipCompetition,
           skipReading: true,
         });
       }
-      if (skipCompetition.skipTest === false && type === 'startTest') {
+      if (skipCompetition.skipTest === false && type === ChampionshipStep.startTest) {
         setSkipCompetition({
           ...skipCompetition,
           skipTest: true,
