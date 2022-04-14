@@ -5,7 +5,7 @@ import enTeenBook from './en-adult.pdf';
 import enAdultBook from './en-adult.pdf';
 import frChildBook from './en-adult.pdf';
 import frTeenBook from './en-adult.pdf';
-import frAdultBook from './en-adult.pdf';
+import frAdultBook from './fr-adult.pdf';
 
 export default {
   [LanguageChampionship.en]: {
@@ -59,8 +59,29 @@ export default {
     },
     [Age.adult]: {
       file: frAdultBook,
-      chapters: [],
-      questions: {},
+      chapters: [2, 12, 25, 35, 46, 56, 62, 71, 82, 90, 96, 110, 115, 121, 130, 138, 145, 151, 159, 166],
+      questions: {
+        novelBegin: `Où se passe le début du roman ?`,
+        exhibitPortrait: `Pourquoi Basil ne veut pas exposer le portrait de Dorian Gray ?`,
+        sibylProfession: `Quelle est la profession de Sibyl Vane ?`,
+        dorianWantBreakUp: `Pourquoi Dorian veut-il rompre avec Sibyl ?`,
+        firstNameSibylBrother: `Quel est le prénom du frère de Sibyl Vane ?`,
+        dorianNameByLord: `Quel est le nom donné à Lord Henry par Dorian ?`,
+        sibylBrotherGoTo: `Dans quel pays se rend le frère de Sibyl ?`,
+        firstDistortion: `Quelle est la première déformation du tableau de Dorian Gray ?`,
+        basilSeePortrait: `Que se passe-t-il quand Basil voit le portrait des années après ?`,
+        whoIsAlan: `Qui est Alan Campbell ?`,
+        howAlanDispose: `Comment Alan Campbell se débarrasse-t-il du corps de Basil ?`,
+        whereDorianHome: `Où se trouve la demeure de campagne de Dorian ?`,
+        dorianFaint: `Pourquoi Dorian s'évanouit dans sa demeure de campagne ?`,
+        sibylBrother: `Qu'arrive-t-il au frère de Sibyl Vane ?`,
+        dorianStayYoung: `Combien de temps Dorian reste jeune ?`,
+        dorianNovelByLord: `Quel type de roman donne Lord Henry à Dorian ?`,
+        dorianThrowHimself: `Pourquoi Dorian se jette-t-il dans les études ?`,
+        dorianDrug: `Quelle est la drogue de Dorian Gray ?`,
+        dorianAndLordGoOften: `Où vont Dorian Gray et Lord Henry Wotton le plus souvent ?`,
+        whatAtTheEnd: `Que se passe -t-il à la fin ?`,
+      },
     },
   },
 };
