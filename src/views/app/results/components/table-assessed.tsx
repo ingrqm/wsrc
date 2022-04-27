@@ -311,7 +311,7 @@ const TableAssessed = () => {
 
   return (
     <>
-      <Row>
+      <Row className='mt-7 mb-4'>
         <Col xs={{ span: 24 }} sm={{ span: 12 }}>
           <Title level={3}>{t('app.results.assessed.title')}</Title>
         </Col>
