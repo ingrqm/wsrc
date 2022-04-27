@@ -22,7 +22,7 @@ const Championship = () => {
     QueryKey.resultDetails,
     () => fetchResultDetails({ id: Number(id) || (competition.id as number) }),
     {
-      enabled: competition?.id !== undefined,
+      enabled: Boolean(competition.id),
       onSuccess: ({ time, ...response }) => {
         setCompetition(response);
         setTime(new Date(time));

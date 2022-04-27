@@ -34,7 +34,7 @@ const Competition = () => {
     QueryKey.resultDetails,
     () => fetchResultDetails({ id: competition.id as number }),
     {
-      enabled: competition?.id !== undefined,
+      enabled: Boolean(competition.id),
       onSuccess: ({ time, ...response }) => {
         setCompetition(response);
         setTime(new Date(time));
