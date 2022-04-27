@@ -35,7 +35,9 @@ const Sidebar = ({ isOpen, onOpen }: Props) => {
         <LogoImg />
       </Header>
       <List>
-        {[Permission.user, Permission.arbiter, Permission.admin, Permission.superAdmin].includes(user?.permission) && (
+        {[Permission.newbie, Permission.user, Permission.arbiter, Permission.admin, Permission.superAdmin].includes(
+          user?.permission
+        ) && (
           <Item onClick={() => handleNavigate(appUrls.app.dashboard)}>
             <AppstoreOutlined />
             {t('app.sidebar.dashboard')}

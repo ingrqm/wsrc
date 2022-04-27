@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { fetchResultDetails, ResultDetailsRet } from 'api';
 import { competitionAtom } from 'atoms/competition';
 import { timeAtom } from 'atoms/time';
@@ -9,13 +9,18 @@ import { PrivateWrapper } from 'components';
 import { Content } from './championship.styled';
 import { Header } from './components';
 
+type Params = {
+  id?: string;
+};
+
 const Championship = () => {
   const [competition, setCompetition] = useRecoilState(competitionAtom);
   const setTime = useSetRecoilState(timeAtom);
+  const { id } = useParams() as Params;
 
   useQueryWithError<ResultDetailsRet, Error>(
     QueryKey.resultDetails,
-    () => fetchResultDetails({ id: competition.id as number }),
+    () => fetchResultDetails({ id: Number(id) || (competition.id as number) }),
     {
       enabled: competition?.id !== undefined,
       onSuccess: ({ time, ...response }) => {

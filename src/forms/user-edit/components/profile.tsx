@@ -7,10 +7,18 @@ import { Permission } from 'enums';
 import { useRecoilValue } from 'recoil';
 import { FormInputs } from '../user-edit.enum';
 import { validationSchema } from '../user-edit.schema';
+import { FormTypes } from '../user-edit.types';
 
-const Profile = () => {
+type Props = {
+  values: FormTypes;
+};
+
+const Profile = ({ values }: Props) => {
   const { t } = useTranslation();
   const user = useRecoilValue(userAtom);
+
+  const isDisabled =
+    user.permission !== Permission.superAdmin && values[FormInputs.permission] === Permission.superAdmin;
 
   return (
     <>
@@ -22,7 +30,7 @@ const Profile = () => {
         <Input
           placeholder={t('form.editUser.inputs.name.placeholder')}
           prefix={<UserOutlined />}
-          disabled={user.permission !== Permission.superAdmin}
+          disabled={isDisabled}
         />
       </Form.Item>
       <Form.Item
@@ -33,7 +41,7 @@ const Profile = () => {
         <Input
           placeholder={t('form.editUser.inputs.lastName.placeholder')}
           prefix={<UserOutlined />}
-          disabled={user.permission !== Permission.superAdmin}
+          disabled={isDisabled}
         />
       </Form.Item>
       <Form.Item
@@ -44,7 +52,7 @@ const Profile = () => {
         <Select
           placeholder={t('form.editUser.inputs.age.placeholder')}
           options={ageOptions}
-          disabled={user.permission !== Permission.superAdmin}
+          disabled={isDisabled}
           showSearch
         />
       </Form.Item>
@@ -56,7 +64,7 @@ const Profile = () => {
         <Input
           placeholder={t('form.editUser.inputs.phone.placeholder')}
           prefix={<PhoneOutlined />}
-          disabled={user.permission !== Permission.superAdmin}
+          disabled={isDisabled}
         />
       </Form.Item>
     </>

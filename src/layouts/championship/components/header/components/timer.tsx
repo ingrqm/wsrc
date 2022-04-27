@@ -64,7 +64,6 @@ const Timer = ({ type }: Props) => {
   };
 
   useEffect(handleSkip, [isEndOfTime]);
-  useEffect(handleSkip, []);
 
   return (
     <Title level={3} className='m-0'>

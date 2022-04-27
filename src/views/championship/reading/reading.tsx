@@ -15,7 +15,6 @@ import { Button, Modal, Spin } from 'antd';
 import { fetchStartTest, StartTestProps, StartTestRet } from 'api';
 import books from 'assets/books';
 import { competitionAtom, skipCompetitionAtom } from 'atoms/competition';
-import { userAtom } from 'atoms/user';
 import { MutationKey, QueryKey } from 'enums';
 import { useMutationWithError } from 'hooks';
 import { PDFDocumentProxy } from 'pdfjs-dist/types/src/display/api';
@@ -29,7 +28,6 @@ const Reading = () => {
   const { t } = useTranslation();
   const [competition, setCompetition] = useRecoilState(competitionAtom);
   const skipCompetition = useRecoilValue(skipCompetitionAtom);
-  const user = useRecoilValue(userAtom);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(0);
   const [scale, setScale] = useState(1);
@@ -38,8 +36,11 @@ const Reading = () => {
   const [isBookOpen, setIsBookOpen] = useState(false);
 
   const book = useMemo(
-    () => user.languageChampionship && user.age && books[user.languageChampionship][getAgeEnum(user.age)],
-    [user]
+    () =>
+      competition.languageChampionship &&
+      competition.age &&
+      books[competition.languageChampionship][getAgeEnum(competition.age)],
+    [competition]
   );
 
   const pageRef = useCallback((node) => {

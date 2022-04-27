@@ -12,7 +12,7 @@ import {
   fetchVerifyPasswordToken,
 } from 'api';
 import { MutationKey } from 'enums';
-import { useMutationWithError, userParams } from 'hooks';
+import { useMutationWithError, useParams } from 'hooks';
 import { appUrls } from 'urls';
 import { FormInputs } from './password-recovery.enum';
 import { initialValues, validationSchema } from './password-recovery.schema';
@@ -25,7 +25,7 @@ const FormPasswordRecovery = () => {
   const { t } = useTranslation();
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const { key } = userParams<Params>();
+  const { key } = useParams<Params>();
 
   const verify = useMutationWithError<AuthVerifyPasswordTokenRet, Error, AuthVerifyPasswordTokenProps>(
     (payload) => fetchVerifyPasswordToken(payload),

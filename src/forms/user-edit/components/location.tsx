@@ -40,6 +40,9 @@ const Location = ({ values, handleValuesChange }: Props) => {
     [values[FormInputs.continent], values[FormInputs.country]]
   );
 
+  const isDisabled =
+    user.permission !== Permission.superAdmin && values[FormInputs.permission] === Permission.superAdmin;
+
   return (
     <>
       <Form.Item
@@ -52,7 +55,7 @@ const Location = ({ values, handleValuesChange }: Props) => {
           options={continentOptions}
           optionFilterProp='label'
           onChange={() => handleValuesChange({ [FormInputs.country]: undefined, [FormInputs.region]: undefined })}
-          disabled={user.permission !== Permission.superAdmin}
+          disabled={isDisabled}
           showSearch
         />
       </Form.Item>
@@ -66,7 +69,7 @@ const Location = ({ values, handleValuesChange }: Props) => {
           options={countryOptions}
           optionFilterProp='label'
           onChange={() => handleValuesChange({ [FormInputs.region]: undefined })}
-          disabled={countryOptions.length === 0 || user.permission !== Permission.superAdmin}
+          disabled={countryOptions.length === 0 || isDisabled}
           showSearch
         />
       </Form.Item>
@@ -79,7 +82,7 @@ const Location = ({ values, handleValuesChange }: Props) => {
           placeholder={t('form.editUser.inputs.region.placeholder')}
           options={regionOptions}
           optionFilterProp='label'
-          disabled={regionOptions.length === 0 || user.permission !== Permission.superAdmin}
+          disabled={regionOptions.length === 0 || isDisabled}
           showSearch
         />
       </Form.Item>
@@ -96,7 +99,7 @@ const Location = ({ values, handleValuesChange }: Props) => {
         <Input
           placeholder={t('form.editUser.inputs.crew.placeholder')}
           prefix={<TeamOutlined />}
-          disabled={user.permission !== Permission.superAdmin}
+          disabled={isDisabled}
         />
       </Form.Item>
     </>

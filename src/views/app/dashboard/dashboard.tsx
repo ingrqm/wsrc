@@ -28,7 +28,10 @@ const Dashboard = () => {
   );
 
   const isAuthorized = useMemo(
-    () => [Permission.user, Permission.arbiter, Permission.admin, Permission.superAdmin].includes(user?.permission),
+    () =>
+      [Permission.newbie, Permission.user, Permission.arbiter, Permission.admin, Permission.superAdmin].includes(
+        user?.permission
+      ),
     [user?.permission]
   );
 
@@ -41,9 +44,11 @@ const Dashboard = () => {
   return !isAuthorized ? null : (
     <Wrapper>
       <Row gutter={[12, 24]}>
-        <Col span={24}>
-          <Competition />
-        </Col>
+        {[Permission.user, Permission.arbiter, Permission.admin, Permission.superAdmin].includes(user?.permission) && (
+          <Col span={24}>
+            <Competition />
+          </Col>
+        )}
         {statistics.data && (
           <Col span={24}>
             <Row gutter={[10, 10]} justify='center'>

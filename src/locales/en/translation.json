@@ -2,6 +2,10 @@
   "data": {
     "unknown": "Unknown",
     "logs": {
+      "result-assign-arbiter": "Arbiter {{arbiters}} was assign to {{fullName}} test",
+      "result-remove-arbiter": "Arbiter {{arbiters}} was removed from {{fullName}} test",
+      "update-review-competition": "Update {{fullName}} result review",
+      "submit-review-competition": "Add {{fullName}} result review",
       "end-competition": "The competition has ended",
       "start-test": "The test has started filling",
       "start-reading": "The competition has started",
@@ -28,10 +32,22 @@
       "SA": "South America"
     },
     "permission": {
+      "newbie": "newbie",
       "user": "user",
       "arbiter": "arbiter",
       "admin": "admin",
       "superAdmin": "super admin"
+    },
+    "review": {
+      "wait": "wait",
+      "consistent": "consistent",
+      "inconsistent": "inconsistent",
+      "admin": "admin"
+    },
+    "age": {
+      "child": "child",
+      "teen": "teen",
+      "adult": "adult"
     }
   },
   "app": {
@@ -65,6 +81,7 @@
       },
       "widget": {
         "results": "Results",
+        "resultsOngoing": "Results ongoing",
         "resultsWithoutArbiter": "Results without arbiter",
         "resultsWaitingForReview": "Results waiting for review",
         "reviews": "Reviews",
@@ -115,6 +132,107 @@
       "modal": {
         "edit": {
           "title": "Edit user, {{fullName}}"
+        }
+      }
+    },
+    "results": {
+      "tableAssignToMe": {
+        "header": {
+          "idUser": "user ID",
+          "readingTime": "reading time",
+          "testTime": "test time",
+          "reviews": "reviews",
+          "reviewers": "arbiters",
+          "actions": "actions",
+          "action": {
+            "review": "review"
+          }
+        }
+      },
+      "assignToMe": {
+        "title": "Results"
+      },
+      "tableAll": {
+        "header": {
+          "idUser": "user ID",
+          "name": "user name",
+          "lastName": "user last name",
+          "readingTime": "reading time",
+          "testTime": "test time",
+          "reviews": "reviews",
+          "reviewers": "arbiters",
+          "actions": "actions",
+          "action": {
+            "review": "review"
+          },
+          "reviewsType": "type",
+          "languageChampionship": "lanugage",
+          "age": "age"
+        },
+        "filter": {
+          "reviewers": {
+            "empty": "without arbiter"
+          }
+        }
+      },
+      "all": {
+        "title": "Results"
+      },
+      "tableWithoutReview": {
+        "header": {
+          "idUser": "user ID",
+          "name": "user name",
+          "lastName": "user last name",
+          "readingTime": "reading time",
+          "testTime": "test time",
+          "reviews": "reviews",
+          "reviewers": "arbiters",
+          "actions": "actions",
+          "action": {
+            "review": "review"
+          }
+        }
+      },
+      "withoutReview": {
+        "title": "Results without review"
+      },
+      "assessed": {
+        "title": "Results assessed"
+      },
+      "tableAssessed": {
+        "header": {
+          "idUser": "user ID",
+          "name": "user name",
+          "lastName": "user last name",
+          "readingTime": "reading time",
+          "testTime": "test time",
+          "languageChampionship": "language",
+          "age": "age",
+          "reviews": "reviews",
+          "reviewsType": "type",
+          "reviewers": "arbiters",
+          "actions": "actions",
+          "points": "points",
+          "result": "result",
+          "crew": "crew",
+          "region": "region",
+          "country": "country",
+          "continent": "continent"
+        },
+        "filter": {
+          "reviewers": {
+            "empty": "without arbiter"
+          }
+        },
+        "render": {
+          "result": {
+            "popover": {
+              "totalWords": "total words",
+              "readingTime": "reading time [s]",
+              "points": "points",
+              "maxPoints": "max points"
+            }
+          }
         }
       }
     }
@@ -603,6 +721,27 @@
           "title": "Are you sure to delete account?"
         }
       }
+    },
+    "addReview": {
+      "messages": {
+        "loading": "Adding review is in progress",
+        "error": "Adding review failed",
+        "success": "Added review"
+      }
+    },
+    "updateReview": {
+      "messages": {
+        "loading": "Update review is in progress",
+        "error": "Update review failed",
+        "success": "Updated review"
+      }
+    },
+    "resultAssignArbiter": {
+      "messages": {
+        "loading": "Saving arbiters list is in progress",
+        "error": "Saving arbiters list failed",
+        "success": "Saved arbiters list"
+      }
     }
   },
   "meta": {
@@ -693,7 +832,7 @@
           "title": "Are you sure to start test?",
           "content": "You are not able to undo this step",
           "okText": "Yes",
-          "cancelText": "no"
+          "cancelText": "No"
         }
       }
     },
@@ -710,6 +849,30 @@
         "finish": "finish",
         "next": "next",
         "previous": "previous"
+      }
+    },
+    "review": {
+      "navigation": {
+        "next": "next",
+        "previous": "previous",
+        "finish": "submit"
+      },
+      "header": {
+        "testTime": "test time",
+        "readingTime": "reading time"
+      },
+      "modal": {
+        "confirm": {
+          "content": "You are not able to undo this step",
+          "update": {
+            "title": "Are you sure to update review?"
+          },
+          "add": {
+            "title": "Are you sure to add review?"
+          },
+          "okText": "Yes",
+          "cancelText": "No"
+        }
       }
     }
   }

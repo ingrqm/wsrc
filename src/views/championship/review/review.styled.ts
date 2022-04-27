@@ -2,17 +2,13 @@ import styled from 'styled-components';
 import { media } from 'styles';
 
 export const Wrapper = styled.div`
-  .ant-form {
+  .ant-row {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  }
 
-    .ant-form-item {
-      max-width: 500px;
-      width: 100%;
-      margin-bottom: 48px;
-    }
+  .ant-input[disabled] {
+    color: rgba(0, 0, 0, 1);
+    background-color: #fff;
   }
 
   ${media.xs} {
@@ -24,7 +20,7 @@ export const Wrapper = styled.div`
 
 export const Navigation = styled.div`
   .ant-btn {
-    &.end-competition {
+    &.submit-review {
       position: fixed;
       top: calc(50% + 36px);
       transform: translateY(-50%);

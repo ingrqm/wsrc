@@ -15,7 +15,7 @@ import { competitionAtom } from 'atoms/competition';
 import { timeAtom } from 'atoms/time';
 import { initialUserAtom, UserAtom, userAtom } from 'atoms/user';
 import { MutationKey } from 'enums';
-import { useMutationWithError, userParams } from 'hooks';
+import { useMutationWithError, useParams } from 'hooks';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { appUrls } from 'urls';
 import { FormInputs } from './sign-in.enum';
@@ -34,7 +34,7 @@ const FormSignIn = () => {
   const setCompetition = useSetRecoilState(competitionAtom);
   const setTime = useSetRecoilState(timeAtom);
   const navigate = useNavigate();
-  const { key } = userParams<Params>();
+  const { key } = useParams<Params>();
 
   const activation = useMutationWithError<AuthActivationRet, Error, AuthActivationProps>(fetchAuthActivation, {
     mutationKey: MutationKey.activation,

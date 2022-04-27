@@ -6,3 +6,4 @@ export * from './language';
 export * from './log';
 export * from './permission';
 export * from './platform';
+export * from './review';

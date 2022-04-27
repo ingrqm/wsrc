@@ -10,7 +10,10 @@ export const pathToCamelCase = (string: string): string => {
     .replaceAll('/', '.')
     .split('-')
     .map((string) => (string.includes('.') ? string : string[0].toUpperCase() + string.slice(1)))
-    .join('');
+    .join('')
+    .split('.')
+    .filter((string) => !/^[-]?\d+$/.test(string))
+    .join('.');
 };
 
 export const generateApiPath = (path: string, options?: { [key: string]: string }): string =>

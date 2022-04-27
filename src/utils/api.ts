@@ -106,7 +106,7 @@ export const request = async <T, Y>(url: string, method: Methods, data?: T): Pro
     headers: getTokenHeader(),
     url,
     data,
-    ...(method === Methods.get ? { params: data } : {}),
+    ...(method === Methods.get ? { params: requestParser(data as DataRequestType | undefined | null) } : {}),
   };
 
   return axios(requestConfig);
