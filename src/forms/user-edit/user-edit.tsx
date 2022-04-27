@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Col, Form, Modal, Row, Tabs } from 'antd';
 import { fetchUserDetails, fetchUserEdit, UserDetailsRet, UserEditProps, UserEditRet } from 'api';
@@ -141,8 +141,6 @@ const UserEdit = ({ userId, setUserId }: Props) => {
     handleValuesChange();
   }, [setUserId]);
 
-  useEffect(() => {}, [user.data]);
-
   return (
     <Modal
       visible={isUserEditModalVisible}
@@ -164,7 +162,7 @@ const UserEdit = ({ userId, setUserId }: Props) => {
             <Account values={values} user={user} />
           </TabPane>
           <TabPane tab={t('form.editUser.tabs.profile.title')} key={Tab.profile}>
-            <Profile />
+            <Profile values={values} />
           </TabPane>
           <TabPane tab={t('form.editUser.tabs.location.title')} key={Tab.location}>
             <Location values={values} handleValuesChange={handleValuesChange} />

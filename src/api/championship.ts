@@ -1,19 +1,12 @@
 import { apiUrls } from 'urls';
 import { Methods, Request, request } from 'utils/api';
+import { ResultDetailsRes } from './results';
 
 export type StartCompetitionReq = unknown;
 
 export type StartCompetitionProps = StartCompetitionReq;
 
-export type StartCompetitionRes = {
-  id: number;
-  idUser: number;
-  startReading: Date;
-  startTest: null;
-  endDate: null;
-  answers: { [key: string]: string } | null;
-  reviewers: null;
-};
+export type StartCompetitionRes = ResultDetailsRes;
 
 export type StartCompetitionRet = StartCompetitionRes;
 
@@ -31,15 +24,7 @@ export type StartTestReq = unknown;
 
 export type StartTestProps = StartTestReq;
 
-export type StartTestRes = {
-  id: number;
-  idUser: number;
-  startReading: Date;
-  startTest: Date;
-  endDate: null;
-  answers: { [key: string]: string } | null;
-  reviewers: null;
-};
+export type StartTestRes = ResultDetailsRes;
 
 export type StartTestRet = StartTestRes;
 
@@ -59,15 +44,7 @@ export type EndCompetitionReq = {
 
 export type EndCompetitionProps = EndCompetitionReq;
 
-export type EndCompetitionRes = {
-  id: number;
-  idUser: number;
-  startReading: Date;
-  startTest: Date;
-  endDate: Date;
-  answers: { [key: string]: string } | null;
-  reviewers: null;
-};
+export type EndCompetitionRes = ResultDetailsRes;
 
 export type EndCompetitionRet = EndCompetitionRes;
 

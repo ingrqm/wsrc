@@ -27,6 +27,7 @@ const LogWithTranslation = ({ action, variables }: Props) => {
             .join(', '),
         ]);
       }
+      break;
   }
 
   return popoverData.length === 0 ? (

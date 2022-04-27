@@ -13,7 +13,7 @@ export type UsersListRow = {
   mail: string;
   permission: Permission;
   active: boolean;
-  language: LanguageChampionship;
+  languageChampionship: LanguageChampionship;
   crew: string;
   join: Date;
 };

@@ -9,7 +9,7 @@ import { fetchUserDelete, fetchUsersList, UserDeleteProps, UserDeleteRet, UsersL
 import { User, userAtom } from 'atoms/user';
 import { languageChampionshipOptions } from 'data';
 import { compareAsc } from 'date-fns';
-import { Permission, LanguageChampionship, QueryKey, MutationKey } from 'enums';
+import { Permission, QueryKey, MutationKey } from 'enums';
 import { useMutationWithError, useQueryWithError } from 'hooks';
 import { useRecoilValue } from 'recoil';
 import { appUrls } from 'urls';
@@ -107,8 +107,7 @@ const Users = () => {
         title: t('app.users.table.header.active'),
         key: 'active',
         render: ({ active }: UsersListRow) => <Badge color={active ? 'green' : 'red'} />,
-        // eslint-disable-next-line no-nested-ternary
-        sorter: (a: UsersListRow, b: UsersListRow) => (a.active === b.active ? 0 : a.active ? -1 : 1),
+        sorter: (a: UsersListRow, b: UsersListRow) => Number(a.active) - Number(b.active),
         filters: [
           {
             text: (
@@ -131,16 +130,15 @@ const Users = () => {
       },
       {
         title: t('app.users.table.header.languageChampionship'),
-        key: 'language',
-        dataIndex: 'language',
-        render: (language: LanguageChampionship) =>
-          languageChampionshipOptions.find((lang) => lang.value === language)?.label,
-        sorter: (a: UsersListRow, b: UsersListRow) => a.language.localeCompare(b.language),
+        key: 'languageChampionship',
+        render: ({ languageChampionship }: UsersListRow) =>
+          languageChampionshipOptions.find((lang) => lang.value === languageChampionship)?.label,
+        sorter: (a: UsersListRow, b: UsersListRow) => a.languageChampionship.localeCompare(b.languageChampionship),
         filters: languageChampionshipOptions.map(({ label, value }) => ({
           text: <div className='inline-flex relative top-[4px]'>{label}</div>,
           value,
         })),
-        onFilter: (value: boolean | string | number, record: UsersListRow) => record.language === value,
+        onFilter: (value: boolean | string | number, record: UsersListRow) => record.languageChampionship === value,
       },
       {
         title: t('app.users.table.header.crew'),

@@ -12,6 +12,7 @@ export type StatisticsDashboardRes =
     }
   | {
       results: number;
+      resultsWOngoing: number;
       resultsWithoutArbiter: number;
       resultsWaitingForReview: number;
       reviews: number;

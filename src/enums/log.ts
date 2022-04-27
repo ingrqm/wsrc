@@ -1,5 +1,13 @@
 export enum Log {
+  resultAssignArbiter = 'result-assign-arbiter',
+  resultRemoveArbiter = 'result-remove-arbiter',
+  updateReviewCompetition = 'update-review-competition',
+  submitReviewCompetition = 'submit-review-competition',
+  endCompetition = 'end-competition',
+  startTest = 'start-test',
+  startReading = 'start-reading',
   userEdit = 'user-edit',
+  userDeleteByUser = 'user-delete-by-user',
   userEditByUser = 'user-edit-by-user',
   passwordResetByUser = 'password-reset-by-user',
   passwordRecoveryByLink = 'password-recovery-by-link',

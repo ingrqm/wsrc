@@ -61,6 +61,9 @@ const Account = ({ values, user: userQuery }: Props) => {
     []
   );
 
+  const isDisabled =
+    user.permission !== Permission.superAdmin && values[FormInputs.permission] === Permission.superAdmin;
+
   const handleVerifyMail = () => {
     activation.mutate({ key: userQuery.data?.keyActive as string });
   };
@@ -81,7 +84,7 @@ const Account = ({ values, user: userQuery }: Props) => {
         <Input
           placeholder={t('form.editUser.inputs.mail.placeholder')}
           prefix={<MailOutlined />}
-          disabled={user.permission !== Permission.superAdmin}
+          disabled={isDisabled}
         />
       </Form.Item>
       <Form.Item name={FormInputs.languageChampionship} label={t('form.editUser.inputs.languageChampionship.label')}>
@@ -89,7 +92,7 @@ const Account = ({ values, user: userQuery }: Props) => {
           options={languageChampionshipOptions}
           placeholder={t('form.editUser.inputs.languageChampionship.placeholder')}
           filterOption={(search, option) => option?.label.props.children[1].includes(search)}
-          disabled={user.permission !== Permission.superAdmin}
+          disabled={isDisabled}
           showSearch
         />
       </Form.Item>
@@ -97,9 +100,7 @@ const Account = ({ values, user: userQuery }: Props) => {
         <Select
           options={permissionOptions}
           placeholder={t('form.editUser.inputs.permission.placeholder')}
-          disabled={
-            user.permission !== Permission.superAdmin && values[FormInputs.permission] === Permission.superAdmin
-          }
+          disabled={isDisabled}
           showSearch
         />
       </Form.Item>
@@ -109,7 +110,7 @@ const Account = ({ values, user: userQuery }: Props) => {
           <div className='flex items-center justify-between'>
             <Badge className='ml-3' color={userQuery.data?.activeAccount ? 'green' : 'red'} />
             {!userQuery.data?.activeAccount && (
-              <Button type='link' onClick={handleVerifyMail} disabled={user.permission !== Permission.superAdmin}>
+              <Button type='link' onClick={handleVerifyMail} disabled={isDisabled}>
                 {t('form.editUser.verifyAccount')}
               </Button>
             )}
@@ -120,7 +121,7 @@ const Account = ({ values, user: userQuery }: Props) => {
           <div className='flex items-center justify-between'>
             <Badge className='ml-3' color={userQuery.data?.defaultPassword ? 'green' : 'red'} />
             {!userQuery.data?.defaultPassword && (
-              <Button type='link' onClick={handlePasswordReset} disabled={user.permission !== Permission.superAdmin}>
+              <Button type='link' onClick={handlePasswordReset} disabled={isDisabled}>
                 {t('form.editUser.defaultPassword')}
               </Button>
             )}

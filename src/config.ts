@@ -1,1 +1,1 @@
-export const startCompetition = '2022-05-29T13:00:00';
+export const startCompetition = '2022-04-28T12:00:00';

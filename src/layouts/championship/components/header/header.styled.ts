@@ -32,3 +32,9 @@ export const Hero = styled.div`
     color: #fff;
   }
 `;
+
+export const TimeDistanceWrapper = styled.div`
+  display: flex;
+  min-width: 225px;
+  justify-content: space-between;
+`;

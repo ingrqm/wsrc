@@ -4,6 +4,12 @@ export enum QueryKey {
   usersList = 'usersList',
   statisticsDashboard = 'statisticsDashboard',
   resultDetails = 'resultDetails',
+  resultsAllList = 'resultsAllList',
+  resultsAssessedList = 'resultsAssessedList',
+  resultsAssignToMeList = 'resultsAssignToMeList',
+  resultsWithoutReviewList = 'resultsWithoutReviewList',
+  reviewList = 'reviewList',
+  arbitersList = 'arbitersList',
 }
 
 export enum MutationKey {
@@ -22,4 +28,7 @@ export enum MutationKey {
   startCompetition = 'startCompetition',
   startTest = 'startTest',
   endCompetition = 'endCompetition',
+  addReview = 'addReview',
+  updateReview = 'updateReview',
+  resultAssignArbiter = 'resultAssignArbiter',
 }

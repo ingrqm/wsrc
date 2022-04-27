@@ -14,7 +14,7 @@ export const appRoutes = {
     base: 'championship',
     reading: 'reading',
     test: 'test',
-    review: 'review',
+    review: 'review/:id',
   },
   auth: {
     base: 'auth',
@@ -78,6 +78,8 @@ export const apiUrls = {
   statistics: {
     dashboard: `${API_URL}/statistics/dashboard`,
   },
+  arbiters: (id: string = '') => `${API_URL}/${generateApiPath('arbiters/:id', { id })}`,
+  reviews: (id: string = '') => `${API_URL}/${generateApiPath('reviews/:id', { id })}`,
   results: (id: string = '') => `${API_URL}/${generateApiPath('results/:id', { id })}`,
   users: (id: string = '') => `${API_URL}/${generateApiPath('users/:id', { id })}`,
   logs: (id: string = '') => `${API_URL}/${generateApiPath('logs/:id', { id })}`,

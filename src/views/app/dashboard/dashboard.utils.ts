@@ -2,6 +2,8 @@ import { Permission } from 'enums';
 
 export const getTutorialUrl = (permission: Permission) => {
   switch (permission) {
+    case Permission.newbie:
+      return 'https://www.youtube.com/embed/QK5EVGqNg8U';
     case Permission.user:
       return 'https://www.youtube.com/embed/QK5EVGqNg8U';
     case Permission.arbiter:

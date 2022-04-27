@@ -6,10 +6,9 @@ import { Button, Form, Input, Modal, Steps } from 'antd';
 import { fetchEndCompetition, EndCompetitionProps, EndCompetitionRet } from 'api';
 import books from 'assets/books';
 import { competitionAtom, skipCompetitionAtom } from 'atoms/competition';
-import { userAtom } from 'atoms/user';
 import { MutationKey, QueryKey } from 'enums';
 import { useMutationWithError } from 'hooks';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { appUrls } from 'urls';
 import { getAgeEnum } from 'utils/age';
 import { Actions, Main, Navigation, Wrapper } from './test.styled';
@@ -20,9 +19,8 @@ const Test = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(0);
-  const setCompetition = useSetRecoilState(competitionAtom);
+  const [competition, setCompetition] = useRecoilState(competitionAtom);
   const [skipCompetition, setSkipCompetition] = useRecoilState(skipCompetitionAtom);
-  const user = useRecoilValue(userAtom);
   const [form] = Form.useForm();
 
   const endCompetition = useMutationWithError<EndCompetitionRet, Error, EndCompetitionProps>(fetchEndCompetition, {
@@ -38,8 +36,11 @@ const Test = () => {
   });
 
   const book = useMemo(
-    () => user.languageChampionship && user.age && books[user.languageChampionship][getAgeEnum(user.age)],
-    [user]
+    () =>
+      competition.languageChampionship &&
+      competition.age &&
+      books[competition.languageChampionship][getAgeEnum(competition.age)],
+    [competition]
   );
 
   const steps = useMemo(
@@ -97,7 +98,7 @@ const Test = () => {
                     step * 4 <= i &&
                     (step + 1) * 4 > i &&
                     currentStep === step && (
-                      <Form.Item label={question} name={key} key={key}>
+                      <Form.Item label={`${i + 1}. ${question}`} name={key} key={key}>
                         <Input.TextArea rows={4} />
                       </Form.Item>
                     )
