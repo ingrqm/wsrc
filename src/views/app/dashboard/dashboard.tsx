@@ -68,7 +68,7 @@ const Dashboard = () => {
           <Paragraph>{t('app.dashboard.tutorial.subTitle')}</Paragraph>
           <AspectRatio x={16} y={9}>
             <iframe
-              src={getTutorialUrl(user?.permission)}
+              src={getTutorialUrl(user?.permission, user?.languageChampionship)}
               title={t('app.dashboard.tutorial.iframe.title')}
               frameBorder='0'
               allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
