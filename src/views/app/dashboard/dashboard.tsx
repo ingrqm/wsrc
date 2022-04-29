@@ -49,7 +49,7 @@ const Dashboard = () => {
             <Competition />
           </Col>
         )}
-        {statistics.data && (
+        {[Permission.arbiter, Permission.admin, Permission.superAdmin].includes(user?.permission) && statistics.data && (
           <Col span={24}>
             <Row gutter={[10, 10]} justify='center'>
               {Object.entries(statistics.data).map(([key, value]) => (
