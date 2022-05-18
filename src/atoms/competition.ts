@@ -3,7 +3,12 @@ import { atom } from 'recoil';
 
 export type CompetitionAtom = Partial<ResultDetailsRet>;
 
-export const initialCompetitionAtom: CompetitionAtom = {};
+export const initialCompetitionAtom: CompetitionAtom = {
+  startTest: null,
+  endTest: null,
+  answers: null,
+  reviewers: null,
+};
 
 export const competitionAtom = atom({
   key: 'competition',
