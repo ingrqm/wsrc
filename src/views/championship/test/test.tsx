@@ -45,7 +45,10 @@ const Test = () => {
 
   const steps = useMemo(
     () =>
-      (book && Array.from({ length: Math.ceil(Object.keys(book.questions).length / 4) }).map((_, index) => index)) ||
+      (book &&
+        Array.from({
+          length: Math.ceil(Object.keys(book.questions).length / 4),
+        }).map((_, index) => index)) ||
       [],
     [book]
   );
@@ -74,9 +77,13 @@ const Test = () => {
     if (skipCompetition.skipTest) {
       form.submit();
     }
-  }, [skipCompetition.skipTest]);
 
-  return (
+    if (competition.endTest !== null) {
+      navigate(appUrls.app.dashboard);
+    }
+  }, [competition.startTest, competition.endTest, skipCompetition.skipTest]);
+
+  return skipCompetition.skipTest || competition.endTest !== null ? null : (
     <Wrapper>
       <Navigation>
         <Button className='end-competition' type='primary' onClick={handleConfirm}>

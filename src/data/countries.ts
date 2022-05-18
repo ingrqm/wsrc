@@ -69,11 +69,11 @@ export const countries = [
     native: 'مصر‎',
     code: 'EG',
   },
-  {
-    continent: 'AF',
-    native: 'الصحراء الغربية',
-    code: 'EH',
-  },
+  // {
+  //   continent: 'AF',
+  //   native: 'الصحراء الغربية',
+  //   code: 'EH',
+  // },
   {
     continent: 'AF',
     native: 'ኤርትራ',

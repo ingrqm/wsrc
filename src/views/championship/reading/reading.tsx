@@ -153,9 +153,18 @@ const Reading = () => {
         handleStartTest();
       }
     }
-  }, [skipCompetition.skipReading]);
 
-  return (
+    if (competition.startTest !== null) {
+      navigate(appUrls.championship.test);
+      return;
+    }
+
+    if (competition.endTest !== null) {
+      navigate(appUrls.championship.test);
+    }
+  }, [competition.startTest, competition.endTest, skipCompetition.skipReading]);
+
+  return skipCompetition.skipTest || competition.startTest !== null || competition.endTest !== null ? null : (
     <>
       <Navigation>
         <Button className='previous-chapter' onClick={handlePreviousChapter} disabled={isDisabledPreviousChapter}>

@@ -13,7 +13,7 @@ const Header = () => {
   const { t } = useTranslation();
 
   return (
-    <Wrapper>
+    <Wrapper onContextMenu={(e) => e.preventDefault()}>
       <Navbar>
         {competition?.startReading && location.pathname === appUrls.championship.reading && (
           <Timer type={ChampionshipStep.startReading} />
