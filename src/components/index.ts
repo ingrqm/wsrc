@@ -1,3 +1,4 @@
+export * from './certificate';
 export * from './head';
 export * from './language-picker';
 export * from './aspect-ratio';
