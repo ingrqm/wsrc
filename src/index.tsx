@@ -1,15 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { pdfjs } from 'react-pdf';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { createRoot } from 'react-dom/client';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { RecoilRoot } from 'recoil';
 import Routes from 'routes';
 import styled, { ThemeProvider } from 'styled-components';
 import { TimeCounter } from 'components';
 import { GlobalStyle, theme } from 'styles';
-
 import 'utils/i18next';
 
 import 'antd/dist/antd.css';
@@ -25,7 +24,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/l
 
 const queryClient = new QueryClient();
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container!);
+
+root.render(
   <React.StrictMode>
     <HelmetProvider>
       <RecoilRoot>
@@ -39,6 +41,5 @@ ReactDOM.render(
         </QueryClientProvider>
       </RecoilRoot>
     </HelmetProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
