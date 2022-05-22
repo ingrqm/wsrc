@@ -769,6 +769,14 @@
           "cancelText": "No"
         }
       }
+    },
+    "downloadCertificate": {
+      "file": "certificate of attendance",
+      "messages": {
+        "loading": "The certificate is being downloaded",
+        "error": "Download certificate failed",
+        "success": "The certificate was downloaded"
+      }
     }
   },
   "meta": {

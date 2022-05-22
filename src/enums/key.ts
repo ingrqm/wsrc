@@ -32,4 +32,5 @@ export enum MutationKey {
   updateReview = 'updateReview',
   resultAssignArbiter = 'resultAssignArbiter',
   resultDelete = 'resultDelete',
+  downloadCertificate = 'downloadCertificate',
 }

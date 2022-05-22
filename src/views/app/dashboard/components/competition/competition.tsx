@@ -10,11 +10,14 @@ import {
   StartCompetitionProps,
   StartCompetitionRet,
 } from 'api';
+import { DownloadCertificateProps, DownloadCertificateRet, fetchDownloadCertificate } from 'api/certificate';
 import { competitionAtom } from 'atoms/competition';
 import { timeAtom } from 'atoms/time';
+import { userAtom } from 'atoms/user';
 import { startCompetition } from 'config';
 import { compareAsc, differenceInSeconds, differenceInMinutes, differenceInHours, differenceInDays } from 'date-fns';
 import { MutationKey, QueryKey } from 'enums';
+import { saveAs } from 'file-saver';
 import { useMutationWithError, useQueryWithError } from 'hooks';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { appUrls } from 'urls';
@@ -28,6 +31,7 @@ const Competition = () => {
   const time = useRecoilValue(timeAtom);
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const user = useRecoilValue(userAtom);
   const [competition, setCompetition] = useRecoilState(competitionAtom);
   const setTime = useSetRecoilState(timeAtom);
 
@@ -54,6 +58,21 @@ const Competition = () => {
       onSuccess: (response) => {
         setCompetition(response);
         navigate(appUrls.championship.reading);
+      },
+    }
+  );
+
+  const downloadCertificate = useMutationWithError<DownloadCertificateRet, Error, DownloadCertificateProps>(
+    fetchDownloadCertificate,
+    {
+      mutationKey: MutationKey.downloadCertificate,
+      loadingMessage: t('form.downloadCertificate.messages.loading'),
+      errorMessage: t('form.downloadCertificate.messages.error'),
+      successMessage: t('form.downloadCertificate.messages.success'),
+      onSuccess: (response) => {
+        const fileName = `${t('form.downloadCertificate.file')}.pdf`;
+
+        saveAs(response, fileName);
       },
     }
   );
@@ -92,6 +111,13 @@ const Competition = () => {
     startCompetition.mutate({});
   };
 
+  const handleDownloadCertificate = () => {
+    downloadCertificate.mutate({
+      name: user.name as string,
+      lastName: user.lastName as string,
+    });
+  };
+
   if (isAvailable) {
     return competition.startReading ? (
       <>
@@ -99,7 +125,7 @@ const Competition = () => {
           {t('app.dashboard.competition.finished.title')}
         </Title>
         <Paragraph>{t('app.dashboard.competition.finished.description')}</Paragraph>
-        <Button type='primary' icon={<DownloadOutlined />}>
+        <Button type='primary' icon={<DownloadOutlined />} onClick={handleDownloadCertificate}>
           {t('app.dashboard.competition.finished.downloadCertificate')}
         </Button>
       </>
