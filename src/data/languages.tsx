@@ -11,11 +11,11 @@ export const languagesApp = [
 ];
 
 export const languagesChampionship = [
-  // {
-  //   flag: Flags.AR,
-  //   language: LanguageChampionship.ar,
-  //   label: 'عربي',
-  // },
+  {
+    flag: Flags.AR,
+    language: LanguageChampionship.ar,
+    label: 'عربي',
+  },
   // {
   //   flag: Flags.DE,
   //   language: LanguageChampionship.de,
@@ -26,11 +26,11 @@ export const languagesChampionship = [
     language: LanguageChampionship.en,
     label: 'english',
   },
-  // {
-  //   flag: Flags.ES,
-  //   language: LanguageChampionship.es,
-  //   label: 'español',
-  // },
+  {
+    flag: Flags.ES,
+    language: LanguageChampionship.es,
+    label: 'español',
+  },
   {
     flag: Flags.FR,
     language: LanguageChampionship.fr,
@@ -41,11 +41,11 @@ export const languagesChampionship = [
   //   language: LanguageChampionship.it,
   //   label: 'italiano',
   // },
-  // {
-  //   flag: Flags.PL,
-  //   language: LanguageChampionship.pl,
-  //   label: 'polski',
-  // },
+  {
+    flag: Flags.PL,
+    language: LanguageChampionship.pl,
+    label: 'polski',
+  },
   // {
   //   flag: Flags.PT,
   //   language: LanguageChampionship.pt,
