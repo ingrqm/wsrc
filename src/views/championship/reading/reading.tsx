@@ -43,7 +43,7 @@ const Reading = () => {
     [competition]
   );
 
-  const pageRef = useCallback((node) => {
+  const pageRef = useCallback((node: any) => {
     if (node !== null) {
       if (!node.children[0].classList.contains('react-pdf__message--loading')) {
         setPageWidth(node.children[0].offsetWidth);

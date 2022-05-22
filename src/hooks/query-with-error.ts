@@ -2,6 +2,8 @@ import { QueryFunction, QueryKey, useQuery, UseQueryOptions, UseQueryResult } fr
 import { AxiosError } from 'axios';
 import { handleApiError } from 'utils/api';
 
+type ApiError = AxiosError<Error, unknown>;
+
 interface UseQueryOptionsEx {
   errorMessage?: string;
   successMessage?: string;
@@ -18,7 +20,7 @@ export default <TQueryFnData, Error>(
   useQuery<TQueryFnData, Error>(queryKey, queryFn, {
     ...options,
     onError: (error) => {
-      handleApiError(error as unknown as AxiosError);
+      handleApiError(error as unknown as ApiError);
 
       if (options) {
         const { onError } = options;

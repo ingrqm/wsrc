@@ -193,3 +193,21 @@ export const fetchResultAssignArbiter = async ({
 
   return data?.data;
 };
+
+export type ResultDeleteReq = unknown;
+
+export type ResultDeleteProps = {
+  id: number;
+};
+
+export type ResultDeleteRes = unknown;
+
+export type ResultDeleteRet = ResultDeleteRes;
+
+export const fetchResultDelete = async ({ id }: ResultDeleteProps): Promise<ResultDeleteRet> => {
+  const { results } = apiUrls;
+
+  const { data } = await request<ResultDeleteReq, Request<ResultDeleteRes>>(results(id.toString()), Methods.delete);
+
+  return data?.data;
+};

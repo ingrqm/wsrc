@@ -3,6 +3,8 @@ import { message } from 'antd';
 import { AxiosError } from 'axios';
 import { handleApiError } from 'utils/api';
 
+type ApiError = AxiosError<Error, unknown>;
+
 interface UseMutationOptionsEx {
   loadingMessage?: string;
   errorMessage?: string;
@@ -24,7 +26,7 @@ export default <TData = unknown, TError = unknown, TVariables = void, TContext =
       const { loadingMessage, mutationKey } = options;
 
       if (loadingMessage && mutationKey) {
-        message.loading({ content: loadingMessage, key: mutationKey });
+        message.loading({ content: loadingMessage, key: mutationKey as string });
       }
     }
 
@@ -34,13 +36,13 @@ export default <TData = unknown, TError = unknown, TVariables = void, TContext =
   return useMutation(wrapFunc, {
     ...options,
     onError: (error, variables, context) => {
-      handleApiError(error as unknown as AxiosError);
+      handleApiError(error as unknown as ApiError);
 
       if (options) {
         const { onError, errorMessage, mutationKey } = options;
 
         if (errorMessage) {
-          message.error({ content: errorMessage, key: mutationKey });
+          message.error({ content: errorMessage, key: mutationKey as string });
         }
 
         if (onError) {
@@ -53,7 +55,7 @@ export default <TData = unknown, TError = unknown, TVariables = void, TContext =
         const { onSuccess, successMessage, mutationKey, invalidateQueryKey } = options;
 
         if (successMessage) {
-          message.success({ content: successMessage, key: mutationKey });
+          message.success({ content: successMessage, key: mutationKey as string });
         }
 
         if (invalidateQueryKey) {

@@ -1,15 +1,15 @@
-import React, { FC } from 'react';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, Empty, Result, Button } from 'antd';
 
 type Props = {
+  children: JSX.Element;
   isError: boolean;
   isLoading: boolean;
   refetch: () => void | undefined;
   noData: boolean | undefined;
 };
 
-const ContentWrapper: FC<Props> = ({ children, isLoading = false, isError = false, refetch, noData }) => {
+const ContentWrapper = ({ children, isLoading = false, isError = false, refetch, noData }: Props) => {
   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
   return (

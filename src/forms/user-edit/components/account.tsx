@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { UseQueryResult } from 'react-query';
 import { MailOutlined } from '@ant-design/icons';
-import { Badge, Button, Col, Form, Input, Row, Select, Typography } from 'antd';
+import { Badge, Button, Col, Form, Input, Modal, Row, Select, Typography } from 'antd';
 import {
   AuthActivationProps,
   AuthActivationRet,
@@ -10,6 +10,9 @@ import {
   AuthPasswordResetRet,
   fetchAuthActivation,
   fetchAuthPasswordReset,
+  fetchResultDelete,
+  ResultDeleteProps,
+  ResultDeleteRet,
   UserDetailsRet,
 } from 'api';
 import { userAtom } from 'atoms/user';
@@ -38,6 +41,14 @@ const Account = ({ values, user: userQuery }: Props) => {
     loadingMessage: t('form.activation.messages.loading'),
     errorMessage: t('form.activation.messages.error'),
     successMessage: t('form.activation.messages.success'),
+  });
+
+  const deleteResult = useMutationWithError<ResultDeleteRet, Error, ResultDeleteProps>(fetchResultDelete, {
+    mutationKey: MutationKey.resultDelete,
+    invalidateQueryKey: [QueryKey.userDetails, QueryKey.usersList, QueryKey.userLogs],
+    loadingMessage: t('form.resultDelete.messages.loading'),
+    errorMessage: t('form.resultDelete.messages.error'),
+    successMessage: t('form.resultDelete.messages.success'),
   });
 
   const passwordReset = useMutationWithError<AuthPasswordResetRet, Error, AuthPasswordResetProps>(
@@ -73,6 +84,22 @@ const Account = ({ values, user: userQuery }: Props) => {
       id: userQuery.data?.id as number,
     });
   };
+
+  const handleDeleteResult = (id: number) => {
+    deleteResult.mutate({
+      id,
+    });
+  };
+
+  const handleConfirm = useCallback(async (id: number) => {
+    Modal.confirm({
+      title: t('form.deleteResult.modal.confirm.title'),
+      content: t('form.deleteResult.modal.confirm.content'),
+      okText: t('form.deleteResult.modal.confirm.okText'),
+      cancelText: t('form.deleteResult.modal.confirm.cancelText'),
+      onOk: () => handleDeleteResult(id),
+    });
+  }, []);
 
   return (
     <>
@@ -123,6 +150,21 @@ const Account = ({ values, user: userQuery }: Props) => {
             {!userQuery.data?.defaultPassword && (
               <Button type='link' onClick={handlePasswordReset} disabled={isDisabled}>
                 {t('form.editUser.defaultPassword')}
+              </Button>
+            )}
+          </div>
+        </Col>
+        <Col span={24} className='mb-5'>
+          <Paragraph className='mb-1'>{t('form.editUser.inputs.hasResult.placeholder')}</Paragraph>
+          <div className='flex items-center justify-between'>
+            <Badge className='ml-3' color={userQuery.data?.idResult !== null ? 'green' : 'red'} />
+            {userQuery.data?.idResult !== null && (
+              <Button
+                type='link'
+                onClick={() => handleConfirm(userQuery.data?.idResult as number)}
+                disabled={isDisabled}
+              >
+                {t('form.editUser.hasResult')}
               </Button>
             )}
           </div>

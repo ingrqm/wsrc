@@ -44,6 +44,7 @@ export type UserDetailsRes = {
   activeAccount: boolean;
   keyActive: string;
   defaultPassword: boolean;
+  idResult: number | null;
   name: string;
   lastName: string;
   age: number;
