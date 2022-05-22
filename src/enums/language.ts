@@ -4,12 +4,12 @@ export enum LanguageApp {
 
 export enum LanguageChampionship {
   fr = 'FR',
-  // pl = 'PL',
+  pl = 'PL',
   en = 'EN',
   // de = 'DE',
-  // es = 'ES',
+  es = 'ES',
   // it = 'IT',
   // pt = 'PT',
   // ru = 'RU',
-  // ar = 'AR',
+  ar = 'AR',
 }
