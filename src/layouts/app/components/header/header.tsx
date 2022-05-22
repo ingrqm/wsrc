@@ -52,7 +52,8 @@ const Header = ({ isOpen, onOpen }: Props) => {
           overlay={
             <Menu>
               <Menu.Item onClick={handleLogout} key='signOut'>
-                <FontAwesomeIcon className='mr-1' icon={faArrowRightFromBracket} /> {t('app.header.navbar.signOut')}
+                <FontAwesomeIcon className='mr-1' icon={faArrowRightFromBracket} />{' '}
+                {t('app.header.navbar.signOut') as string}
               </Menu.Item>
             </Menu>
           }
@@ -64,8 +65,8 @@ const Header = ({ isOpen, onOpen }: Props) => {
       </Navbar>
       {location.pathname === appUrls.app.dashboard && (
         <Hero>
-          <Title>{t('app.header.hero.dashboard.title', { name: user.name })}</Title>
-          <Title level={5}>{t('app.header.hero.dashboard.subTitle')}</Title>
+          <Title>{t('app.header.hero.dashboard.title', { name: user.name }) as string}</Title>
+          <Title level={5}>{t('app.header.hero.dashboard.subTitle') as string}</Title>
         </Hero>
       )}
     </Wrapper>

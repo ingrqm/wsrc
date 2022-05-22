@@ -31,4 +31,5 @@ export enum MutationKey {
   addReview = 'addReview',
   updateReview = 'updateReview',
   resultAssignArbiter = 'resultAssignArbiter',
+  resultDelete = 'resultDelete',
 }

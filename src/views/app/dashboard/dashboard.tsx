@@ -55,7 +55,9 @@ const Dashboard = () => {
               {Object.entries(statistics.data).map(([key, value]) => (
                 <Widget key={key}>
                   <Card>
-                    <Paragraph ellipsis={{ rows: 1, expandable: false }}>{t(`app.dashboard.widget.${key}`)}</Paragraph>
+                    <Paragraph ellipsis={{ rows: 1, expandable: false }}>
+                      {t(`app.dashboard.widget.${key}`) as string}
+                    </Paragraph>
                     <Text type='secondary'>{value}</Text>
                   </Card>
                 </Widget>
@@ -64,8 +66,8 @@ const Dashboard = () => {
           </Col>
         )}
         <Col xs={{ span: 24 }} md={{ span: 12 }}>
-          <Title level={3}>{t('app.dashboard.tutorial.title')}</Title>
-          <Paragraph>{t('app.dashboard.tutorial.subTitle')}</Paragraph>
+          <Title level={3}>{t('app.dashboard.tutorial.title') as string}</Title>
+          <Paragraph>{t('app.dashboard.tutorial.subTitle') as string}</Paragraph>
           <AspectRatio x={16} y={9}>
             <iframe
               src={getTutorialUrl(user?.permission, user?.languageChampionship)}
@@ -77,7 +79,7 @@ const Dashboard = () => {
           </AspectRatio>
         </Col>
         <Col xs={{ span: 24 }} md={{ span: 12 }}>
-          <Title level={3}>{t('app.dashboard.personalData.title')}</Title>
+          <Title level={3}>{t('app.dashboard.personalData.title') as string}</Title>
           <PersonalData />
         </Col>
       </Row>

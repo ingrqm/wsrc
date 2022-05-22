@@ -77,6 +77,11 @@
         "join": {
           "title": "Join to the competition!",
           "start": "start"
+        },
+        "finished": {
+          "title": "Competition was finished!",
+          "description": "Thank you for your participate. We invite you to the award ceremony which will take place on June 2 at 2 p.m. on Youtube",
+          "downloadCertificate": "certificate of attendance"
         }
       },
       "widget": {
@@ -163,7 +168,8 @@
           "reviewers": "arbiters",
           "actions": "actions",
           "action": {
-            "review": "review"
+            "review": "review",
+            "delete": "delete"
           },
           "reviewsType": "type",
           "languageChampionship": "lanugage",
@@ -661,6 +667,9 @@
         "permission": {
           "label": "Permission",
           "placeholder": "Select permission"
+        },
+        "hasResult": {
+          "placeholder": "Has the result"
         }
       },
       "verifyAccount": "verify e-mail",
@@ -677,7 +686,8 @@
         "loading": "Editing user is in progress",
         "error": "Failed to edit user",
         "success": "User data has been changed"
-      }
+      },
+      "hasResult": "reset result"
     },
     "passwordReset": {
       "messages": {
@@ -741,6 +751,23 @@
         "loading": "Saving arbiters list is in progress",
         "error": "Saving arbiters list failed",
         "success": "Saved arbiters list"
+      }
+    },
+    "resultDelete": {
+      "messages": {
+        "loading": "Result is being deleted",
+        "error": "Result could not be deleted",
+        "success": "Result has been deleted"
+      }
+    },
+    "deleteResult": {
+      "modal": {
+        "confirm": {
+          "title": "Are you sure to delete result and reviews?",
+          "content": "You are not able to undo this step",
+          "okText": "Yes",
+          "cancelText": "No"
+        }
       }
     }
   },

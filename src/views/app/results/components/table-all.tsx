@@ -1,19 +1,23 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { MoreOutlined, SearchOutlined } from '@ant-design/icons';
-import { faStarHalfStroke } from '@fortawesome/free-solid-svg-icons';
+import { faStarHalfStroke, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Badge, Button, Dropdown, Menu, Popover, Select, Table, Typography } from 'antd';
+import { Badge, Button, Dropdown, Menu, Modal, Popover, Select, Table, Typography } from 'antd';
 import {
   fetchResultAssignArbiter,
+  fetchResultDelete,
   fetchResultsAllList,
   ResultAssignArbiterProps,
   ResultAssignArbiterRet,
+  ResultDeleteProps,
+  ResultDeleteRet,
   ResultsAllListRet,
   ResultsAllListRow,
 } from 'api';
 import { ArbitersListRet, fetchArbitersList } from 'api/arbiters';
+import { User, userAtom } from 'atoms/user';
 import { languageChampionshipOptions } from 'data';
 import {
   differenceInHours,
@@ -22,23 +26,33 @@ import {
   differenceInSeconds,
   format,
 } from 'date-fns';
-import { Age, LanguageChampionship, MutationKey, QueryKey, Review } from 'enums';
+import { Age, LanguageChampionship, MutationKey, Permission, QueryKey, Review } from 'enums';
 import { useMutationWithError, useQueryWithError } from 'hooks';
+import { useRecoilValue } from 'recoil';
 import { appUrls } from 'urls';
 import { getAgeEnum } from 'utils/age';
 import { FilterSearch } from 'components';
 import { getReviewTypeColor } from '../results.utils';
 import { theme } from 'styles';
 
-const { Paragraph, Title } = Typography;
+const { Paragraph, Text, Title } = Typography;
 
 enum Reviewers {
   empty = 'empty',
 }
 
 const TableAll = () => {
+  const user = useRecoilValue(userAtom) as User;
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const deleteResult = useMutationWithError<ResultDeleteRet, Error, ResultDeleteProps>(fetchResultDelete, {
+    mutationKey: MutationKey.resultDelete,
+    invalidateQueryKey: [QueryKey.resultsAllList, QueryKey.resultsAssignToMeList, QueryKey.resultsAssessedList],
+    loadingMessage: t('form.resultDelete.messages.loading'),
+    errorMessage: t('form.resultDelete.messages.error'),
+    successMessage: t('form.resultDelete.messages.success'),
+  });
 
   const arbiters = useQueryWithError<ArbitersListRet, Error>(QueryKey.arbitersList, fetchArbitersList);
 
@@ -54,6 +68,22 @@ const TableAll = () => {
   );
 
   const resultsAll = useQueryWithError<ResultsAllListRet, Error>(QueryKey.resultsAllList, fetchResultsAllList);
+
+  const handleDeleteResult = (id: number) => {
+    deleteResult.mutate({
+      id,
+    });
+  };
+
+  const handleConfirm = useCallback(async (id: number) => {
+    Modal.confirm({
+      title: t('form.deleteResult.modal.confirm.title'),
+      content: t('form.deleteResult.modal.confirm.content'),
+      okText: t('form.deleteResult.modal.confirm.okText'),
+      cancelText: t('form.deleteResult.modal.confirm.cancelText'),
+      onOk: () => handleDeleteResult(id),
+    });
+  }, []);
 
   const columns = useMemo(
     () => [
@@ -211,7 +241,10 @@ const TableAll = () => {
             defaultValue={reviewers?.map(({ id }) => id)}
             className='w-full max-w-[285px]'
             onChange={(value) => {
-              resultAssignArbiter.mutate({ id, reviewers: value.map((item) => Number(item)) });
+              resultAssignArbiter.mutate({
+                id,
+                reviewers: value.map((item) => Number(item)),
+              });
             }}
             options={arbiters.data?.map(({ id, name, lastName }) => ({
               value: id,
@@ -254,6 +287,14 @@ const TableAll = () => {
                     />
                     {t('app.results.tableAll.header.action.review')}
                   </Menu.Item>
+                  {user.permission === Permission.superAdmin && (
+                    <Menu.Item onClick={() => handleConfirm(id)} key='delete'>
+                      <Text type='danger'>
+                        <FontAwesomeIcon className='mr-1' icon={faTrash} />
+                        {t('app.results.tableAll.header.action.delete')}
+                      </Text>
+                    </Menu.Item>
+                  )}
                 </Menu>
               }
               trigger={['click']}

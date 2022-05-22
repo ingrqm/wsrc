@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { DownloadOutlined } from '@ant-design/icons';
 import { Button, Typography } from 'antd';
 import {
   fetchResultDetails,
@@ -95,12 +96,12 @@ const Competition = () => {
     return competition.startReading ? (
       <>
         <Title level={3} className='mb-0'>
-          Competition was finished!
+          {t('app.dashboard.competition.finished.title')}
         </Title>
-        <Paragraph>
-          Thank you for your participate. We invite you to the award ceremony which will take place on June 2 at 2 p.m.
-          on Youtube
-        </Paragraph>
+        <Paragraph>{t('app.dashboard.competition.finished.description')}</Paragraph>
+        <Button type='primary' icon={<DownloadOutlined />}>
+          {t('app.dashboard.competition.finished.downloadCertificate')}
+        </Button>
       </>
     ) : (
       <>
