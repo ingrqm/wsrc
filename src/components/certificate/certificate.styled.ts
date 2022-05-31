@@ -1,6 +1,9 @@
 import { StyleSheet } from '@react-pdf/renderer';
 
 export const styles = StyleSheet.create({
+  page: {
+    fontFamily: 'Roboto',
+  },
   image: {
     top: 60,
     width: '100%',
