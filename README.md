@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://api.wsrc.app/assets/graphics/brand.png" height="128">
+  <img src="https://api.wsrc.app/assets/graphics/logo.png" height="128">
   <h1 align="center">wsrc.app</h1>
 </p>
 
