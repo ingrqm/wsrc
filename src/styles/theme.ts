@@ -6,6 +6,16 @@ export const theme = {
         5: '#6788FF',
         6: '#6383F4',
       },
+      gray: {
+        0: '#FBFBFB',
+        1: '#C5C5C5',
+        2: '#333333',
+      },
+      blue: {
+        0: '#23222D',
+        1: '#009DDC',
+        2: '#32b7ed',
+      },
     },
     light: {
       dustRed: {

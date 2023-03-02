@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Col, Form, Input, Row, Typography } from 'antd';
 import {
   AuthActivationProps,
@@ -121,26 +120,16 @@ const FormSignIn = () => {
 
   return (
     <Form form={form} initialValues={initialValues} layout='vertical' requiredMark={false} onFinish={handleFinish}>
-      <Form.Item
-        name={FormInputs.mail}
-        rules={validationSchema[FormInputs.mail]}
-        label={t('form.signIn.inputs.mail.label')}
-      >
+      <Form.Item name={FormInputs.mail} rules={validationSchema[FormInputs.mail]}>
         <Input
           size='large'
-          prefix={<MailOutlined />}
           placeholder={t('form.signIn.inputs.mail.placeholder')}
           disabled={activation.isLoading || signIn.isLoading}
         />
       </Form.Item>
-      <Form.Item
-        name={FormInputs.password}
-        rules={validationSchema[FormInputs.password]}
-        label={t('form.signIn.inputs.password.label')}
-      >
+      <Form.Item name={FormInputs.password} rules={validationSchema[FormInputs.password]}>
         <Input.Password
           size='large'
-          prefix={<LockOutlined />}
           placeholder={t('form.signIn.inputs.password.placeholder')}
           disabled={activation.isLoading || signIn.isLoading}
         />
@@ -148,13 +137,15 @@ const FormSignIn = () => {
       <Row>
         <Col>
           <Form.Item name={FormInputs.rememberMe} valuePropName='checked'>
-            <Checkbox disabled={activation.isLoading || signIn.isLoading}>
+            <Checkbox className='dark-checkbox' disabled={activation.isLoading || signIn.isLoading}>
               {t('form.signIn.inputs.rememberMe.label')}
             </Checkbox>
           </Form.Item>
         </Col>
         <Col className='ml-auto mb-[24px] p-[5px]'>
-          <Link onClick={() => navigate(appUrls.auth.passwordRemind)}>{t('form.signIn.forgotPassword')}</Link>
+          <Link className='underlined-link' onClick={() => navigate(appUrls.auth.passwordRemind)}>
+            {t('form.signIn.forgotPassword')}
+          </Link>
         </Col>
       </Row>
       <Button type='primary' block onClick={form.submit} disabled={activation.isLoading || signIn.isLoading}>

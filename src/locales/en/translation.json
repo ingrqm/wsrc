@@ -246,13 +246,14 @@
   "auth": {
     "signIn": {
       "infoBox": {
-        "title": "Ready for the challenge?",
+        "title1": "Ready for the",
+        "title2": "challenge?",
         "subTitle": "Sign in to your member area and let’s get started!"
       },
       "content": {
         "title": "Sign In",
         "footer": {
-          "doNotHaveAccount": "You don’t have an account?",
+          "doNotHaveAccount": "Don’t have an account?",
           "signUp": "Sign Up!"
         }
       }

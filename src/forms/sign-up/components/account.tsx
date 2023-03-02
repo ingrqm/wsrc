@@ -34,21 +34,21 @@ const Account = ({ setView, form }: Props) => {
         label={t('form.signUp.inputs.mail.label')}
         rules={validationSchema[FormInputs.mail]}
       >
-        <Input placeholder={t('form.signUp.inputs.mail.placeholder')} prefix={<MailOutlined />} />
+        <Input size='large' placeholder={t('form.signUp.inputs.mail.placeholder')} />
       </Form.Item>
       <Form.Item
         name={FormInputs.password}
         label={t('form.signUp.inputs.password.label')}
         rules={validationSchema[FormInputs.password]}
       >
-        <Input.Password placeholder={t('form.signUp.inputs.password.placeholder')} prefix={<LockOutlined />} />
+        <Input.Password size='large' placeholder={t('form.signUp.inputs.password.placeholder')} />
       </Form.Item>
       <Form.Item
         name={FormInputs.replyPassword}
         label={t('form.signUp.inputs.replyPassword.label')}
         rules={validationSchema[FormInputs.replyPassword]}
       >
-        <Input.Password placeholder={t('form.signUp.inputs.replyPassword.placeholder')} prefix={<LockOutlined />} />
+        <Input.Password size='large' placeholder={t('form.signUp.inputs.replyPassword.placeholder')} />
       </Form.Item>
       <Form.Item
         name={FormInputs.languageChampionship}
@@ -56,6 +56,7 @@ const Account = ({ setView, form }: Props) => {
         rules={validationSchema[FormInputs.languageChampionship]}
       >
         <Select
+          size='large'
           placeholder={t('form.signUp.inputs.languageChampionship.placeholder')}
           options={languageChampionshipOptions}
           filterOption={(search, option) => option?.label.props.children[1].includes(search)}

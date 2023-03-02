@@ -63,6 +63,7 @@ const Location = ({ setView, values, form, handleValuesChange }: Props) => {
         rules={validationSchema[FormInputs.continent]}
       >
         <Select
+          size='large'
           placeholder={t('form.signUp.inputs.continent.placeholder')}
           options={continentOptions}
           optionFilterProp='label'
@@ -76,6 +77,7 @@ const Location = ({ setView, values, form, handleValuesChange }: Props) => {
         rules={validationSchema[FormInputs.country]}
       >
         <Select
+          size='large'
           placeholder={t('form.signUp.inputs.country.placeholder')}
           options={countryOptions}
           optionFilterProp='label'
@@ -90,6 +92,7 @@ const Location = ({ setView, values, form, handleValuesChange }: Props) => {
         rules={validationSchema[FormInputs.region]}
       >
         <Select
+          size='large'
           placeholder={t('form.signUp.inputs.region.placeholder')}
           options={regionOptions}
           optionFilterProp='label'
@@ -107,7 +110,7 @@ const Location = ({ setView, values, form, handleValuesChange }: Props) => {
         }
         rules={validationSchema[FormInputs.crew]}
       >
-        <Input placeholder={t('form.signUp.inputs.crew.placeholder')} prefix={<TeamOutlined />} />
+        <Input size='large' placeholder={t('form.signUp.inputs.crew.placeholder')} />
       </Form.Item>
       <Form.Item name={FormInputs.statute} rules={validationSchema[FormInputs.statute]} valuePropName='checked'>
         <Checkbox>

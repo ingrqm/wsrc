@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { LockOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import {
   AuthPasswordRecoveryProps,
@@ -81,7 +80,6 @@ const FormPasswordRecovery = () => {
       >
         <Input.Password
           size='large'
-          prefix={<LockOutlined />}
           placeholder={t('form.passwordRecovery.inputs.password.placeholder')}
           disabled={verify.isLoading || passwordRecovery.isLoading}
         />
@@ -93,7 +91,6 @@ const FormPasswordRecovery = () => {
       >
         <Input.Password
           size='large'
-          prefix={<LockOutlined />}
           placeholder={t('form.passwordRecovery.inputs.replyPassword.placeholder')}
           disabled={verify.isLoading || passwordRecovery.isLoading}
         />
