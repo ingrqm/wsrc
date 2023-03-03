@@ -24,4 +24,11 @@ export const button = css`
   .ant-btn-primary:focus {
     background: ${({ theme }) => theme.color.custom.blue[2]};
   }
+
+  .ant-btn-primary[disabled],
+  .ant-btn-primary[disabled]:hover {
+    background: ${({ theme }) => theme.color.custom.blue[1]};
+    color: #fff;
+    opacity: 0.5;
+  }
 `;

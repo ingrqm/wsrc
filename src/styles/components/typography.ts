@@ -14,6 +14,7 @@ export const typography = css`
   h6.ant-typography,
   .ant-typography h6 {
     font-weight: 500;
+    color: ${({ theme }) => theme.color.custom.blue[0]};
   }
 
   .ant-typography.underlined-link {

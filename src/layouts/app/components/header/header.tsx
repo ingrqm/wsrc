@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined, DownOutlined } from '@ant-design/icons';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Dropdown, Menu, Typography } from 'antd';
+import { Dropdown, Image, Menu, Typography } from 'antd';
 import { AuthSignOutProps, AuthSignOutRet, fetchAuthSignOut } from 'api';
 import { initialUserAtom, userAtom } from 'atoms/user';
 import { MutationKey } from 'enums';
@@ -11,9 +11,10 @@ import { t } from 'i18next';
 import { useRecoilState } from 'recoil';
 import { appUrls } from 'urls';
 import { LanguagePicker } from 'components';
-import { Hero, Navbar, Wrapper } from './header.styled';
+import Img from '../../../../assets/images/avatars/male.png';
+import { Navbar, Wrapper, NavbarUserItem } from './header.styled';
 
-const { Title } = Typography;
+const { Paragraph } = Typography;
 
 type Props = {
   isOpen: boolean;
@@ -23,7 +24,6 @@ type Props = {
 const Header = ({ isOpen, onOpen }: Props) => {
   const [user, setUser] = useRecoilState(userAtom);
   const navigate = useNavigate();
-  const location = useLocation();
 
   const signOut = useMutationWithError<AuthSignOutRet, Error, AuthSignOutProps>(() => fetchAuthSignOut(), {
     mutationKey: MutationKey.signOut,
@@ -60,15 +60,15 @@ const Header = ({ isOpen, onOpen }: Props) => {
           trigger={['click']}
           arrow
         >
-          <UserOutlined />
+          <NavbarUserItem>
+            <Image src={Img} preview={false} />
+            <Paragraph className='mb-0 ml-2'>
+              {user.name} {user.lastName}
+            </Paragraph>
+            <DownOutlined className='ml-2' />
+          </NavbarUserItem>
         </Dropdown>
       </Navbar>
-      {location.pathname === appUrls.app.dashboard && (
-        <Hero>
-          <Title>{t('app.header.hero.dashboard.title', { name: user.name }) as string}</Title>
-          <Title level={5}>{t('app.header.hero.dashboard.subTitle') as string}</Title>
-        </Hero>
-      )}
     </Wrapper>
   );
 };

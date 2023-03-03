@@ -15,6 +15,7 @@ import {
   Statute,
   Test,
   Users,
+  PersonalData,
 } from 'views';
 import { Head } from 'components';
 
@@ -33,6 +34,7 @@ const AppRoutes = () => (
           <Route path={appRoutes.app.dashboard} element={<Dashboard />} />
           <Route path={appRoutes.app.results} element={<Results />} />
           <Route path={appRoutes.app.users} element={<Users />} />
+          <Route path={appRoutes.app.personalData} element={<PersonalData />} />
         </Route>
         <Route path={appRoutes.auth.base} element={<Auth />}>
           <Route index element={<Navigate to={appUrls.auth.signIn} />} />
