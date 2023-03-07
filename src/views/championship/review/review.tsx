@@ -165,7 +165,7 @@ const Review = () => {
   return (
     <Wrapper>
       <Navigation>
-        <Button className='submit-review' type='primary' onClick={handleConfirm}>
+        <Button className='submit-review px-5' type='primary' onClick={handleConfirm}>
           {t('championship.review.navigation.finish')} <RightOutlined />
         </Button>
       </Navigation>
@@ -251,12 +251,12 @@ const Review = () => {
               )
             )}
             <Actions>
-              <Button onClick={() => setCurrentStep(currentStep - 1)} disabled={currentStep === 0}>
+              <Button className='px-5' onClick={() => setCurrentStep(currentStep - 1)} disabled={currentStep === 0}>
                 <LeftOutlined /> {t('championship.review.navigation.previous')}
               </Button>
               <Button
                 type='primary'
-                className='ml-auto'
+                className='ml-auto px-5'
                 onClick={() => setCurrentStep(currentStep + 1)}
                 disabled={currentStep === steps.length - 1}
               >
