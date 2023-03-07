@@ -1,6 +1,5 @@
 import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TeamOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Col, Form, FormInstance, Input, Row, Select, Typography } from 'antd';
 import { continents, countries, regions } from 'data';
 import { appUrls } from 'urls';

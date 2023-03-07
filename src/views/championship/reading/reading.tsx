@@ -31,8 +31,8 @@ const Reading = () => {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(0);
   const [scale, setScale] = useState(1);
-  const [pageWidth, setPageWidth] = useState(0);
-  const [pageHeight, setPageHeight] = useState(0);
+  const setPageWidth = useState(0)[1];
+  const setPageHeight = useState(0)[1];
   const [isBookOpen, setIsBookOpen] = useState(false);
 
   let pdfDocSize = 550;

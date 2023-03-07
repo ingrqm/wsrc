@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Button, Form, FormInstance, Input, Select } from 'antd';
 import { languageChampionshipOptions } from 'data';
 import { FormInputs, Views } from '../sign-up.enum';

@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PhoneOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Col, Form, FormInstance, Input, Row, Select } from 'antd';
 import { ageOptions } from 'data';
 import { FormInputs, Views } from '../sign-up.enum';
