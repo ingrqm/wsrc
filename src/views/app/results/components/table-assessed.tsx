@@ -316,7 +316,9 @@ const TableAssessed = () => {
           <Title level={3}>{t('app.results.assessed.title')}</Title>
         </Col>
         <Col xs={{ span: 24 }} sm={{ span: 12 }} className='flex justify-end'>
-          <Button onClick={handleExportData}>Export data</Button>
+          <Button className='px-2' size='small' type='primary' onClick={handleExportData}>
+            Export data
+          </Button>
         </Col>
       </Row>
       <Table
