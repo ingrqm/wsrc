@@ -11,7 +11,7 @@ import { useMutationWithError } from 'hooks';
 import { useRecoilState } from 'recoil';
 import { appUrls } from 'urls';
 import { getAgeEnum } from 'utils/age';
-import { Actions, Main, Navigation, Wrapper } from './test.styled';
+import { Main, Navigation, Wrapper, FormWrapper } from './test.styled';
 
 const { Step } = Steps;
 
@@ -90,41 +90,46 @@ const Test = () => {
           {t('championship.test.navigation.finish')} <RightOutlined />
         </Button>
       </Navigation>
-      <Main>
+      <Main className='px-20 py-5'>
         {book && (
           <>
-            <Steps current={currentStep} className='mb-[36px]'>
-              {steps.map((key) => (
-                <Step key={key} />
-              ))}
-            </Steps>
-            <Form form={form} layout='vertical' requiredMark={false} onFinish={handleFinish} preserve>
-              {steps.map((step) =>
-                Object.entries(book.questions).map(
-                  ([key, question], i) =>
-                    step * 4 <= i &&
-                    (step + 1) * 4 > i &&
-                    currentStep === step && (
-                      <Form.Item label={`${i + 1}. ${question}`} name={key} key={key}>
-                        <Input.TextArea rows={4} />
-                      </Form.Item>
-                    )
-                )
-              )}
-              <Actions>
-                <Button onClick={() => setCurrentStep(currentStep - 1)} disabled={currentStep === 0}>
-                  <LeftOutlined /> {t('championship.test.navigation.previous')}
-                </Button>
-                <Button
-                  type='primary'
-                  className='ml-auto'
-                  onClick={() => setCurrentStep(currentStep + 1)}
-                  disabled={currentStep === steps.length - 1}
-                >
-                  {t('championship.test.navigation.next')} <RightOutlined />
-                </Button>
-              </Actions>
-            </Form>
+            <Button
+              className='page-action-btn prev'
+              type='text'
+              onClick={() => setCurrentStep(currentStep - 1)}
+              disabled={currentStep === 0}
+            >
+              <LeftOutlined />
+            </Button>
+            <FormWrapper>
+              <Steps direction='horizontal' responsive={false} size='small' current={currentStep} className='mb-[36px]'>
+                {steps.map((key) => (
+                  <Step key={key} />
+                ))}
+              </Steps>
+              <Form form={form} layout='vertical' requiredMark={false} onFinish={handleFinish} preserve>
+                {steps.map((step) =>
+                  Object.entries(book.questions).map(
+                    ([key, question], i) =>
+                      step * 4 <= i &&
+                      (step + 1) * 4 > i &&
+                      currentStep === step && (
+                        <Form.Item label={`${i + 1}. ${question}`} name={key} key={key}>
+                          <Input.TextArea rows={4} />
+                        </Form.Item>
+                      )
+                  )
+                )}
+              </Form>
+            </FormWrapper>
+            <Button
+              className='page-action-btn next'
+              type='text'
+              onClick={() => setCurrentStep(currentStep + 1)}
+              disabled={currentStep === steps.length - 1}
+            >
+              <RightOutlined />
+            </Button>
           </>
         )}
       </Main>

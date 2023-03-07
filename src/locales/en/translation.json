@@ -869,9 +869,9 @@
     "reading": {
       "navigation": {
         "chapter": "chapter",
-        "firstPage": "first page",
-        "lastPage": "last page",
-        "startTest": "start test",
+        "firstPage": "First Page",
+        "lastPage": "Last Page",
+        "startTest": "Start Test",
         "page": "page"
       },
       "modal": {
@@ -893,7 +893,7 @@
         }
       },
       "navigation": {
-        "finish": "finish",
+        "finish": "Finish",
         "next": "next",
         "previous": "previous"
       }

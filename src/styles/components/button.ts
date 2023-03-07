@@ -11,7 +11,7 @@ export const button = css`
 
   .ant-btn:hover,
   .ant-btn:focus {
-    border: none;
+    border-color: transparent;
   }
 
   .ant-btn-primary {
@@ -30,5 +30,11 @@ export const button = css`
     background: ${({ theme }) => theme.color.custom.blue[1]};
     color: #fff;
     opacity: 0.5;
+  }
+
+  .ant-modal-confirm-btns {
+    .ant-btn {
+      padding: 4px 15px;
+    }
   }
 `;
