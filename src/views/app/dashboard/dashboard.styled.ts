@@ -46,8 +46,7 @@ export const TutorialVideoWrapper = styled.div`
 
   .ant-image {
     position: absolute;
-    /*bottom: calc(350px - 5em);*/
-    bottom: 0px;
+    bottom: 0;
     left: 10px;
     z-index: -1;
 

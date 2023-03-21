@@ -1,6 +1,6 @@
 import { Card } from 'antd';
 import styled from 'styled-components';
-import { media } from '../../../styles';
+import { media } from 'styles';
 
 export const Navigation = styled.div`
   .ant-btn {
@@ -65,8 +65,8 @@ export const Options = styled.div`
   }
 
   .start-test-option {
-    color: #fff;
-    background: ${({ theme }) => theme.color.custom.blue[1]};
+    color: ${({ theme }) => theme.color.custom.blue[1]};
+    background: ${({ theme }) => theme.color.neutral[1]};
     font-size: 12px;
     padding: 0 5px;
   }
@@ -88,7 +88,7 @@ export const Main = styled.div`
     box-shadow: -2px 4px 85px rgba(187, 187, 187, 0.2);
     width: auto;
     height: auto;
-    background: #fff;
+    background: ${({ theme }) => theme.color.neutral[1]};
     padding: 0 40px;
     max-width: 100%;
 
@@ -119,7 +119,7 @@ export const Main = styled.div`
     right: 30px;
     top: 50%;
     transform: translateY(-50%);
-    box-shadow: 0px 10px 30px rgba(0, 157, 220, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 157, 220, 0.1);
     border-radius: 8px;
     font-weight: 500;
     font-size: 12px;
@@ -148,8 +148,6 @@ export const StyledCard = styled(Card)`
   display: flex;
   align-items: center;
   justify-content: center;
-  /*box-shadow: -2px 4px 85px rgba(187, 187, 187, 0.2);*/
-  /*border-radius: 8px;*/
   width: auto;
   height: auto;
   margin-top: 5px;
@@ -157,13 +155,7 @@ export const StyledCard = styled(Card)`
   max-width: 100%;
 
   &.left-page {
-    border-right: 1px solid #dbdbdb;
-  }
-
-  .react-pdf__Page {
-    /*width: 100% !important;*/
-    /*height: 400px !important;*/
-    /*width: auto !important;*/
+    border-right: 1px solid ${({ theme }) => theme.color.custom.gray[4]};
   }
 
   .ant-card-body {

@@ -77,30 +77,21 @@ const Competition = () => {
     }
   );
 
-  let days = useMemo(() => differenceInDays(timeLeft, time), [timeLeft, time]);
-  let hours = useMemo(() => differenceInHours(timeLeft, time) - days * 24, [timeLeft, time, days]);
-  let minutes = useMemo(
-    () => differenceInMinutes(timeLeft, time) - days * 24 * 60 - hours * 60,
-    [timeLeft, time, days, hours]
-  );
-  let seconds = useMemo(
-    () => differenceInSeconds(timeLeft, time) - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60,
-    [timeLeft, time, days, hours, minutes]
-  );
-
   const isAvailable = useMemo(() => compareAsc(time, timeLeft) === 1, [competition, timeLeft, time]);
-  if (isAvailable) {
-    days = 0;
-    hours = 0;
-    minutes = 0;
-    seconds = 0;
-  }
+  const days = isAvailable ? 0 : useMemo(() => differenceInDays(timeLeft, time), [timeLeft, time]);
+  const hours = isAvailable ? 0 : useMemo(() => differenceInHours(timeLeft, time) - days * 24, [timeLeft, time, days]);
+  const minutes = isAvailable
+    ? 0
+    : useMemo(() => differenceInMinutes(timeLeft, time) - days * 24 * 60 - hours * 60, [timeLeft, time, days, hours]);
+  const seconds = isAvailable
+    ? 0
+    : useMemo(
+        () => differenceInSeconds(timeLeft, time) - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60,
+        [timeLeft, time, days, hours, minutes]
+      );
 
-  let timeLeftPercent = 100;
-  if (days <= 30) {
-    const totalLeftMinutes = differenceInMinutes(timeLeft, time);
-    timeLeftPercent = (totalLeftMinutes / (30 * 24 * 60)) * 100;
-  }
+  const timeLeftPercent = days <= 30 ? (differenceInMinutes(timeLeft, time) / (30 * 24 * 60)) * 100 : 100;
+
   const handleStartCompetition = () => {
     startCompetition.mutate({});
   };
@@ -173,7 +164,7 @@ const Competition = () => {
         </TimerWrapper>
       </Col>
       <Col md={12} xs={24} className='mt-6 xs:px-0 md:px-10 lg:px-24'>
-        <Button type='primary' block disabled={!isAvailable} onClick={handleStartCompetition}>
+        <Button type='primary' disabled={!isAvailable} onClick={handleStartCompetition} block>
           {t('app.dashboard.competition.join.start')}
         </Button>
       </Col>

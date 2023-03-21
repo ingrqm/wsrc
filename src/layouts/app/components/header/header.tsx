@@ -4,6 +4,7 @@ import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Dropdown, Image, Menu, Typography } from 'antd';
 import { AuthSignOutProps, AuthSignOutRet, fetchAuthSignOut } from 'api';
+import Img from 'assets/images/avatars/male.png';
 import { initialUserAtom, userAtom } from 'atoms/user';
 import { MutationKey } from 'enums';
 import { useMutationWithError } from 'hooks';
@@ -11,7 +12,6 @@ import { t } from 'i18next';
 import { useRecoilState } from 'recoil';
 import { appUrls } from 'urls';
 import { LanguagePicker } from 'components';
-import Img from '../../../../assets/images/avatars/male.png';
 import { Navbar, Wrapper, NavbarUserItem } from './header.styled';
 
 const { Paragraph } = Typography;

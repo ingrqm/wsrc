@@ -35,10 +35,7 @@ const Reading = () => {
   const setPageHeight = useState(0)[1];
   const [isBookOpen, setIsBookOpen] = useState(false);
 
-  let pdfDocSize = 550;
-  if (window.innerWidth >= 991) {
-    pdfDocSize = 800;
-  }
+  const pdfDocSize = window.innerWidth >= 991 ? 800 : 550;
 
   const book = useMemo(
     () =>
@@ -188,7 +185,7 @@ const Reading = () => {
             </Options>
             <PageWrapper>
               {isBookOpen && (
-                <StyledCard className={isBookOpen ? 'left-page' : ''}>
+                <StyledCard className={isBookOpen && 'left-page'}>
                   <Page
                     pageNumber={page - 1}
                     height={pdfDocSize}

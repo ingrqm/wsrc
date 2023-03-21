@@ -317,7 +317,7 @@ const TableAssessed = () => {
         </Col>
         <Col xs={{ span: 24 }} sm={{ span: 12 }} className='flex justify-end'>
           <Button className='px-2' size='small' type='primary' onClick={handleExportData}>
-            Export data
+            {t('app.results.assessed.exportData')}
           </Button>
         </Col>
       </Row>

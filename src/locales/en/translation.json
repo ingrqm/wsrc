@@ -214,7 +214,8 @@
         "title": "Results without review"
       },
       "assessed": {
-        "title": "Results assessed"
+        "title": "Results assessed",
+        "exportData": "Export Data"
       },
       "tableAssessed": {
         "header": {

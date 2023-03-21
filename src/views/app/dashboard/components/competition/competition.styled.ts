@@ -1,6 +1,6 @@
 import { Progress } from 'antd';
 import styled from 'styled-components';
-import { media } from '../../../../../styles';
+import { media } from 'styles';
 
 export const TimerWrapper = styled.div`
   ${media.md} {
@@ -18,7 +18,6 @@ export const TimerItem = styled.div`
   display: block;
   font-weight: 400;
   font-size: 45px;
-  font-weight: 400;
   color: ${({ theme }) => theme.color.custom.blue[0]};
 
   span {

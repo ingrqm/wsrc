@@ -54,7 +54,7 @@ export const Navigation = styled.div`
       top: calc(50% + 36px);
       transform: translateY(-50%);
       right: 24px;
-      color: #fff;
+      color: ${({ theme }) => theme.color.neutral[1]};
       background: ${({ theme }) => theme.color.custom.blue[1]};
       font-size: 13px;
       padding: 15px 12px;

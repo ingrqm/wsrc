@@ -12,6 +12,7 @@ export const theme = {
         1: '#C5C5C5',
         2: '#333333',
         3: '#FEFFFE',
+        4: '#DBDBDB',
       },
       blue: {
         0: '#23222D',
