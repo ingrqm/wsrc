@@ -66,7 +66,7 @@ export const Options = styled.div`
 
   .start-test-option {
     color: ${({ theme }) => theme.color.custom.blue[1]};
-    background: ${({ theme }) => theme.color.neutral[1]};
+    background: ${({ theme }) => theme.color.light.neutral[1]};
     font-size: 12px;
     padding: 0 5px;
   }
@@ -88,7 +88,7 @@ export const Main = styled.div`
     box-shadow: -2px 4px 85px rgba(187, 187, 187, 0.2);
     width: auto;
     height: auto;
-    background: ${({ theme }) => theme.color.neutral[1]};
+    background: ${({ theme }) => theme.color.light.neutral[1]};
     padding: 0 40px;
     max-width: 100%;
 

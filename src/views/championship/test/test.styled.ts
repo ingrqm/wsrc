@@ -34,14 +34,14 @@ export const Wrapper = styled.div`
     &.prev {
       left: -140px;
       ${media.xs} {
-        left: -10px !important;
+        left: -10px;
       }
     }
 
     &.next {
       right: -140px;
       ${media.xs} {
-        right: -10px !important;
+        right: -10px;
       }
     }
   }
@@ -54,7 +54,7 @@ export const Navigation = styled.div`
       top: calc(50% + 36px);
       transform: translateY(-50%);
       right: 24px;
-      color: ${({ theme }) => theme.color.neutral[1]};
+      color: ${({ theme }) => theme.color.light.neutral[1]};
       background: ${({ theme }) => theme.color.custom.blue[1]};
       font-size: 13px;
       padding: 15px 12px;
