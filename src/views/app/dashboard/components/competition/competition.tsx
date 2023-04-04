@@ -127,42 +127,44 @@ const Competition = () => {
   }
   return (
     <Row className='text-center' justify='space-around' align='middle'>
-      <Col md={12} xs={24}>
-        <Title level={5}>{t('app.dashboard.competition.start.title')}</Title>
-        <TimerWrapper className='px-24'>
-          <Timer>
-            <TimerItem>
-              {days}
-              <Text>
-                {days <= 1 ? t('app.dashboard.competition.timer.day') : t('app.dashboard.competition.timer.days')}
-              </Text>
-            </TimerItem>
-            <TimerItem>
-              {hours}
-              <Text>
-                {hours <= 1 ? t('app.dashboard.competition.timer.hour') : t('app.dashboard.competition.timer.hours')}
-              </Text>
-            </TimerItem>
-            <TimerItem>
-              {minutes}
-              <Text>
-                {minutes <= 1
-                  ? t('app.dashboard.competition.timer.minute')
-                  : t('app.dashboard.competition.timer.minutes')}
-              </Text>
-            </TimerItem>
-            <TimerItem>
-              {seconds}
-              <Text>
-                {seconds <= 1
-                  ? t('app.dashboard.competition.timer.second')
-                  : t('app.dashboard.competition.timer.seconds')}
-              </Text>
-            </TimerItem>
-          </Timer>
-          <StyledProgress className='mt-6' percent={timeLeftPercent} showInfo={false} />
-        </TimerWrapper>
-      </Col>
+      {!isAvailable && (
+        <Col md={12} xs={24}>
+          <Title level={5}>{t('app.dashboard.competition.start.title')}</Title>
+          <TimerWrapper className='px-24'>
+            <Timer>
+              <TimerItem>
+                {days}
+                <Text>
+                  {days <= 1 ? t('app.dashboard.competition.timer.day') : t('app.dashboard.competition.timer.days')}
+                </Text>
+              </TimerItem>
+              <TimerItem>
+                {hours}
+                <Text>
+                  {hours <= 1 ? t('app.dashboard.competition.timer.hour') : t('app.dashboard.competition.timer.hours')}
+                </Text>
+              </TimerItem>
+              <TimerItem>
+                {minutes}
+                <Text>
+                  {minutes <= 1
+                    ? t('app.dashboard.competition.timer.minute')
+                    : t('app.dashboard.competition.timer.minutes')}
+                </Text>
+              </TimerItem>
+              <TimerItem>
+                {seconds}
+                <Text>
+                  {seconds <= 1
+                    ? t('app.dashboard.competition.timer.second')
+                    : t('app.dashboard.competition.timer.seconds')}
+                </Text>
+              </TimerItem>
+            </Timer>
+            <StyledProgress className='mt-6' percent={timeLeftPercent} showInfo={false} />
+          </TimerWrapper>
+        </Col>
+      )}
       <Col md={12} xs={24} className='mt-6 xs:px-0 md:px-10 lg:px-24'>
         <Button type='primary' disabled={!isAvailable} onClick={handleStartCompetition} block>
           {t('app.dashboard.competition.join.start')}
