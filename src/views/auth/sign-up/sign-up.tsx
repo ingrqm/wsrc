@@ -12,15 +12,15 @@ const SignUp = () => {
 
   return (
     <>
-      <Title level={4} className='mb-10'>
-        {t('auth.signUp.content.title')}
-      </Title>
-      <FormSignUp />
-      <Paragraph className='mt-10'>
+      <Paragraph className='auth-p'>
         {t('auth.signUp.content.footer.doHaveAccount')}
         {` `}
         <Link onClick={() => navigate(appUrls.auth.signIn)}>{t('auth.signUp.content.footer.signIp')}</Link>
       </Paragraph>
+      <Title level={4} className='mb-10'>
+        {t('auth.signUp.content.title')}
+      </Title>
+      <FormSignUp />
     </>
   );
 };

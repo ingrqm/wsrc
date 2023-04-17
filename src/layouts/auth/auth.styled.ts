@@ -5,7 +5,7 @@ export const HeaderImage = styled.div<{ isSignInPage: boolean }>`
   position: fixed;
   width: 50vw;
   top: 0;
-  right: 0;
+  left: 0;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -29,30 +29,17 @@ export const HeaderImage = styled.div<{ isSignInPage: boolean }>`
     margin: 14px 0 0 0;
   }
 
-  &:after {
-    content: '';
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: ${({ theme }) => theme.color.custom.purple[5]};
-    opacity: ${({ isSignInPage }) => (isSignInPage ? '0.4' : '1.0')};
-  }
-
   .ant-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     z-index: -1;
-  }
-
-  .ant-image-img {
     height: 100vh;
-    width: 100%;
-    object-fit: cover;
-    object-position: 33% 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12em 15em;
   }
 
   svg {
@@ -105,6 +92,8 @@ export const StyledWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
   padding: 48px;
+  background: ${({ theme }) => theme.color.custom.gray[0]};
+  border-radius: 50px 0px 0px 0px;
 
   ${media.xs} {
     padding: 24px;
@@ -114,12 +103,37 @@ export const StyledWrapper = styled.div`
     max-width: 450px;
     width: 100%;
   }
+
+  .auth-p {
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    font-weight: 500;
+    color: ${({ theme }) => theme.color.custom.blue[0]};
+
+    ${media.sm} {
+      top: unset;
+      bottom: 20px;
+    }
+
+    a {
+      color: ${({ theme }) => theme.color.custom.blue[1]};
+    }
+  }
 `;
 
 export const StyledLogoImg = styled.div`
-  max-width: 120px;
+  max-width: 80px;
   width: 100%;
-  margin-bottom: 36px;
+  margin: 20px 40px;
+
+  ${media.sm} {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 20px 0;
+  }
 `;
 
 export const StyledWrapperLanguagePicker = styled.div`

@@ -1,13 +1,11 @@
 import { useEffect, useMemo } from 'react';
-import { Typography } from 'antd';
 import { competitionAtom, skipCompetitionAtom } from 'atoms/competition';
 import { timeAtom } from 'atoms/time';
 import { compareAsc, differenceInDays, differenceInHours, differenceInMinutes, differenceInSeconds } from 'date-fns';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { leadZero } from 'utils/convert';
 import { ChampionshipStep } from '../header.enum';
-
-const { Title } = Typography;
+import { TimeText } from './timer.styled';
 
 type Props = {
   type: ChampionshipStep;
@@ -66,9 +64,9 @@ const Timer = ({ type }: Props) => {
   useEffect(handleSkip, [isEndOfTime]);
 
   return (
-    <Title level={3} className='m-0'>
+    <TimeText level={3} className='m-0 text-lg'>
       {timer}
-    </Title>
+    </TimeText>
   );
 };
 

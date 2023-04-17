@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { MailOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import { AuthPasswordRemindProps, AuthPasswordRemindRet, fetchAuthPasswordRemind } from 'api';
 import { MutationKey } from 'enums';
@@ -46,7 +45,6 @@ const FormPasswordRemind = () => {
       >
         <Input
           size='large'
-          prefix={<MailOutlined />}
           placeholder={t('form.passwordRemind.inputs.mail.placeholder')}
           disabled={passwordRemind.isLoading}
         />

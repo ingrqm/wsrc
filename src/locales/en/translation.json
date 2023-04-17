@@ -54,7 +54,8 @@
     "sidebar": {
       "dashboard": "Dashboard",
       "results": "Results",
-      "users": "Users"
+      "users": "Users",
+      "personalData": "Personal Data"
     },
     "header": {
       "navbar": {
@@ -62,26 +63,36 @@
       },
       "hero": {
         "dashboard": {
-          "title": "Hi {{name}},",
+          "title": "Hi",
           "subTitle": "welcome in your championship panel"
         }
       }
     },
     "dashboard": {
       "competition": {
+        "timer": {
+          "days": "Days",
+          "day": "Day",
+          "hour": "Hour",
+          "hours": "Hours",
+          "minute": "Minute",
+          "minutes": "Minutes",
+          "second": "Second",
+          "seconds": "Seconds"
+        },
         "start": {
           "day": "{{days}} day and",
           "days": "{{days}} days and",
-          "title": "Start of the competition in {{calendarDays}}{{timer}}"
+          "title": "Start of the competition in"
         },
         "join": {
           "title": "Join to the competition!",
-          "start": "start"
+          "start": "Start"
         },
         "finished": {
           "title": "Competition was finished!",
           "description": "Thank you for your participate. We invite you to the award ceremony which will take place on June 2 at 2 p.m. on Youtube",
-          "downloadCertificate": "certificate of attendance"
+          "downloadCertificate": "Certificate of Attendance"
         }
       },
       "widget": {
@@ -203,7 +214,8 @@
         "title": "Results without review"
       },
       "assessed": {
-        "title": "Results assessed"
+        "title": "Results assessed",
+        "exportData": "Export Data"
       },
       "tableAssessed": {
         "header": {
@@ -246,13 +258,14 @@
   "auth": {
     "signIn": {
       "infoBox": {
-        "title": "Ready for the challenge?",
+        "title1": "Ready for the",
+        "title2": "challenge?",
         "subTitle": "Sign in to your member area and let’s get started!"
       },
       "content": {
         "title": "Sign In",
         "footer": {
-          "doNotHaveAccount": "You don’t have an account?",
+          "doNotHaveAccount": "Don’t have an account?",
           "signUp": "Sign Up!"
         }
       }
@@ -857,9 +870,9 @@
     "reading": {
       "navigation": {
         "chapter": "chapter",
-        "firstPage": "first page",
-        "lastPage": "last page",
-        "startTest": "start test",
+        "firstPage": "First Page",
+        "lastPage": "Last Page",
+        "startTest": "Start Test",
         "page": "page"
       },
       "modal": {
@@ -881,7 +894,7 @@
         }
       },
       "navigation": {
-        "finish": "finish",
+        "finish": "Finish",
         "next": "next",
         "previous": "previous"
       }

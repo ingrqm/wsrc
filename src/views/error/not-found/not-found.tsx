@@ -24,7 +24,7 @@ const NotFound = () => {
       title={t('error.notFound.title')}
       subTitle={t('error.notFound.subTitle')}
       extra={
-        <Button type='primary' onClick={handleBackToApp}>
+        <Button type='primary' className='p-5' onClick={handleBackToApp}>
           {t('error.back')}
         </Button>
       }

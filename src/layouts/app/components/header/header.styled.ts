@@ -5,7 +5,7 @@ export const Wrapper = styled.div<{ isOpen: boolean }>`
   position: relative;
   min-height: 72px;
   padding-left: ${({ isOpen }) => (isOpen ? 'calc(250px + 48px)' : '24px')};
-  background: ${({ theme }) => theme.color.custom.purple[5]};
+  background: ${({ theme }) => theme.color.custom.gray[0]};
   transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
   ${media.xs} {
@@ -17,15 +17,22 @@ export const Navbar = styled.div`
   position: absolute;
   top: 24px;
   right: 24px;
+  display: flex;
+  align-items: center;
 
   span.anticon {
-    font-size: 24px;
-    color: #fff;
+    font-size: 20px;
+    color: ${({ theme }) => theme.color.custom.blue[0]};
 
     &:not(:last-child) {
-      margin-right: 48px;
+      margin-right: 25px;
     }
   }
+`;
+
+export const NavbarUserItem = styled.div`
+  display: inline-flex;
+  align-items: center;
 `;
 
 export const Hero = styled.div`

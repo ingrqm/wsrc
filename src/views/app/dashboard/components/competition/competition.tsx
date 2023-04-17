@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { DownloadOutlined } from '@ant-design/icons';
-import { Button, Typography } from 'antd';
+import { Button, Col, Row, Typography } from 'antd';
 import {
   fetchResultDetails,
   fetchStartCompetition,
@@ -21,9 +21,9 @@ import { saveAs } from 'file-saver';
 import { useMutationWithError, useQueryWithError } from 'hooks';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { appUrls } from 'urls';
-import { leadZero } from 'utils/convert';
+import { StyledProgress, Timer, TimerItem, TimerWrapper } from './competition.styled';
 
-const { Paragraph, Title } = Typography;
+const { Paragraph, Title, Text } = Typography;
 
 const timeLeft = new Date(startCompetition);
 
@@ -77,35 +77,20 @@ const Competition = () => {
     }
   );
 
-  const days = useMemo(() => differenceInDays(timeLeft, time), [timeLeft, time]);
-  const hours = useMemo(() => differenceInHours(timeLeft, time) - days * 24, [timeLeft, time, days]);
-  const minutes = useMemo(
-    () => differenceInMinutes(timeLeft, time) - days * 24 * 60 - hours * 60,
-    [timeLeft, time, days, hours]
-  );
-  const seconds = useMemo(
-    () => differenceInSeconds(timeLeft, time) - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60,
-    [timeLeft, time, days, hours, minutes]
-  );
-
   const isAvailable = useMemo(() => compareAsc(time, timeLeft) === 1, [competition, timeLeft, time]);
+  const days = isAvailable ? 0 : useMemo(() => differenceInDays(timeLeft, time), [timeLeft, time]);
+  const hours = isAvailable ? 0 : useMemo(() => differenceInHours(timeLeft, time) - days * 24, [timeLeft, time, days]);
+  const minutes = isAvailable
+    ? 0
+    : useMemo(() => differenceInMinutes(timeLeft, time) - days * 24 * 60 - hours * 60, [timeLeft, time, days, hours]);
+  const seconds = isAvailable
+    ? 0
+    : useMemo(
+        () => differenceInSeconds(timeLeft, time) - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60,
+        [timeLeft, time, days, hours, minutes]
+      );
 
-  const timer = useMemo(
-    () => `${leadZero(hours)}:${leadZero(minutes)}:${leadZero(seconds)}`,
-    [hours, minutes, seconds]
-  );
-
-  const calendarDays = useMemo(
-    () =>
-      days
-        ? `${
-            days === 1
-              ? t('app.dashboard.competition.start.day', { days })
-              : t('app.dashboard.competition.start.days', { days })
-          } `
-        : '',
-    [days]
-  );
+  const timeLeftPercent = days <= 30 ? (differenceInMinutes(timeLeft, time) / (30 * 24 * 60)) * 100 : 100;
 
   const handleStartCompetition = () => {
     startCompetition.mutate({});
@@ -118,28 +103,75 @@ const Competition = () => {
     });
   };
 
-  if (isAvailable) {
-    return competition.startReading ? (
-      <>
-        <Title level={3} className='mb-0'>
-          {t('app.dashboard.competition.finished.title')}
-        </Title>
-        <Paragraph>{t('app.dashboard.competition.finished.description')}</Paragraph>
-        <Button type='primary' icon={<DownloadOutlined />} onClick={handleDownloadCertificate}>
-          {t('app.dashboard.competition.finished.downloadCertificate')}
-        </Button>
-      </>
-    ) : (
-      <>
-        <Title level={3}>{t('app.dashboard.competition.join.title')}</Title>
-        <Button type='primary' onClick={handleStartCompetition}>
-          {t('app.dashboard.competition.join.start')}
-        </Button>
-      </>
+  if (competition.startReading) {
+    return (
+      <Row className='text-center mt-5'>
+        <Col span={24}>
+          <Title level={3} className='mb-3'>
+            {t('app.dashboard.competition.finished.title')}
+          </Title>
+          <Paragraph className='text-sm font-light leading-6'>
+            {t('app.dashboard.competition.finished.description')}
+          </Paragraph>
+          <Button
+            type='primary'
+            className='px-14 py-4 mt-3'
+            icon={<DownloadOutlined />}
+            onClick={handleDownloadCertificate}
+          >
+            {t('app.dashboard.competition.finished.downloadCertificate')}
+          </Button>
+        </Col>
+      </Row>
     );
   }
-
-  return <Title level={3}>{t('app.dashboard.competition.start.title', { calendarDays, timer })}</Title>;
+  return (
+    <Row className='text-center' justify='space-around' align='middle'>
+      {!isAvailable && (
+        <Col md={12} xs={24}>
+          <Title level={5}>{t('app.dashboard.competition.start.title')}</Title>
+          <TimerWrapper className='px-24'>
+            <Timer>
+              <TimerItem>
+                {days}
+                <Text>
+                  {days <= 1 ? t('app.dashboard.competition.timer.day') : t('app.dashboard.competition.timer.days')}
+                </Text>
+              </TimerItem>
+              <TimerItem>
+                {hours}
+                <Text>
+                  {hours <= 1 ? t('app.dashboard.competition.timer.hour') : t('app.dashboard.competition.timer.hours')}
+                </Text>
+              </TimerItem>
+              <TimerItem>
+                {minutes}
+                <Text>
+                  {minutes <= 1
+                    ? t('app.dashboard.competition.timer.minute')
+                    : t('app.dashboard.competition.timer.minutes')}
+                </Text>
+              </TimerItem>
+              <TimerItem>
+                {seconds}
+                <Text>
+                  {seconds <= 1
+                    ? t('app.dashboard.competition.timer.second')
+                    : t('app.dashboard.competition.timer.seconds')}
+                </Text>
+              </TimerItem>
+            </Timer>
+            <StyledProgress className='mt-6' percent={timeLeftPercent} showInfo={false} />
+          </TimerWrapper>
+        </Col>
+      )}
+      <Col md={12} xs={24} className='mt-6 xs:px-0 md:px-10 lg:px-24'>
+        <Button type='primary' disabled={!isAvailable} onClick={handleStartCompetition} block>
+          {t('app.dashboard.competition.join.start')}
+        </Button>
+      </Col>
+    </Row>
+  );
 };
 
 export default Competition;

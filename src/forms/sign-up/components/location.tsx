@@ -1,6 +1,5 @@
 import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TeamOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Col, Form, FormInstance, Input, Row, Select, Typography } from 'antd';
 import { continents, countries, regions } from 'data';
 import { appUrls } from 'urls';
@@ -63,6 +62,7 @@ const Location = ({ setView, values, form, handleValuesChange }: Props) => {
         rules={validationSchema[FormInputs.continent]}
       >
         <Select
+          size='large'
           placeholder={t('form.signUp.inputs.continent.placeholder')}
           options={continentOptions}
           optionFilterProp='label'
@@ -76,6 +76,7 @@ const Location = ({ setView, values, form, handleValuesChange }: Props) => {
         rules={validationSchema[FormInputs.country]}
       >
         <Select
+          size='large'
           placeholder={t('form.signUp.inputs.country.placeholder')}
           options={countryOptions}
           optionFilterProp='label'
@@ -90,6 +91,7 @@ const Location = ({ setView, values, form, handleValuesChange }: Props) => {
         rules={validationSchema[FormInputs.region]}
       >
         <Select
+          size='large'
           placeholder={t('form.signUp.inputs.region.placeholder')}
           options={regionOptions}
           optionFilterProp='label'
@@ -107,7 +109,7 @@ const Location = ({ setView, values, form, handleValuesChange }: Props) => {
         }
         rules={validationSchema[FormInputs.crew]}
       >
-        <Input placeholder={t('form.signUp.inputs.crew.placeholder')} prefix={<TeamOutlined />} />
+        <Input size='large' placeholder={t('form.signUp.inputs.crew.placeholder')} />
       </Form.Item>
       <Form.Item name={FormInputs.statute} rules={validationSchema[FormInputs.statute]} valuePropName='checked'>
         <Checkbox>
