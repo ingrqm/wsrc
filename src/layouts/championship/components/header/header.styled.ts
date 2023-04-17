@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   position: relative;
   min-height: 72px;
-  background: ${({ theme }) => theme.color.custom.purple[5]};
+  background: ${({ theme }) => theme.color.light.neutral[3]};
   transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   display: flex;
   align-items: center;
@@ -11,8 +11,20 @@ export const Wrapper = styled.div`
 `;
 
 export const Navbar = styled.div`
-  .ant-typography {
-    color: #fff;
+  display: flex;
+
+  a {
+    color: ${({ theme }) => theme.color.light.neutral[7]};
+    font-size: 20px;
+
+    &:hover {
+      color: ${({ theme }) => theme.color.light.neutral[7]};
+    }
+  }
+
+  .close-link {
+    position: absolute;
+    right: 30px;
   }
 `;
 

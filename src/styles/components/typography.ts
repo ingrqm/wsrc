@@ -14,5 +14,19 @@ export const typography = css`
   h6.ant-typography,
   .ant-typography h6 {
     font-weight: 500;
+    color: ${({ theme }) => theme.color.custom.blue[0]};
+  }
+
+  .ant-typography.underlined-link {
+    color: ${({ theme }) => theme.color.custom.gray[2]};
+    text-decoration-line: underline;
+    font-weight: 400;
+    font-size: 13px;
+    text-underline-offset: 4px;
+  }
+
+  .ant-typography.underlined-link:hover {
+    text-decoration-line: underline;
+    color: ${({ theme }) => theme.color.custom.blue[1]};
   }
 `;

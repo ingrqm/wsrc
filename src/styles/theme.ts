@@ -5,6 +5,23 @@ export const theme = {
       purple: {
         5: '#6788FF',
         6: '#6383F4',
+        7: '#8833FF',
+      },
+      gray: {
+        0: '#FBFBFB',
+        1: '#C5C5C5',
+        2: '#333333',
+        3: '#FEFFFE',
+        4: '#DBDBDB',
+      },
+      blue: {
+        0: '#23222D',
+        1: '#009DDC',
+        2: '#32b7ed',
+        3: '#7D8FB3',
+      },
+      orange: {
+        0: '#FFCB33',
       },
     },
     light: {

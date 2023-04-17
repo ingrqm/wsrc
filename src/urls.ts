@@ -9,6 +9,7 @@ export const appRoutes = {
     dashboard: 'dashboard',
     results: 'results',
     users: 'users',
+    personalData: 'personal-data',
   },
   championship: {
     base: 'championship',
@@ -39,6 +40,7 @@ export const appUrls = {
     dashboard: `/${appRoutes.app.base}/${appRoutes.app.dashboard}`,
     results: `/${appRoutes.app.base}/${appRoutes.app.results}`,
     users: `/${appRoutes.app.base}/${appRoutes.app.users}`,
+    personalData: `/${appRoutes.app.base}/${appRoutes.app.personalData}`,
   },
   championship: {
     reading: `/${appRoutes.championship.base}/${appRoutes.championship.reading}`,

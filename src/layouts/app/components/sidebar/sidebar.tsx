@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { AppstoreOutlined, AuditOutlined, TeamOutlined } from '@ant-design/icons';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AppstoreOutlined, AuditOutlined, TeamOutlined, SettingOutlined } from '@ant-design/icons';
 import { LogoImg } from 'assets/images';
 import { User, userAtom } from 'atoms/user';
 import { Permission } from 'enums';
@@ -19,6 +19,8 @@ const Sidebar = ({ isOpen, onOpen }: Props) => {
   const [width] = useWindowDimensions();
   const navigate = useNavigate();
   const user = useRecoilValue(userAtom) as User;
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   const handleNavigate = (path: string) => {
     navigate(path);
@@ -38,19 +40,39 @@ const Sidebar = ({ isOpen, onOpen }: Props) => {
         {[Permission.newbie, Permission.user, Permission.arbiter, Permission.admin, Permission.superAdmin].includes(
           user?.permission
         ) && (
-          <Item onClick={() => handleNavigate(appUrls.app.dashboard)}>
+          <Item
+            onClick={() => handleNavigate(appUrls.app.dashboard)}
+            className={currentPath === appUrls.app.dashboard ? 'active' : ''}
+          >
             <AppstoreOutlined />
             {t('app.sidebar.dashboard')}
           </Item>
         )}
+        {[Permission.newbie, Permission.user, Permission.arbiter, Permission.admin, Permission.superAdmin].includes(
+          user?.permission
+        ) && (
+          <Item
+            onClick={() => handleNavigate(appUrls.app.personalData)}
+            className={currentPath === appUrls.app.personalData ? 'active' : ''}
+          >
+            <SettingOutlined />
+            {t('app.sidebar.personalData')}
+          </Item>
+        )}
         {[Permission.arbiter, Permission.admin, Permission.superAdmin].includes(user?.permission) && (
-          <Item onClick={() => handleNavigate(appUrls.app.results)}>
+          <Item
+            onClick={() => handleNavigate(appUrls.app.results)}
+            className={currentPath === appUrls.app.results ? 'active' : ''}
+          >
             <AuditOutlined />
             {t('app.sidebar.results')}
           </Item>
         )}
         {[Permission.admin, Permission.superAdmin].includes(user?.permission) && (
-          <Item onClick={() => handleNavigate(appUrls.app.users)}>
+          <Item
+            onClick={() => handleNavigate(appUrls.app.users)}
+            className={currentPath === appUrls.app.users ? 'active' : ''}
+          >
             <TeamOutlined />
             {t('app.sidebar.users')}
           </Item>

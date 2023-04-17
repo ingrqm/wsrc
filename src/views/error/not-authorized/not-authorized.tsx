@@ -24,7 +24,7 @@ const NotAuthorized = () => {
       title={t('error.notAuthorized.title')}
       subTitle={t('error.notAuthorized.subTitle')}
       extra={
-        <Button type='primary' onClick={handleBackToApp}>
+        <Button type='primary' className='p-5' onClick={handleBackToApp}>
           {t('error.back')}
         </Button>
       }

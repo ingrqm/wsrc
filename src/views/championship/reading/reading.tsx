@@ -21,7 +21,7 @@ import { PDFDocumentProxy } from 'pdfjs-dist/types/src/display/api';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { appUrls } from 'urls';
 import { getAgeEnum } from 'utils/age';
-import { Main, Navigation, Options, PagePagination, PageWrapper, StyledCard } from './reading.styled';
+import { Main, Options, PagePagination, PageWrapper, StyledCard, MainWrapper } from './reading.styled';
 
 const Reading = () => {
   const navigate = useNavigate();
@@ -31,9 +31,11 @@ const Reading = () => {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(0);
   const [scale, setScale] = useState(1);
-  const [pageWidth, setPageWidth] = useState(0);
-  const [pageHeight, setPageHeight] = useState(0);
+  const setPageWidth = useState(0)[1];
+  const setPageHeight = useState(0)[1];
   const [isBookOpen, setIsBookOpen] = useState(false);
+
+  const pdfDocSize = window.innerWidth >= 991 ? 800 : 550;
 
   const book = useMemo(
     () =>
@@ -70,14 +72,6 @@ const Reading = () => {
     startTest.mutate({});
   }, []);
 
-  const handlePreviousChapter = useCallback(() => {
-    if (book) {
-      setPage(
-        [...book.chapters].sort((a: number, b: number) => b - a).find((newPage: number) => newPage < page) as number
-      );
-    }
-  }, [book, page]);
-
   const handleZoomOut = useCallback(() => {
     setScale(scale - 0.1);
   }, [scale]);
@@ -109,14 +103,6 @@ const Reading = () => {
     setScale(scale + 0.1);
   }, [scale]);
 
-  const handleNextChapter = useCallback(() => {
-    if (book) {
-      setPage(
-        [...book.chapters].sort((a: number, b: number) => a - b).find((newPage: number) => newPage > page) as number
-      );
-    }
-  }, [book, page]);
-
   const handlePreviousPage = useCallback(() => {
     setPage(page - 1);
   }, [page]);
@@ -139,12 +125,6 @@ const Reading = () => {
     });
   }, []);
 
-  const isDisabledPreviousChapter = useMemo(() => (book ? book.chapters[0] >= page : true), [book, page]);
-  const isDisabledNextChapter = useMemo(
-    () => (book ? book.chapters[book.chapters.length - 1] <= page : true),
-    [book, page]
-  );
-
   useEffect(() => {
     if (skipCompetition.skipReading) {
       if (competition.startTest) {
@@ -165,47 +145,50 @@ const Reading = () => {
   }, [competition.startTest, competition.endTest, skipCompetition.skipReading]);
 
   return skipCompetition.skipTest || competition.startTest !== null || competition.endTest !== null ? null : (
-    <>
-      <Navigation>
-        <Button className='previous-chapter' onClick={handlePreviousChapter} disabled={isDisabledPreviousChapter}>
-          <LeftOutlined /> {t('championship.reading.navigation.chapter')}
-        </Button>
-        <Options>
-          <Button className='first-page' onClick={handleFirstPage}>
-            {t('championship.reading.navigation.firstPage')}
-          </Button>
-          <Button className='zoom-out' icon={<ZoomOutOutlined />} onClick={handleZoomOut} />
-          <Button
-            className='toggle-book'
-            icon={isBookOpen ? <BookOutlined /> : <ReadOutlined />}
-            onClick={handleToggleBook}
-          />
-          <Button className='zoom-in' icon={<ZoomInOutlined />} onClick={handleZoomIn} />
-          <Button className='last-page' onClick={handleLastPage}>
-            {t('championship.reading.navigation.lastPage')}
-          </Button>
-        </Options>
-        <Button className='next-chapter' onClick={handleNextChapter} disabled={isDisabledNextChapter}>
-          {t('championship.reading.navigation.chapter')} <RightOutlined />
-        </Button>
-        <Button className='start-test' type='primary' onClick={handleConfirm}>
-          {t('championship.reading.navigation.startTest')} <RightOutlined />
-        </Button>
-        <Button className='previous-page' onClick={handlePreviousPage} disabled={page <= 1}>
-          <LeftOutlined /> {t('championship.reading.navigation.page')}
-        </Button>
-        <Button className='next-page' onClick={handleNextPage} disabled={page >= pages}>
-          {t('championship.reading.navigation.page')} <RightOutlined />
-        </Button>
-      </Navigation>
+    <MainWrapper className='main-wrapper'>
       <Main>
+        <Button className='previous-page hidden md:inline-block' onClick={handlePreviousPage} disabled={page <= 1}>
+          <LeftOutlined />
+        </Button>
         {book && (
-          <Document file={book.file} onLoadSuccess={handleDocumentLoadSuccess}>
+          <Document className='book-doc' file={book.file} onLoadSuccess={handleDocumentLoadSuccess}>
+            <Options>
+              <Button className='first-page' onClick={handleFirstPage}>
+                {t('championship.reading.navigation.firstPage')}
+              </Button>
+              <Button
+                className='previous-page inline-block md:hidden'
+                onClick={handlePreviousPage}
+                disabled={page <= 1}
+              >
+                <LeftOutlined />
+              </Button>
+              <Button className='zoom-out' icon={<ZoomOutOutlined />} onClick={handleZoomOut} />
+              <Button
+                className='toggle-book hidden md:inline-block'
+                icon={isBookOpen ? <BookOutlined /> : <ReadOutlined />}
+                onClick={handleToggleBook}
+              />
+              <Button className='zoom-in' icon={<ZoomInOutlined />} onClick={handleZoomIn} />
+              <Button className='next-page inline-block md:hidden' onClick={handleNextPage} disabled={page >= pages}>
+                <RightOutlined />
+              </Button>
+              {page !== pages ? (
+                <Button className='last-page' onClick={handleLastPage}>
+                  {t('championship.reading.navigation.lastPage')}
+                </Button>
+              ) : (
+                <Button className='start-test-option inline-block md:hidden' type='primary' onClick={handleConfirm}>
+                  {t('championship.reading.navigation.startTest')}
+                </Button>
+              )}
+            </Options>
             <PageWrapper>
               {isBookOpen && (
-                <StyledCard $width={pageWidth} $height={pageHeight}>
+                <StyledCard className={isBookOpen && 'left-page'}>
                   <Page
                     pageNumber={page - 1}
+                    height={pdfDocSize}
                     scale={scale}
                     loading={<Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />}
                     noData=''
@@ -215,11 +198,12 @@ const Reading = () => {
                   </PagePagination>
                 </StyledCard>
               )}
-              <StyledCard $width={pageWidth} $height={pageHeight}>
+              <StyledCard>
                 <Page
+                  height={pdfDocSize}
+                  scale={scale}
                   inputRef={pageRef}
                   pageNumber={page}
-                  scale={scale}
                   loading={<Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />}
                   noData=''
                 />
@@ -230,8 +214,17 @@ const Reading = () => {
             </PageWrapper>
           </Document>
         )}
+        {page !== pages ? (
+          <Button className='next-page hidden md:inline-block' onClick={handleNextPage} disabled={page >= pages}>
+            <RightOutlined />
+          </Button>
+        ) : (
+          <Button className='start-test hidden md:inline-block' type='primary' onClick={handleConfirm}>
+            {t('championship.reading.navigation.startTest')} <RightOutlined />
+          </Button>
+        )}
       </Main>
-    </>
+    </MainWrapper>
   );
 };
 

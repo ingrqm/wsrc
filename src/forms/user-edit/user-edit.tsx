@@ -176,7 +176,7 @@ const UserEdit = ({ userId, setUserId }: Props) => {
             <Col span={24}>
               <Button
                 type='primary'
-                className='block ml-auto'
+                className='block ml-auto px-5'
                 onClick={isNewData ? handleConfirm : form.submit}
                 disabled={isValuesDiffUserData}
               >
