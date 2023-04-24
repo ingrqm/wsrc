@@ -47,9 +47,11 @@ const Header = () => {
             )}
           </TimeDistanceWrapper>
         )}
-        <Link className='close-link' onClick={handleCloseTest}>
-          <CloseOutlined />
-        </Link>
+        {useMatch(appUrls.championship.review) && (
+          <Link className='close-link' onClick={handleCloseTest}>
+            <CloseOutlined />
+          </Link>
+        )}
       </Navbar>
     </Wrapper>
   );
