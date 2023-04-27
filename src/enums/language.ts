@@ -9,7 +9,8 @@ export enum LanguageChampionship {
   // de = 'DE',
   es = 'ES',
   // it = 'IT',
-  // pt = 'PT',
+  pt = 'PT',
   // ru = 'RU',
   ar = 'AR',
+  tr = 'TR',
 }
