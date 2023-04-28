@@ -46,11 +46,16 @@ export const languagesChampionship = [
     language: LanguageChampionship.pl,
     label: 'polski',
   },
-  // {
-  //   flag: Flags.PT,
-  //   language: LanguageChampionship.pt,
-  //   label: 'português',
-  // },
+  {
+    flag: Flags.PT,
+    language: LanguageChampionship.pt,
+    label: 'português',
+  },
+  {
+    flag: Flags.TR,
+    language: LanguageChampionship.tr,
+    label: 'türkçe',
+  },
   // {
   //   flag: Flags.RU,
   //   language: LanguageChampionship.ru,
