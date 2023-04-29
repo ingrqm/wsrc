@@ -3,17 +3,23 @@ import { StyleSheet } from '@react-pdf/renderer';
 export const styles = StyleSheet.create({
   page: {
     fontFamily: 'Roboto',
+    flexDirection: 'row',
+  },
+  view: {
+    width: '100%',
+    height: '100%',
+    padding: 0,
   },
   image: {
-    top: 60,
     width: '100%',
-    position: 'absolute',
   },
   text: {
-    width: '60%',
-    left: '20%',
-    top: '40%',
-    textAlign: 'center',
     position: 'absolute',
+    left: '0px',
+    right: '0px',
+    top: '50%',
+    marginHorizontal: 'auto',
+    textAlign: 'center',
+    justifyContent: 'center',
   },
 });

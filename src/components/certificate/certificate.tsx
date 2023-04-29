@@ -1,4 +1,4 @@
-import { Document as _Document, Font, Image, Page as _Page, Text } from '@react-pdf/renderer';
+import { Document as _Document, Font, Image, Page as _Page, Text, View } from '@react-pdf/renderer';
 import CertificateImg from 'assets/images/certificate.png';
 import { styles } from './certificate.styled';
 
@@ -18,7 +18,9 @@ Font.register({
 const Certificate = ({ name, lastName }: Props) => (
   <Document>
     <Page orientation='landscape' style={styles.page}>
-      <Image src={CertificateImg} style={styles.image} />
+      <View style={styles.view}>
+        <Image src={CertificateImg} style={styles.image} />
+      </View>
       <Text style={styles.text}>
         {name} {lastName}
       </Text>
