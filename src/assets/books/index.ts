@@ -2,13 +2,12 @@ import { Age, LanguageChampionship } from 'enums';
 import arBook from './ar.pdf';
 import enAdultBook from './en-adult.pdf';
 import enChildBook from './en-child.pdf';
-import esAdultBook from './es-adult.pdf';
-import esChildBook from './es-child.pdf';
-import esTeenBook from './es-teen.pdf';
+import esBook from './es.pdf';
 import frAdultBook from './fr-adult.pdf';
 import frChildBook from './fr-child.pdf';
 import plAdultBook from './pl-adult.pdf';
 import plChildBook from './pl-child.pdf';
+import ptBook from './pt.pdf';
 import trAdultBook from './tr-adult.pdf';
 import trChildBook from './tr-child.pdf';
 
@@ -151,6 +150,46 @@ const arBookInfo = {
   },
 };
 
+const ptBookInfo = {
+  file: ptBook,
+  words: 9600,
+  chapters: [],
+  questions: {
+    mainCharacter: `Qual é o nome do personagem principal?`,
+    colorOfPlanet: `Qual é a cor do reino do Wanderer?`,
+    whichGame: `Que jogo o seu Majestade do Reino da Árvore quer jogar?`,
+    nameOfPrincess: `Qual é o nome da princesa do Reino das Lendas?`,
+    howManyGirl: `Quantas filhas o Pai An, da lenda das estações, tem?`,
+    nameOfGirl: `Qual é o nome da filha da lenda do girassol?`,
+    smileFlower: `O que sai da pequena flor risonha de Marc?`,
+    ownerOfBalance: `Quem é o dono do Reino do Equilíbrio?`,
+    planetOfSchools: `Onde fica localizado o planeta das escolas internas?`,
+    whichDay: `Que dia da semana foi 10 de setembro de 2335?`,
+    hairOfMarc: `O que pousa no cabelo de Marc no Reino das Marionetes?`,
+    nameOfToleranceOrganisation: `Qual é o nome da instituição no Reino da Tolerância?`,
+  },
+};
+
+const esBookInfo = {
+  file: esBook,
+  words: 9554,
+  chapters: [],
+  questions: {
+    mainCharacter: `¿Cuál es el nombre del personaje principal?`,
+    colorOfPlanet: `¿De qué color es el reino del Wanderer?`,
+    whichGame: `¿Qué juego quiere jugar su Majestad del Reino del Árbol?`,
+    nameOfPrincess: `¿Cuál es el nombre de la princesa del Reino de las Leyendas?`,
+    howManyGirl: `¿Cuántas hijas tiene el Padre An de la leyenda de las estaciones?`,
+    nameOfGirl: `¿Cuál es el nombre de la hija de la leyenda del girasol?`,
+    smileFlower: `¿Qué sale de la pequeña flor risueña de Marc?`,
+    ownerOfBalance: `¿Quién es el dueño del Reino del Equilibrio?`,
+    planetOfSchools: `¿Dónde está ubicado el planeta de las escuelas internas?`,
+    whichDay: `¿Qué día de la semana fue el 10 de septiembre de 2335?`,
+    hairOfMarc: `¿Qué aterriza en el cabello de Marc en el Reino de las Marionetas?`,
+    nameOfToleranceOrganisation: `¿Cuál es el nombre de la institución en el Reino de la Tolerancia?`,
+  },
+};
+
 export default {
   [LanguageChampionship.ar]: {
     [Age.child]: arBookInfo,
@@ -158,74 +197,9 @@ export default {
     [Age.adult]: arBookInfo,
   },
   [LanguageChampionship.es]: {
-    [Age.child]: {
-      file: esChildBook,
-      words: 13783,
-      chapters: [],
-      questions: {
-        pipinsHobby: `¿Cuál es la afición del Pipin?`,
-        whyMakeBeetle: `¿Por qué hizo un escarabajo?`,
-        characterPipinAndPepin: `Describe el carácter de Pipín y Pepina.`,
-        twoTwins: `¿Los dos gemelos están entusiasmados o tienen miedo de la mudanza?`,
-        directionNomsaFamily: `¿Cuál es la dirección de la familia Nomsa?`,
-        whoGogu: `¿Quién es Gogu?`,
-        whereNewHome: `¿Dónde está el nuevo hogar de la familia?`,
-        isThereLibrary: `¿Hay una biblioteca en el asentamiento?`,
-        jobSappi: `¿Cuál es el trabajo de Sappi?`,
-        manageTwins: `¿Lograron los gemelos conseguir nuevos amigos?`,
-        howManyAunts: `¿Cuántas tías tiene la nueva amiga de Pipina?`,
-        whatPipPlayingWithFriend: `¿A qué juega Pip con su nuevo amigo?`,
-      },
-    },
-    [Age.teen]: {
-      file: esTeenBook,
-      words: 37781,
-      chapters: [1, 6, 10, 15, 24, 28, 34, 39, 43, 50, 56],
-      questions: {
-        roleKirah: `¿Cuál es el papel de Kirah en su ciudad?`,
-        heritageOfKirah: `¿Cuál es la herencia de la familia de Kirah?`,
-        colorRepresentPicture: `¿Qué representa cada color en la imagen de los antepasados?`,
-        hoodedCommunity: `¿Por qué se les llama la comunidad de encapuchados?`,
-        locationSupplies: `¿De dónde procede el oxígeno, las verduras y las frutas que consume esta población?`,
-        howOldIsMahai: `¿Qué edad tiene Mahai?`,
-        whatHappened: `¿Qué ha pasado con el mundo?`,
-        nameMihaiCamel: `¿Cómo se llama el camello imaginario de Mahai?`,
-        typeDiet: `¿Qué tipo de dieta tienen los bonetes?`,
-        aliceJob: `¿Cuál es el trabajo de Alice?`,
-        howManyProtectors: `¿Cuántos protectores hay en esta comunidad?`,
-        subjectProtectorsMeetings: `¿Cuál es el tema de las reuniones de los protectores?`,
-        nameKirahBoyfriend: `¿Cómo se llama el novio de Kirah?`,
-        methodProtectors: `¿Qué método utilizan los Protectores para pensar las cosas?`,
-        decision: `¿Qué decisión toman?`,
-      },
-    },
-    [Age.adult]: {
-      file: esAdultBook,
-      words: 65717,
-      chapters: [8, 20, 30, 44, 56, 71, 87, 117, 132, 149, 163],
-      questions: {
-        whereAioEnd: `Dónde acabó Aio cuando se despertó?`,
-        dogClanGoOutside: `Por qué la población del clan canino no puede salir de los límites del clan?`,
-        whoCanUsePowerOfDust: `quién puede usar el poder del polvo?`,
-        howLongIsConfinement: `cuál es el periodo de contención?`,
-        whatAreDooies: `quiénes son los Dooies?`,
-        whoChoseDogClan: `Quién es el elegido del clan de los perros?`,
-        clanExchange: `Cuáles son los intercambios entre los dos clanes?`,
-        gameLand: `cuál es el objetivo de ir a Gameland?`,
-        nightWalkers: `Por qué los caminantes nocturnos no pueden funcionar durante el día?`,
-        whoHelpedAio: `Quién ayudó a Aio a llegar a gamesland?`,
-        grandmotherKnow: `cómo sabe la abuela que todavía hay polvo en el aire?`,
-        powerSource: `cuál es la fuente de energía de la ciudad?`,
-        moonBurn: `por qué la bruja de la luna quema los edificios?`,
-        buyApartment: `Ha conseguido Aio comprar un piso?`,
-        securityItems: `Qué elemento de seguridad lleva Karan?`,
-        truthWitch: `cuál es la verdad sobre la bruja Eco`,
-        powerSourceBeforeExplosion: `cuál era la fuente de energía antes de la explosión?`,
-        machineAio: `qué tipo de máquina era Aio?`,
-        findChip: `qué encontró en el chip?`,
-        whoIsAlan: `quién es Alan T. Ring`,
-      },
-    },
+    [Age.child]: esBookInfo,
+    [Age.teen]: esBookInfo,
+    [Age.adult]: esBookInfo,
   },
   [LanguageChampionship.pl]: {
     [Age.child]: plChildBookInfo,
@@ -290,7 +264,11 @@ export default {
       },
     },
   },
-  [LanguageChampionship.pt]: championshipEn,
+  [LanguageChampionship.pt]: {
+    [Age.child]: ptBookInfo,
+    [Age.teen]: ptBookInfo,
+    [Age.adult]: ptBookInfo,
+  },
   [LanguageChampionship.fr]: {
     [Age.child]: frChildBookInfo,
     [Age.teen]: frChildBookInfo,
